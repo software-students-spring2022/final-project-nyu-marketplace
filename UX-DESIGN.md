@@ -1,5 +1,11 @@
 # User Experience Design
 
+## Prototype
+
+https://ruochenmiao812649.invisionapp.com/console/share/TFZ9CMV5PNX
+
+Users are expected to start from the home page unlogged. Usage of pages are listed below. 
+
 ## Appmap
 
 ![app map](https://user-images.githubusercontent.com/74287387/155180571-999854ff-8d1a-4ee1-ac87-2d3c40687dec.png)
