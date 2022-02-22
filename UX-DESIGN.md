@@ -4,7 +4,7 @@
 
 https://ruochenmiao812649.invisionapp.com/console/share/TFZ9CMV5PNX
 
-Users are expected to start from the home page unlogged.
+Users are expected to start from the home page unlogged. Usage of pages are listed below. 
 
 ## Appmap
 
