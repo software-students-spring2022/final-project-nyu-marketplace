@@ -17,7 +17,10 @@ Our product aims to allow students to get rid of items they no longer need as we
 <br>
 
 # Core Team Members
+- Clare - https://github.com/clareuwu
+- Kevin - https://github.com/kevin2350
 - Rory Jones - https://github.com/RoryJones19
+- David Leguisamo - https://github.com/dleguisamo
 - Ruochen Miao - https://github.com/Ruochen1105
 
 
