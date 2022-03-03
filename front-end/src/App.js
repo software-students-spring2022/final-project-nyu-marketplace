@@ -1,10 +1,18 @@
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+// Import components from 'components folder'
+import { TestPage } from './components'
 
 function App() {
   return (
-    <div className="App">
-      this is a react app yay
-    </div>
+    
+    <Router>
+      <Routes>
+        <Route path="/" element={<TestPage/>}></Route>
+      </Routes>
+    </Router>
+    
+
   );
 }
 
