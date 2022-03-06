@@ -2,7 +2,7 @@
 
 ## Prototype
 
-https://ruochenmiao812649.invisionapp.com/console/share/TFZ9CMV5PNX
+https://ruochenmiao812649.invisionapp.com/overview/NYU-Market-ckzypfyu504jo01bu5p7h9bnd/screens?sortBy=1&sortOrder=1&viewLayout=1
 
 Users are expected to start from the home page unlogged. Usage of pages are listed below. 
 
