@@ -3,7 +3,7 @@
 ## Prototype
 https://ruochenmiao812649.invisionapp.com/console/share/TFZ9CMV5PNX
 
-Users are expected to start from the home page unlogged. Usage of pages are listed below. 
+Users are expected to start from the home page unlogged. Usage of pages are listed below. Some of the pages are improved per tutor's suggestion after the stakeholder demo 0.
 
 ## Appmap
 
