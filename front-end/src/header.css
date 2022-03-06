@@ -1,0 +1,37 @@
+ul {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    list-style: none;
+    background-color: blueviolet;
+}
+
+li.logo {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+}
+
+li.about {
+    cursor: pointer;
+    padding-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: underline;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+li.profile {
+    cursor: pointer;
+    text-decoration: underline;
+    color: white;
+    padding-top: 80px;
+    padding-bottom:10px;
+    padding-right: 20px;
+    padding-left: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
