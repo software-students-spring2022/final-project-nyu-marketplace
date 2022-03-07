@@ -1,7 +1,8 @@
 //Import any components made in this folder
-import TestPage from './Testpage'
+import LandingPage from './LandingPage'
+import Header from './header'
 
 
 
 // export them
-export { TestPage }
+export { LandingPage, Header }
