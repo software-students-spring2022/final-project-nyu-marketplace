@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
-import { LandingPage, Header } from './components'
+import { LandingPage } from './components'
 
 function App() {
   return (
@@ -18,9 +18,6 @@ function App() {
           <Route path='/' element={<LandingPage/>}></Route>
         </Routes>
       </Router>
-      <Header logged = "True"/> {/*header for logged users*/}
-      <br />
-      <Header logged = "False"/> {/*header for unlogged users*/}
     </main>
 
   );
