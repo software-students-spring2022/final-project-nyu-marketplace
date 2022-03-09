@@ -1,26 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
-import { LandingPage, Header } from './components'
+import { LandingPage } from './components'
+import About from './components/About'
 
 function App() {
   return (
-    /*
-    <Router>
-      <Routes>
-        <Route path="/" element={<TestPage/>}></Route>
-      </Routes>
-    </Router>
-    */
     <main className = "App">
       <Router>
         <Routes>
           <Route path='/' element={<LandingPage/>}></Route>
+          <Route path='/about' element={<About/>}></Route>
         </Routes>
       </Router>
-      <Header logged = "True"/> {/*header for logged users*/}
-      <br />
-      <Header logged = "False"/> {/*header for unlogged users*/}
+      {/*<Header logged = "True"/> {/*header for logged users*/}
+      {/*<Header logged = "False"/> {/*header for unlogged users*/}
     </main>
 
   );
