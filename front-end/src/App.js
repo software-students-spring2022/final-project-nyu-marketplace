@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
-import { LandingPage } from './components'
-import About from './components/About'
+import { LandingPage, About } from './components/index'
 
 function App() {
   return (
