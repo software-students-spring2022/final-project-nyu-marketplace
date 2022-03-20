@@ -1,4 +1,5 @@
 import './header.css';
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
 
@@ -22,9 +23,9 @@ const Header = (props) => {
         return (
             <>
                 <ul>
-                    <li className = 'logo'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></li>
-                    <li className = 'about' onClick = {clickAbout}>About Us</li>
-                    <li className = 'profile' onClick = {clickProfile}>Profile</li>
+                    <li className = 'logo'><Link to = "/" className='link'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></Link></li>
+                    <li className = 'about' onClick = {clickAbout}><Link to = "/about" className='link'>About Us</Link></li>
+                    <li className = 'profile' onClick = {clickProfile}><Link to = "/profile" className='link'>Profile</Link></li>
                 </ul>
             </>
         );
@@ -32,9 +33,9 @@ const Header = (props) => {
         return (
             <>
                 <ul>
-                    <li className = 'logo'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></li>
-                    <li className = 'about' onClick = {clickAbout}>About Us</li>
-                    <li className = 'profile' onClick = {clickLog}>Log in / Register</li>
+                    <li className = 'logo'><Link to = "/" className='link'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></Link></li>
+                    <li className = 'about' onClick = {clickAbout}><Link to = "/about" className='link'>About Us</Link></li>
+                    <li className = 'profile' onClick = {clickLog}><Link to = "LR" className='link'>Log in / Register</Link></li>
                 </ul>
             </>
         );
@@ -42,4 +43,4 @@ const Header = (props) => {
 
 }
 
-export default Header
+export default Header;

@@ -1,5 +1,5 @@
 import "./result.css"
-import Header from "./header"
+import {Header} from "./index"
 import 'bootstrap/dist/css/bootstrap.css';
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
