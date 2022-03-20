@@ -1,10 +1,49 @@
-#container {
-    max-height: 100vh;
-    max-width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
+:root {
+    background-color: #F2F2F2 !important;
 }
 
-#row {
-    background-color: black;
-    width: 50vw;
+#container {
+    max-height: auto;
     height: 100vh;
+    overflow: scroll;
+    background: rgb(51,6,98);
+    background: linear-gradient(180deg, rgba(51,6,98,1) 31%, rgba(137,81,174,1) 64%, rgba(242,242,242,1) 100%);
+}
+
+/* #row {
+    height: 100px;
+} */
+
+#header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 65px;
+   
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    background-color: #451F6F;
+    color: #F2F2F2;
+}
+
+#header-2 {
+    background-color: #F2F2F2;
+}
+
+#login-button {
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    color: #F2F2F2;
+    width: 200px;
+    height: 50px;
+
+
+    background: #7151E8;
+    border-radius: 13px;
+}
+#login-button:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
 }
