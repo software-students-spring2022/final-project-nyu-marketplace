@@ -4,10 +4,12 @@ import "./manageItems.css"
 
 const manageItems = () =>
 {
-    <div className='manageItems'>
-        <Header></Header>
-    </div>
-
+    return (
+       <div>
+          <Header></Header>
+        
+        </div>
+    )
 }
 
 export default manageItems
