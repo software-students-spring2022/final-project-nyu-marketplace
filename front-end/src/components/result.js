@@ -1,13 +1,13 @@
 import "./result.css"
-import {Header} from "./index"
+import {Header, SearchBar, ItemLine} from "./index"
 import 'bootstrap/dist/css/bootstrap.css';
-import {SearchBar} from "./index";
 
 const ResultPage = (props) => {
     return (
         <>
-            <Header logged = "True"></Header>
-            <SearchBar></SearchBar>
+            <Header logged = "True"/>
+            <SearchBar/>
+            <ItemLine/>
         </>
     )
 }
