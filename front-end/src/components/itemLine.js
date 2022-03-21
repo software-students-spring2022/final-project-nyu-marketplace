@@ -5,6 +5,18 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 const ItemLine = (props) => {
+    const fakeData = [
+        {
+            seller:"foo",
+            item: "Amazing Item",
+            time: "2012-04-23T18:25:43.511Z"
+        },
+        {
+            seller:"bar",
+            item: "Cool Item",
+            time: "2012-05-23T18:32:54.242Z"
+        }
+    ]
     return (
         <>
             <center><Container className = "itemline">
@@ -13,11 +25,13 @@ const ItemLine = (props) => {
                     <Col>Item</Col>
                     <Col>Post Time</Col>
                 </Row>
-                <Row>
-                    <Col>foo</Col>
-                    <Col>Amazing Item</Col>
-                    <Col>2012-04-23T18:25:43.511Z</Col>
-                </Row>
+                {fakeData.map(element => 
+                    <Row>
+                        <Col>{element.seller}</Col>
+                        <Col>{element.item}</Col>
+                        <Col>{element.time}</Col>
+                    </Row>
+                )}
             </Container></center>
             
         </>

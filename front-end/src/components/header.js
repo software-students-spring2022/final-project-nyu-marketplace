@@ -1,5 +1,8 @@
 import './header.css';
 import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Header = (props) => {
 
@@ -22,21 +25,41 @@ const Header = (props) => {
     if (props.logged === 'True') { 
         return (
             <>
-                <ul>
-                    <li className = 'logo'><Link to = "/" className='link'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></Link></li>
-                    <li className = 'about' onClick = {clickAbout}><Link to = "/about" className='link'>About Us</Link></li>
-                    <li className = 'profile' onClick = {clickProfile}><Link to = "/profile" className='link'>Profile</Link></li>
-                </ul>
+                <Row>
+                    <Col sm={6} id='header'>
+                        <div onClick={clickLogo}>NYU Marketplace</div>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/about'>
+                        <Button id='login-button' onClick={clickAbout}>About</Button>
+                        </Link>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/profile'>
+                        <Button id='login-button' onClick={clickProfile}>Profile</Button>
+                        </Link>
+                    </Col>
+                </Row>
             </>
         );
     } else {
         return (
             <>
-                <ul>
-                    <li className = 'logo'><Link to = "/" className='link'><img src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace' height = {100} onClick = {clickLogo}/></Link></li>
-                    <li className = 'about' onClick = {clickAbout}><Link to = "/about" className='link'>About Us</Link></li>
-                    <li className = 'profile' onClick = {clickLog}><Link to = "LR" className='link'>Log in / Register</Link></li>
-                </ul>
+                <Row>
+                    <Col sm={6} id='header'>
+                        <div>NYU Marketplace</div>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/about'>
+                        <Button id='login-button' onClick={clickAbout}>About</Button>
+                        </Link>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/login'>
+                        <Button id='login-button' onClick={clickLog}>Log In</Button>
+                        </Link>
+                    </Col>
+                </Row>
             </>
         );
     }

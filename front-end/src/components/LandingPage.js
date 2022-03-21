@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom'
 //Import styles
 import './LandingPage.css'
 
+import {Header} from './index'
+
 const LandingPage = () => {
   return (
 
   <Container fluid id='container'>
-    <Row>
+    {/*<Row>
       <Col sm={9} id='header'>
         <div>NYU Marketplace</div>
       </Col>
@@ -21,7 +23,8 @@ const LandingPage = () => {
           <Button id='login-button'>Log In</Button>
         </Link>
       </Col>
-    </Row>
+  </Row>*/}
+    <Header/>
 
     <Row>
       <Col className='slogan'>
