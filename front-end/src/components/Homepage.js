@@ -19,26 +19,26 @@ const Homepage = () => {
                 <Form id='form'>
                     <FormControl id='searchbar' type='search' placeholder='Start Searching' aria-label='Search' onChange={ e=> setSearch(e.target.value)}/>
                 </Form>
-                <Button id='search-button' variant="outline-secondary">Search</Button>
+                <Link to = "/result"><Button id='search-button' variant="outline-secondary">Search</Button></Link>
                 <div id='search-title'>Browse By Category</div>
             </Col>
           </Row>
 
           <Row>
             <Col id='categories'>
-                <Link to='/academicsupplies'>
+                <Link to='/result'>
                     <Button id='category-button'>Academic Supplies</Button>
                 </Link>
                 
-                <Link to='/dormappliances'>
+                <Link to='/result'>
                     <Button id='category-button'>Dorm Appliances</Button>
                 </Link>
                 
-                <Link to='/clothing'>
+                <Link to='/result'>
                     <Button id='category-button'>Clothing</Button>
                 </Link>
 
-                <Link to='/other'>
+                <Link to='/reuslt'>
                     <Button id='category-button'>Other</Button>
                 </Link>
             </Col>

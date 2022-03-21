@@ -48,7 +48,7 @@ const Register = () => {
                                     <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                                 </FloatingLabel>
                         </Form.Group>
-                        <Button id="button">Register</Button>
+                        <Link to = "/homepage"><Button id="button">Register</Button></Link>
                         
                     </Form>
 

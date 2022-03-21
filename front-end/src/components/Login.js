@@ -34,7 +34,7 @@ const Login = () => {
                                 <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                             </FloatingLabel>
                     </Form.Group>
-                    <Button id="button">login</Button>
+                   <Link to = "/homepage"> <Button id="button">login</Button></Link>
                     
                 </Form>
                 <a href='/register'>No account? Register Here</a>

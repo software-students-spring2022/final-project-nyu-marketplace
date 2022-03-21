@@ -26,8 +26,13 @@ const Header = (props) => {
         return (
             <>
                 <Row>
-                    <Col sm={6} id='header'>
-                        <div onClick={clickLogo}>NYU Marketplace</div>
+                    <Col sm={3} id='header'>
+                        <div>NYU Marketplace</div>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/homepage'>
+                        <Button id='login-button'>Home Page</Button>
+                        </Link>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/about'>
@@ -46,8 +51,13 @@ const Header = (props) => {
         return (
             <>
                 <Row>
-                    <Col sm={6} id='header'>
+                    <Col sm={3} id='header'>
                         <div>NYU Marketplace</div>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/homepage'>
+                        <Button id='login-button'>Home Page</Button>
+                        </Link>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/about'>
