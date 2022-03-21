@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
-:root {
+/* :root {
     background-color: #F2F2F2 !important;
-}
+    background-attachment: fixed;
+} */
+
 
 #container {
     max-height: auto;
-    height: 100vh;
     overflow: scroll;
     background: rgb(51,6,98);
-    background: linear-gradient(180deg, rgba(51,6,98,1) 31%, rgba(137,81,174,1) 64%, rgba(242,242,242,1) 100%);
+    background: linear-gradient(180deg, rgba(51,6,98,1) 10%, rgba(137,81,174,1) 30%, rgba(242,242,242,1) 60%);
+    background-attachment: scroll;
+
 }
 
 /* #row {
@@ -18,7 +21,6 @@
 #header {
     display: flex;
     align-items: center;
-    flex-direction: row;
     height: 65px;
    
     font-family: 'Raleway', sans-serif;
@@ -28,7 +30,10 @@
 }
 
 #header-2 {
-    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    background-color: #451F6F;
+    align-items: center;
 }
 
 #login-button {
@@ -46,4 +51,60 @@
     outline: none;
     box-shadow: none;
     border: none;
+}
+
+#slogan-header {
+    font-family: 'Raleway', sans-serif;
+    font-size: 45px;
+    color: #F2F2F2;
+}
+
+.slogan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:#F2F2F2;
+    height: 600px;
+}
+
+.header-text{
+    font-family: 'Raleway', sans-serif;
+    font-size: 45px;
+    color: #451F6F;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: #451F6F;
+}
+
+.body-text{
+    font-family: 'Raleway', sans-serif;
+    font-size: 28px;
+    padding-bottom: 40px;
+}
+
+#start-button{
+    background: #7151E8;
+    height: 50px;
+    width: 500px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    border-radius: 13px;
+}
+
+#start-button:focus,#start-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
 }
