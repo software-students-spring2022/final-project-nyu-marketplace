@@ -11,10 +11,11 @@ import ItemLine from './itemLine'
 import Homepage from './Homepage'
 import SellerForm from './SellerForm'
 import ManageItems from './ManageItems'
+import Profile from './Profile'
 import DetailPage from './detail'
 
 
 
 
 // export them
-export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage }
+export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage, Profile }
