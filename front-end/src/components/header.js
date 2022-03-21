@@ -26,12 +26,17 @@ const Header = (props) => {
         return (
             <>
                 <Row>
-                    <Col sm={9} id='header'>
-                        <div>NYU Marketplace</div>
+                    <Col sm={6} id='header'>
+                        <div onClick={clickLogo}>NYU Marketplace</div>
+                    </Col>
+                    <Col sm={3} id='header-2'>
+                        <Link to='/about'>
+                        <Button id='login-button' onClick={clickAbout}>About</Button>
+                        </Link>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/profile'>
-                        <Button id='login-button'>Profile</Button>
+                        <Button id='login-button' onClick={clickProfile}>Profile</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -41,12 +46,17 @@ const Header = (props) => {
         return (
             <>
                 <Row>
-                    <Col sm={9} id='header'>
+                    <Col sm={6} id='header'>
                         <div>NYU Marketplace</div>
                     </Col>
                     <Col sm={3} id='header-2'>
+                        <Link to='/about'>
+                        <Button id='login-button' onClick={clickAbout}>About</Button>
+                        </Link>
+                    </Col>
+                    <Col sm={3} id='header-2'>
                         <Link to='/login'>
-                        <Button id='login-button'>Log In</Button>
+                        <Button id='login-button' onClick={clickLog}>Log In</Button>
                         </Link>
                     </Col>
                 </Row>
