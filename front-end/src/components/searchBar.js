@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import { Link } from "react-router-dom";
 
 const SearchBar = (props) => {
     return (
@@ -17,7 +18,7 @@ const SearchBar = (props) => {
                 <center><Row>
                     <Col xs = {1}></Col>
                     <Col><input type = "text" name = "searchText"/></Col>
-                    <Col xs = {1}><input type = "submit" value = "Search" /></Col>
+                    <Col xs = {1}><Link to = "/result"><input type = "submit" value = "Search" /></Link></Col>
                     <Col xs = {1}></Col>
                 </Row></center>
             </form></Container>
