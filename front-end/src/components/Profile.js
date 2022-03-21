@@ -16,7 +16,7 @@ const Profile = () => {
       <Container fluid id='container'>
          <Header/>
 
-          <Row class='row'>
+          <Row class='profile-row'>
             <Col id='icon'>
                 <img id='pfp' src={icon}/>
             </Col>
@@ -30,11 +30,11 @@ const Profile = () => {
             </Col>
           </Row>
 
-          <Row class='row'>
+          <Row class='profile-row'>
               <p id='my-products'>My Products</p>
           </Row>
 
-          <Row class='row'>
+          <Row class='profile-row'>
               <Col id='product-btns'>
                   <Link to='/listings'>
                       <Button id='btn'>Listings</Button>
@@ -50,13 +50,13 @@ const Profile = () => {
               </Col>
           </Row>
 
-          <Row class='row'>
+          <Row class='profile-row'>
               <Link to='/history'>
                   <Button id='new-listing'>Create new listing</Button>
               </Link>
           </Row>
 
-          <Row class='row'>
+          <Row class='profile-row'>
               <p id='empty'></p>
           </Row>
       </Container>

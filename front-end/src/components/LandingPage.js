@@ -13,7 +13,7 @@ import {Header} from './index'
 const LandingPage = () => {
   return (
 
-  <Container fluid id='container'>
+  <Container fluid id='landingpage-container'>
     {/*<Row>
       <Col sm={9} id='header'>
         <div>NYU Marketplace</div>
