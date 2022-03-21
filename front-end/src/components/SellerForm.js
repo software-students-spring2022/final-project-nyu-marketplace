@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
-// import 'react-dropdown/style.css'
+import 'react-dropdown/style.css'
 //import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 
 const SellerForm = () => {
