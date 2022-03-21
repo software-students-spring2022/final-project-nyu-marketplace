@@ -61,6 +61,7 @@ const DetailPage = (props) => {
     return (
         <>
             <Header logged="True"/>
+            <center>
             <Item 
                 title = "Amazing Item"
                 price = "10"
@@ -68,12 +69,14 @@ const DetailPage = (props) => {
                 location = "New York"
                 category = "Other"
                 photo = "https://picsum.photos/200"/>
+            <br/>
             <Container>
                 <Row>
                     <Col><Link to = "/homepage"><Button onClick={clickOrder}>Order</Button></Link></Col>
                     <Col><Link to = "/homepage"><Button onClick={clickOrder}>Favorite</Button></Link></Col>
                 </Row>
             </Container>
+            </center>
         </>
     )
 }
