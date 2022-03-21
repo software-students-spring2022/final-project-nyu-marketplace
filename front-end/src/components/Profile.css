@@ -1,0 +1,59 @@
+#container {
+    background-color: #ffffff;
+    font-family: "Lucida Console", monospace;
+}
+
+#pfp {
+    width: 30%;
+    padding-top: 5%;
+    margin-left: 55%;
+}
+
+#user {
+    font-size: 300%;
+    padding-top: 5%;
+    padding-right: 10%;
+}
+
+.row {
+    background-color: rgb(255, 236, 251);
+}
+
+#edit-profile {
+    background: #7151E8;
+    width: 20%;
+    margin-left: 7%;
+}
+
+#my-products {
+    font-size: 300%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+#product-btns {
+    display: flex;
+    justify-content: center;
+    padding-left: 3%;
+}
+
+#btn {
+    background: #7151E8;
+    font-size: 150%;
+    width: 250px;
+    height: 80px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+#new-listing {
+    margin-top: 2%;
+    background: #a451e8;
+    width: 46.5%;
+    margin-left: 28%;
+    height: 80px;
+}
+
+#empty {
+    height: 20vh;
+}
