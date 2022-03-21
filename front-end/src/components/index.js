@@ -8,9 +8,10 @@ import Register from './Register'
 import ResultPage from './result'
 import SearchBar from './searchBar'
 import ItemLine from './itemLine'
+import Homepage from './Homepage'
 
 
 
 
 // export them
-export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine }
+export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage }

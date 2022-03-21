@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
 //import { LandingPage } from './components'
-import { LandingPage, About, Login, Register, ResultPage } from './components/index'
+import { LandingPage, About, Login, Register, ResultPage, Homepage } from './components/index'
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/result' element={<ResultPage/>}></Route>
+          <Route path='/homepage' element={<Homepage/>}></Route>
         </Routes>
       </Router>
       {/*<Header logged = "True"/> {/*header for logged users*/}
