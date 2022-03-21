@@ -1,11 +1,15 @@
 import "./result.css"
+import {Header, SearchBar, ItemLine} from "./index"
+import 'bootstrap/dist/css/bootstrap.css';
 
-const resultPage = (props) => {
+const ResultPage = (props) => {
     return (
         <>
-            <h1>result</h1>
+            <Header logged = "True"/>
+            <SearchBar/>
+            <ItemLine/>
         </>
     )
 }
 
-export default resultPage
+export default ResultPage
