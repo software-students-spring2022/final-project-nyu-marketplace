@@ -22,7 +22,7 @@ const Login = () => {
         <Row>
             <Col id='form-section' sm={6}>
                 <div id='title'>Log in</div>
-                <Form>
+                <Form id='form'>
                     <Form.Group id='email-form'>
                         <FloatingLabel label='email'>
                             <Form.Control id='email-input' type='email' placeholder='email' onChange={ e=> setEmail(e.target.value)}/>
