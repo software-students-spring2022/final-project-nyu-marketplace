@@ -1,0 +1,25 @@
+h1 {
+    text-align: center;
+    margin: 2.5%;
+  }
+h3 {
+    text-align: left;
+    margin: 20px;
+}
+  .ManageItems-Items {
+    margin: 20px;
+    display: flex;
+    flex-direction: 4;
+    flex-wrap: wrap;
+    flex: 1 0 21%;
+    background: 	antiquewhite;
+    border: solid;
+  }
+
+  .SellerInfo
+  {
+    background: 	antiquewhite;
+    margin: 20px;
+    border: solid;
+    padding-top: 15px;
+  }

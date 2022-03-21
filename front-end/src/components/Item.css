@@ -1,0 +1,26 @@
+.Item {
+    text-align: left;
+    margin: 20px;
+    background: white;
+    width: 17%;
+}
+
+.Item-img{
+    margin: 20px;
+    display: block;
+    width: 80%;
+}
+
+h1{
+    text-align: left
+}
+p {
+    text-align: left;
+    margin: 20px;
+}
+
+.Item:hover {
+    /* change the background color when a user hovers */
+    background-color: #505050;
+    color: white;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from './header'
+import axios from "axios"
 import './SellerForm.css'
 import 'react-dropdown/style.css'
 //import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
@@ -8,6 +9,7 @@ const SellerForm = () => {
 
     // state variables for new item
     const [title, setTitle] = useState("")
+    const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
@@ -17,7 +19,14 @@ const SellerForm = () => {
         e.preventDefault()
 
         // stuff to send new item to server to be added later
-
+        axios.post("https://someserversomehwere.com/puppy/save", {
+            title: title,
+            price: price,
+            description: description,
+            photo: photo,
+            location: location,
+            category: category,
+      })
         console.log('Your item has been posted')
         alert("Your item has been posted")
     }
@@ -25,8 +34,7 @@ const SellerForm = () => {
     return (
       <div>
         <Header></Header>
-        
-        <h3>Listing Details</h3>
+        <h3 class= "h3">Listing Details</h3>
 
         <form onSubmit={handleSubmit}>
         <div className = "form-box">
@@ -41,8 +49,19 @@ const SellerForm = () => {
         </div>
 
         <div>
-            <label for ="description_field"></label>
+            <label for ="price_field"></label>
             <input
+                id="price field"
+                type = "text"
+                placeholder="Set Price ($)"
+                value={price}
+                onChange={e => setPrice(e.target.value)}
+            />
+        </div>
+
+        <div>
+            <label for ="description_field"></label>
+            <input className="description"
                 id="description field"
                 type = "text"
                 placeholder="Item Description"
@@ -52,7 +71,7 @@ const SellerForm = () => {
         </div>
 
         <div>
-            <label for ="photo_field">Select Photo:</label>
+            <label for ="photo_field">Select Photo: </label>
             <input
                 id="photo field"
                 type = "file"
@@ -83,7 +102,7 @@ const SellerForm = () => {
         </div>
 
         <div>
-          <input type="submit" value="Submit" />
+          <input className = "input" type="submit" value="Submit" />
         </div>
 
         </form>

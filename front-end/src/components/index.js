@@ -4,8 +4,8 @@ import Header from './header'
 import Result from './result'
 import About from './About'
 import SellerForm from './SellerForm'
-import manageItems from './manageItems'
+import ManageItems from './ManageItems'
 
 
 // export them
-export { LandingPage, Header, Result, About, SellerForm, manageItems}
+export { LandingPage, Header, Result, About, SellerForm, ManageItems}
