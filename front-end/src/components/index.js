@@ -5,7 +5,12 @@ import Result from './result'
 import About from './About'
 import Login from './Login'
 import Register from './Register'
+import ResultPage from './result'
+import SearchBar from './searchBar'
+import ItemLine from './itemLine'
+
+
 
 
 // export them
-export { LandingPage, Header, Result, About, Login, Register }
+export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine }

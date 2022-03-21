@@ -37,3 +37,21 @@ li.profile {
 .link {
     color: white;
 }
+
+#header {
+    display: flex;
+    align-items: center;
+    height: 65px;
+   
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    background-color: #451F6F;
+    color: #F2F2F2;
+}
+
+#header-2 {
+    display: flex;
+    justify-content: center;
+    background-color: #451F6F;
+    align-items: center;
+}
