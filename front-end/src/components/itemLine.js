@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import { Link } from "react-router-dom";
 
 const ItemLine = (props) => {
     const fakeData = [
@@ -26,11 +27,11 @@ const ItemLine = (props) => {
                     <Col>Post Time</Col>
                 </Row>
                 {fakeData.map(element => 
-                    <Row>
+                    <Row><Link to = "/detail">
                         <Col>{element.seller}</Col>
                         <Col>{element.item}</Col>
                         <Col>{element.time}</Col>
-                    </Row>
+                    </Link></Row>
                 )}
             </Container></center>
             
