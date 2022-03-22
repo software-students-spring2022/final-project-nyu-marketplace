@@ -11,8 +11,8 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage/>}></Route>
           <Route path='/about' element={<About/>}></Route>
-          <Route path='/SellerForm' element={<SellerForm/>}></Route>
-          <Route path='/ManageItems' element={<ManageItems/>}></Route>
+          <Route path='/new-listing' element={<SellerForm/>}></Route>
+          <Route path='/listings' element={<ManageItems/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/result' element={<ResultPage/>}></Route>

@@ -51,7 +51,7 @@ const Profile = () => {
           </Row>
 
           <Row class='profile-row'>
-              <Link to='/history'>
+              <Link to='/new-listing'>
                   <Button id='new-listing'>Create new listing</Button>
               </Link>
           </Row>
