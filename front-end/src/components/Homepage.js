@@ -8,65 +8,7 @@ import './Homepage.css'
 
 const Homepage = () => {
   const [search, setSearch] = useState();
-  const doSearch = () => {
-    axios.get(`http://localhost:3000/search/?q=${search}`)
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-}  
-
-    const doAcademicSearch = () => {
-      axios.get(`http://localhost:3000/search/?q=academic`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-    }
-
-    const doClothingSearch = () => {
-      axios.get(`http://localhost:3000/search/?q=clothing`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-    }
-
-    const doDormSearch = () => {
-      axios.get(`http://localhost:3000/search/?q=dorm`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-    }
-
-    const doOtherSearch = () => {
-      axios.get(`http://localhost:3000/search/?q=other`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-    }
+  
 
   return (
       <Container fluid id='homepage-container'>
@@ -77,27 +19,29 @@ const Homepage = () => {
                 <Form id='form'>
                     <FormControl id='searchbar' type='search' placeholder='Start Searching' aria-label='Search' onChange={ e=> setSearch(e.target.value)}/>
                 </Form>
-                <Button id='search-button' variant="outline-secondary" onClick={doSearch}>Search</Button>
+                <Link to={`/result?q=${search}`}>
+                  <Button id='search-button' variant="outline-secondary">Search</Button>
+                </Link>
                 <div id='search-title'>Browse By Category</div>
             </Col>
           </Row>
 
           <Row>
             <Col id='categories'>
-                <Link to='/result'>
-                    <Button id='category-button' onClick={doAcademicSearch}>Academic Supplies</Button>
+                <Link to='/result?q=academic'>
+                    <Button id='category-button'>Academic Supplies</Button>
                 </Link>
                 
-                <Link to='/result'>
-                    <Button id='category-button' onClick={doDormSearch}>Dorm Appliances</Button>
+                <Link to='/result?q=dorm'>
+                    <Button id='category-button'>Dorm Appliances</Button>
                 </Link>
                 
-                <Link to='/result'>
-                    <Button id='category-button' onClick={doClothingSearch}>Clothing</Button>
+                <Link to='/result?q=clothing'>
+                    <Button id='category-button'>Clothing</Button>
                 </Link>
 
-                <Link to='/reuslt'>
-                    <Button id='category-button' onClick={doOtherSearch}>Other</Button>
+                <Link to='/result?q=other'>
+                    <Button id='category-button'>Other</Button>
                 </Link>
             </Col>
           </Row>
