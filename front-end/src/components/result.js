@@ -20,6 +20,7 @@ const ResultPage = (props) => {
 
     const [result, setResult] = useState()
     const query = useQuery()
+    
     useEffect (() => { 
         axios.get(`http://localhost:3000/search/?q=${query.get("q")}`)
         .then(function (response) {
@@ -33,7 +34,17 @@ const ResultPage = (props) => {
         })
 
     }, [])
-
+    
+    useEffect (() => {
+      fetch(`http://localhost:3000/result?${query.toString()}`)
+      .then(res => res.json())
+      .then((resJson) => {
+        setResult(resJson)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    },[])
     
     
 

@@ -23,5 +23,10 @@ app.get('/search', (req,res) => {
     
 })
 
+app.get('/result', (req, res) => {
+    console.log(req.query);
+    res.json(data.Items.filter(element => element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])))
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app
