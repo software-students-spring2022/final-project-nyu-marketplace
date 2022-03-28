@@ -2,14 +2,14 @@ import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Header from './header'
 import {useState} from 'react'
+import axios from 'axios'
 
 import './Homepage.css'
 
 const Homepage = () => {
   const [search, setSearch] = useState();
-  const doSearch = () => {
-      console.log('send search to api endpoint')
-  }  
+  
+
   return (
       <Container fluid id='homepage-container'>
           <Header/>
@@ -19,26 +19,28 @@ const Homepage = () => {
                 <Form id='form'>
                     <FormControl id='searchbar' type='search' placeholder='Start Searching' aria-label='Search' onChange={ e=> setSearch(e.target.value)}/>
                 </Form>
-                <Link to = "/result"><Button id='search-button' variant="outline-secondary">Search</Button></Link>
+                <Link to={`/result?q=${search}`}>
+                  <Button id='search-button' variant="outline-secondary">Search</Button>
+                </Link>
                 <div id='search-title'>Browse By Category</div>
             </Col>
           </Row>
 
           <Row>
             <Col id='categories'>
-                <Link to='/result'>
+                <Link to='/result?q=academic'>
                     <Button id='category-button'>Academic Supplies</Button>
                 </Link>
                 
-                <Link to='/result'>
+                <Link to='/result?q=dorm'>
                     <Button id='category-button'>Dorm Appliances</Button>
                 </Link>
                 
-                <Link to='/result'>
+                <Link to='/result?q=clothing'>
                     <Button id='category-button'>Clothing</Button>
                 </Link>
 
-                <Link to='/reuslt'>
+                <Link to='/result?q=other'>
                     <Button id='category-button'>Other</Button>
                 </Link>
             </Col>
