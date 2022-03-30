@@ -4,9 +4,10 @@ const app = express() // instantiate an Express object
 const cors = require('cors')
 const data = require('../public/FakeData.json')
 
-app.use(cors())
+app.use(cors());
 // we will put some server logic here later...
 
+app.use(express.static('public'));
 
 // API route for search. As of now, searches based on title, but keys may be added to widen search params
 app.get('/search', (req,res) => {
@@ -35,5 +36,9 @@ app.get('/favorites', (req, res) => {
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
+app.get('/detail', (req, res) => {
+    console.log(req.query);
+    res.json(data.Items.filter(element => element._id === req.query['id']));
+})
 // export the express app we created to make it available to other modules
 module.exports = app

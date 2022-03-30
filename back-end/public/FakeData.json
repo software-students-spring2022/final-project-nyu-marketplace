@@ -1,46 +1,58 @@
 {
     "Items": [        
         {
+            "_id": "1",
             "title": "Agouti",
             "price": "64.90",
             "description": "Cross-group tertiary application",
             "location": "New York",
-            "category": "Clothing"
+            "category": "Clothing",
+            "photo": "Agouti.jpg"
         },
         {
+            "_id": "2",
             "title": "Four-striped grass mouse",
             "price": "160.47",
             "description": "Re-contextualized high-level function",
             "location": "Shangai",
-            "category": "Academic"
+            "category": "Academic",
+            "photo": "Four-striped grass mouse.jpg"
         },
         {
+            "_id": "3",
             "title": "Crocodile",
             "price": "100",
             "description": "Customer-focused fault-tolerant process improvement",
             "location": "Shangai",
-            "category": "Other"
+            "category": "Other",
+            "photo": "Crocodile.jpg"
         },
         {
+            "_id": "4",
             "title": "Bison",
             "price": "87.41",
             "description": "Configurable contextually-based initiative",
             "location": "Abu Dhabi",
-            "category": "Academic"
+            "category": "Academic",
+            "photo": "Bison.jpg"
         },
         {
+            "_id": "5",
             "title": "Lemur",
             "price": "17",
             "description": "Face to face content-based ability",
             "location": "New York",
-            "category": "Clothing"
+            "category": "Clothing",
+            "photo": "Lemur.jpg"
         },
         {
+            "_id": "6",
             "title": "Tern",
             "price": "499.99",
             "description": "Open-architected zero tolerance alliance",
             "location": "New York",
-            "category": "Dorm"
+            "category": "Dorm",
+            "photo": "Tern.jpg"
         }
     ]
 }
