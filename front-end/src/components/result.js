@@ -26,25 +26,25 @@ const ResultPage = (props) => {
         .then(function (response) {
           // handle success
           console.log(response);
-          setResult(response.data)
+          if (response.data.length === 0){
+            fetch(`http://localhost:3000/result?${query.toString()}`)
+            .then(res => res.json())
+            .then((resJson) => {
+              if (resJson != []){setResult(resJson);}
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          } else {setResult(response.data);}
         })
         .catch(function (error) {
           // handle error
           console.log(error);
-        })
-
+        });
+        
     }, [])
     
-    useEffect (() => {
-      fetch(`http://localhost:3000/result?${query.toString()}`)
-      .then(res => res.json())
-      .then((resJson) => {
-        setResult(resJson)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    },[])
+
     
     
 
