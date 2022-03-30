@@ -13,9 +13,11 @@ import SellerForm from './SellerForm'
 import ManageItems from './ManageItems'
 import Profile from './Profile'
 import DetailPage from './detail'
+import FavoritesPage from './favorites'
+import SearchBarF from './searchBarF'
 
 
 
 
 // export them
-export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage, Profile }
+export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage, Profile, FavoritesPage, SearchBarF }

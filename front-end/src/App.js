@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
 //import { LandingPage } from './components'
-import { LandingPage, About, Login, Register, ResultPage, Homepage, ManageItems, SellerForm, DetailPage, Profile } from './components/index'
+import { LandingPage, About, Login, Register, ResultPage, Homepage, ManageItems, SellerForm, DetailPage, Profile, FavoritesPage } from './components/index'
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path='/homepage' element={<Homepage/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/detail' element={<DetailPage/>}></Route>
+          <Route path='/favorites' element={<FavoritesPage/>}></Route>
         </Routes>
       </Router>
       {/*<Header logged = "True"/> {/*header for logged users*/}
