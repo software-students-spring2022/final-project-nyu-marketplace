@@ -25,8 +25,14 @@ app.get('/search', (req,res) => {
 
 app.get('/result', (req, res) => {
     console.log(req.query);
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])));}
-    else {res.json(data.Items.filter(element => (element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])) && element.category === req.query.category));}
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
+    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
+})
+
+app.get('/favorites', (req, res) => {
+    console.log(req.query);
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
+    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
 // export the express app we created to make it available to other modules
