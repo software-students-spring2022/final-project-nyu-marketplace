@@ -11,12 +11,10 @@ const ItemLine = (props) => {
         <>
             <center><Container className = "itemline">
                 <Row className = "title">
-                    <Col>Seller</Col>
                     <Col>Item</Col>
-                    <Col>Post Time</Col>
                 </Row>
                 {props.data.map(element => 
-                    <Row key={element.title}><Link to = "/detail">
+                    <Row key={element.title}><Link to ={`/detail?id=${element['_id']}`}>
                         <Col>{element.title}</Col>
                         {/* <Col>{element.item}</Col>
                         <Col>{element.time}</Col> */}

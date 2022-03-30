@@ -7,7 +7,9 @@ import Col from "react-bootstrap/Col"
 import Modal from 'react-bootstrap/Modal'
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 // const clickOrder = () => {
 //     alert("Success!")
@@ -21,16 +23,33 @@ import { useState } from "react";
 //     )
 // }
 
+
 const DetailPage = (props) => {
     const [show, setShow] = useState(false);
-
 
     const orderItem = () => {
         //Here would go the route to order the item
         console.log("Tasks:\nAdd item to user info in database\nRemove item from public view")
     }
+    const useQuery = () => {
+        return new URLSearchParams(useLocation().search);
+    }
 
-    return (
+    const [result, setResult] = useState()
+    const query = useQuery()
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/detail?${query.toString()}`)
+        .then(res => res.json())
+        .then((resJson) => {
+            setResult(resJson);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [])
+
+    return(
         <>
             <Modal
                 {...props}
@@ -60,25 +79,15 @@ const DetailPage = (props) => {
                     </div>
                 </Modal.Body>
             </Modal>
-
-
-            <Header logged="True"/>
+            <Header/>
             <center>
-            <Item
-                // Replace with data recovered from API call 
-                title = "Amazing Item"
-                price = "10"
-                description = "Amazing!"
-                location = "New York"
-                category = "Other"
-                photo = "https://picsum.photos/200"/>
-            <br/>
-            <Container>
-                <Row>
-                    <Col><Button onClick={() => setShow(true)}>Order</Button></Col>
-                    <Col><Button>Favorite</Button></Col>
-                </Row>
-            </Container>
+                {result === undefined ? <Spinner/>:<Item data={result}/>}
+                <Container>
+                    <Row>
+                        <Col><Button onClick={()=>setShow(true)}>Order</Button></Col>
+                        <Col><Link to = "/homepage"><Button>Favorite</Button></Link></Col>
+                    </Row>
+                </Container>
             </center>
         </>
     )
