@@ -40,7 +40,7 @@ const Profile = () => {
                       <Button id='btn'>Listings</Button>
                   </Link>
                 
-                  <Link to='/favorites'>
+                  <Link to='/result?favorites=True'>
                       <Button id='btn'>Favorites</Button>
                   </Link>
                 

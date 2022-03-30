@@ -9,10 +9,10 @@ const SearchBar = (props) => {
         <>
             <Container fluid><form method = "get" action = "/result">
                 <center><Row>
-                    <Col><input type = "checkbox" name = "academicSupplies" value = "True" /> Academic Supplies</Col>
-                    <Col><input type = "checkbox" name = "dormAppliances" value = "True" /> Dorm Appliances</Col>
-                    <Col><input type = "checkbox" name = "clothing" value = "True" /> Clorhing</Col>
-                    <Col><input type = "checkbox" name = "other" value = "True"/> Other</Col>
+                    <Col><input type = "radio" name = "category" value = "Academic" /> Academic Supplies</Col>
+                    <Col><input type = "radio" name = "category" value = "Dorm" /> Dorm Appliances</Col>
+                    <Col><input type = "radio" name = "category" value = "Clothing" /> Clorhing</Col>
+                    <Col><input type = "radio" name = "category" value = "Other"/> Other</Col>
                 </Row></center>
                 <center><Row>
                     <Col xs = {1}></Col>
