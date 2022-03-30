@@ -1,6 +1,7 @@
 {
     "Items": [        
         {
+            "_id": "1",
             "title": "Agouti",
             "price": "64.90",
             "description": "Cross-group tertiary application",
@@ -8,6 +9,7 @@
             "category": "Clothing"
         },
         {
+            "_id": "2",
             "title": "Four-striped grass mouse",
             "price": "160.47",
             "description": "Re-contextualized high-level function",
@@ -15,6 +17,7 @@
             "category": "Academic"
         },
         {
+            "_id": "3",
             "title": "Crocodile",
             "price": "100",
             "description": "Customer-focused fault-tolerant process improvement",
@@ -22,6 +25,7 @@
             "category": "Other"
         },
         {
+            "_id": "4",
             "title": "Bison",
             "price": "87.41",
             "description": "Configurable contextually-based initiative",
@@ -29,6 +33,7 @@
             "category": "Academic"
         },
         {
+            "_id": "5",
             "title": "Lemur",
             "price": "17",
             "description": "Face to face content-based ability",
@@ -36,6 +41,7 @@
             "category": "Clothing"
         },
         {
+            "_id": "6",
             "title": "Tern",
             "price": "499.99",
             "description": "Open-architected zero tolerance alliance",
