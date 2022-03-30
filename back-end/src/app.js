@@ -25,7 +25,8 @@ app.get('/search', (req,res) => {
 
 app.get('/result', (req, res) => {
     console.log(req.query);
-    res.json(data.Items.filter(element => element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])))
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])));}
+    else {res.json(data.Items.filter(element => (element.title.includes(req.query['searchText']) || element.description.includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
 // export the express app we created to make it available to other modules
