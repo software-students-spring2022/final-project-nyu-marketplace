@@ -6,76 +6,45 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 const clickOrder = () => {
     alert("Success!")
 }
 
-const DetailPage = (props) => {
-    
-    const itemsArray = [
-        {
-            title: "Agouti",
-            price: "64.90",
-            description: "Cross-group tertiary application",
-            location: "New York",
-            category: "Clothing",
-        },
-        {
-            title: "Four-striped grass mouse",
-            price: "160.47",
-            description: "Re-contextualized high-level function",
-            location: "Shangai",
-            category: "Academic",
-        },
-        {
-            title: "Crocodile",
-            price: "100",
-            description: "Customer-focused fault-tolerant process improvement",
-            location: "Shangai",
-            category: "Other",
-        },
-        {
-            title: "Bison",
-            price: "87.41",
-            description: "Configurable contextually-based initiative",
-            location: "Abu Dhabi",
-            category: "Academic",
-        },
-        {
-            title: "Lemur",
-            price: "17",
-            description: "Face to face content-based ability",
-            location: "New York",
-            category: "Clothing",
-        },
-        {
-            title: "Tern",
-            price: "499.99",
-            description: "Open-architected zero tolerance alliance",
-            location: "New York",
-            category: "Dorm",
-        }
-    ]
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  }
 
-    return (
+const DetailPage = (props) => {
+
+    const [result, setResult] = useState()
+    const query = useQuery()
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/detail?${query.toString()}`)
+        .then(res => res.json())
+        .then((resJson) => {
+            setResult(resJson);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [])
+
+    return(
         <>
-            <Header logged="True"/>
+            <Header/>
             <center>
-            <Item 
-                title = "Amazing Item"
-                price = "10"
-                description = "Amazing!"
-                location = "New York"
-                category = "Other"
-                photo = "https://picsum.photos/200"/>
-            <br/>
-            <Container>
-                <Row>
-                    <Col><Link to = "/homepage"><Button onClick={clickOrder}>Order</Button></Link></Col>
-                    <Col><Link to = "/homepage"><Button onClick={clickOrder}>Favorite</Button></Link></Col>
-                </Row>
-            </Container>
+                {result === undefined ? <Spinner/>:<Item data={result}/>}
+                <Container>
+                    <Row>
+                        <Col><Link to = "/homepage"><Button onClick={clickOrder}>Order</Button></Link></Col>
+                        <Col><Link to = "/homepage"><Button onClick={clickOrder}>Favorite</Button></Link></Col>
+                    </Row>
+                </Container>
             </center>
         </>
     )
