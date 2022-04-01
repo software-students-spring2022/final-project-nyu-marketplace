@@ -25,19 +25,17 @@ app.get('/search', (req,res) => {
 })
 
 app.get('/result', (req, res) => {
-    console.log(req.query);
+    if (req.query.searchText === 'undefined'){req.query.searchText = ''}
     if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
 app.get('/favorites', (req, res) => {
-    console.log(req.query);
     if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
 app.get('/detail', (req, res) => {
-    console.log(req.query);
     res.json(data.Items.filter(element => element._id === req.query['id']));
 })
 // export the express app we created to make it available to other modules
