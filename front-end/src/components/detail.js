@@ -81,6 +81,7 @@ const DetailPage = (props) => {
             </Modal>
             <Header/>
             <center>
+                <SearchBar/>
                 {result === undefined ? <Spinner/>:<Item data={result}/>}
                 <Container>
                     <Row>
