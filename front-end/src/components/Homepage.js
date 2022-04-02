@@ -1,14 +1,45 @@
 import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Header from './header'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
+
+import HomePageItem from './HomePageItem'
 
 import './Homepage.css'
 
 const Homepage = () => {
   const [search, setSearch] = useState();
-  
+  const [name, setName ] = useState("")
+  const [info, setInfo] = useState();
+
+  useEffect(() => {
+      axios.get('http://localhost:3000/items')
+        .then(res => {
+            setInfo(res.data)
+            console.log("wtf is happening")
+            console.log(info)
+        })
+        .catch(err => console.log("bleah",err))
+    }, []);
+
+    const renderActivePurchases = () => {
+        if (info === undefined) {
+            return <div>Loading...</div>
+        }
+        else {
+            return info.map(item => {
+                return (
+                    <Link to={`/detail?id=${item['_id']}`}>
+                        <HomePageItem title={item.title}/>
+                    </Link>
+                )
+            })
+        }
+    }
+
+
+    
 
   return (
       <Container fluid id='homepage-container'>
@@ -44,6 +75,13 @@ const Homepage = () => {
                     <Button id='category-button'>Other</Button>
                 </Link>
             </Col>
+          </Row>
+
+          <Row>
+              <Col id='active-items'>
+                  <div id='home-item-title'>Active Purchases</div>
+                  <div id='all-active-items'>{renderActivePurchases()}</div>
+              </Col>
           </Row>
       </Container>
   

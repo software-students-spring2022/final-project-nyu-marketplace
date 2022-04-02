@@ -39,4 +39,8 @@ app.get('/detail', (req, res) => {
     res.json(data.Items.filter(element => element._id === req.query['id']));
 })
 // export the express app we created to make it available to other modules
+
+app.get("/items", (req, res) => {
+    res.json(data.Items)
+})
 module.exports = app
