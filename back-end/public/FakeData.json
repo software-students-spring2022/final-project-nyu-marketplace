@@ -1,58 +1,217 @@
 {
-    "Items": [        
-        {
-            "_id": "1",
-            "title": "Agouti",
-            "price": "64.90",
-            "description": "Cross-group tertiary application",
-            "location": "New York",
-            "category": "Clothing",
-            "photo": "Agouti.jpg"
-        },
-        {
-            "_id": "2",
-            "title": "Four-striped grass mouse",
-            "price": "160.47",
-            "description": "Re-contextualized high-level function",
-            "location": "Shangai",
-            "category": "Academic",
-            "photo": "Four-striped grass mouse.jpg"
-        },
-        {
-            "_id": "3",
-            "title": "Crocodile",
-            "price": "100",
-            "description": "Customer-focused fault-tolerant process improvement",
-            "location": "Shangai",
-            "category": "Other",
-            "photo": "Crocodile.jpg"
-        },
-        {
-            "_id": "4",
-            "title": "Bison",
-            "price": "87.41",
-            "description": "Configurable contextually-based initiative",
-            "location": "Abu Dhabi",
-            "category": "Academic",
-            "photo": "Bison.jpg"
-        },
-        {
-            "_id": "5",
-            "title": "Lemur",
-            "price": "17",
-            "description": "Face to face content-based ability",
-            "location": "New York",
-            "category": "Clothing",
-            "photo": "Lemur.jpg"
-        },
-        {
-            "_id": "6",
-            "title": "Tern",
-            "price": "499.99",
-            "description": "Open-architected zero tolerance alliance",
-            "location": "New York",
-            "category": "Dorm",
-            "photo": "Tern.jpg"
-        }
-    ]
+  "Users": [
+    {
+      "_id": "8ccccc14-e94a-44d2-9730-d014d9104536",
+      "session_id": "23a101f9-0547-4c12-b00a-95bee29080cd",
+      "name": "Hillier Banasiak",
+      "username": "hbanasiak0",
+      "email": "hbanasiak0@spotify.com",
+      "reserved_items": [{}, {}, {}],
+      "item_history": [{}, {}, {}, {}]
+    },
+    {
+      "_id": "1fc50d84-c86e-4db2-96e1-dd03d0d6669a",
+      "session_id": "e9bf458b-a227-4d56-bf39-703be7315282",
+      "name": "Leonore Hegden",
+      "username": "lhegden1",
+      "email": "lhegden1@businesswire.com",
+      "reserved_items": [{}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "5a965ff1-66b1-4c91-83aa-f7a13199ac5d",
+      "session_id": "56f5d3bf-ebde-43a9-924c-5d7fee94e379",
+      "name": "Walsh MacGuiness",
+      "username": "wmacguiness2",
+      "email": "wmacguiness2@howstuffworks.com",
+      "reserved_items": [{}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "fa280238-4be1-4780-aad5-04b47b8cfd51",
+      "session_id": "9945e4d5-f872-40d0-90fd-c7094c35dcaf",
+      "name": "Auria Murthwaite",
+      "username": "amurthwaite3",
+      "email": "amurthwaite3@oaic.gov.au",
+      "reserved_items": [{}, {}, {}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "939616d2-d4a6-474e-8301-a4e102e094af",
+      "session_id": "508752f6-7e5c-4f2e-9751-b9b5e79f89f2",
+      "name": "Giulio Phelan",
+      "username": "gphelan4",
+      "email": "gphelan4@t-online.de",
+      "reserved_items": [{}, {}, {}, {}, {}],
+      "item_history": [{}, {}, {}, {}]
+    },
+    {
+      "_id": "31a7e447-40a9-4952-a781-d81f36f5ed81",
+      "session_id": "b18af888-2742-4efa-ba02-46f538559dc7",
+      "name": "Binni Oneil",
+      "username": "boneil5",
+      "email": "boneil5@about.com",
+      "reserved_items": [{}, {}, {}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "f33521cd-8f81-455c-a3cd-644c6ccd8b45",
+      "session_id": "9f5c359b-78b6-4cb2-a772-53b3f0badce8",
+      "name": "Fanny Stollenhof",
+      "username": "fstollenhof6",
+      "email": "fstollenhof6@comsenz.com",
+      "reserved_items": [{}, {}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "b83463c6-0b69-420a-9c75-3f5432647759",
+      "session_id": "ae4fbc7d-db5e-4c2c-a4e0-df8dce5dbf60",
+      "name": "Margeaux Hilbourne",
+      "username": "mhilbourne7",
+      "email": "mhilbourne7@cbsnews.com",
+      "reserved_items": [{}, {}, {}],
+      "item_history": [{}, {}, {}, {}, {}]
+    },
+    {
+      "_id": "96d188b6-20be-45f9-966f-49c6d8ebe6ec",
+      "session_id": "e23fda40-8745-46e1-a06d-c0ae6f972106",
+      "name": "Samuel Walesby",
+      "username": "swalesby8",
+      "email": "swalesby8@umn.edu",
+      "reserved_items": [{}, {}, {}, {}, {}],
+      "item_history": [{}, {}, {}]
+    },
+    {
+      "_id": "9467bc0b-b746-4e22-b402-c7e52a82701e",
+      "session_id": "4da94744-2bf4-4cd6-a131-add40eb406cf",
+      "name": "Merilyn Lau",
+      "username": "mlau9",
+      "email": "mlau9@japanpost.jp",
+      "reserved_items": [{}, {}, {}],
+      "item_history": [{}, {}, {}, {}, {}]
+    }
+  ],
+
+  "Items": [
+    {
+      "_id": "15585ec6-1703-410a-b43c-599134a95235",
+      "title": "Wild turkey",
+      "price": "$7.05",
+      "description": "e-enable best-of-breed experiences",
+      "location": "Shanghai",
+      "category": "Clothing",
+      "photo": "http://dummyimage.com/205x100.png/cc0000/ffffff",
+      "item_status": "Purchased",
+      "posted_by": "183c3d58-4683-41f4-95db-0554a7d79661",
+      "purchased_by": "eb4f2458-a2db-4cf4-bfd8-cfe3133031ca"
+    },
+    {
+      "_id": "42f51800-5036-4e8e-9580-5d85e4b0a6ee",
+      "title": "Antelope, sable",
+      "price": "$6.43",
+      "description": "extend extensible functionalities",
+      "location": "Abu Dhabi",
+      "category": "Clothing",
+      "photo": "http://dummyimage.com/114x100.png/cc0000/ffffff",
+      "item_status": "Reserved",
+      "posted_by": "f0cd3303-3f40-43fd-973c-383c9be88f6f",
+      "purchased_by": "72a45096-26b8-4fea-874c-dcdef8657665"
+    },
+    {
+      "_id": "dfde3ffa-b68d-407a-b317-e76dd93d2ff4",
+      "title": "Heron, green-backed",
+      "price": "$0.43",
+      "description": "visualize proactive applications",
+      "location": "New York",
+      "category": "Dorm",
+      "photo": "http://dummyimage.com/210x100.png/5fa2dd/ffffff",
+      "item_status": "Available",
+      "posted_by": "c4df07d4-9574-4316-ba13-a32037a11b6d",
+      "purchased_by": "f1695b41-252c-47c1-b2f8-1f3c87eaec23"
+    },
+    {
+      "_id": "5d0d0d81-0560-4f0d-a2ce-73dba9c4c628",
+      "title": "Marten, american",
+      "price": "$6.94",
+      "description": "cultivate value-added users",
+      "location": "New York",
+      "category": "Other",
+      "photo": "http://dummyimage.com/169x100.png/dddddd/000000",
+      "item_status": "Purchased",
+      "posted_by": "99b0dc76-d557-4770-9b77-a96974fc1a3c",
+      "purchased_by": "11bb5b65-59d2-4e39-ba89-3bc5bc71bd70"
+    },
+    {
+      "_id": "78967727-8a53-44ba-af17-8882c2f983b4",
+      "title": "Groundhog",
+      "price": "$0.97",
+      "description": "aggregate global action-items",
+      "location": "Shanghai",
+      "category": "Dorm",
+      "photo": "http://dummyimage.com/118x100.png/ff4444/ffffff",
+      "item_status": "Available",
+      "posted_by": "f4d72836-3262-4dec-b2a5-98db679a7b0f",
+      "purchased_by": "58ba0411-4cd7-4a21-afe4-3742b4809cea"
+    },
+    {
+      "_id": "98dbdfb7-b794-4d84-9c70-d894abf1eccf",
+      "title": "Cottonmouth",
+      "price": "$1.45",
+      "description": "evolve impactful supply-chains",
+      "location": "Abu Dhabi",
+      "category": "Clothing",
+      "photo": "http://dummyimage.com/105x100.png/cc0000/ffffff",
+      "item_status": "Available",
+      "posted_by": "7f16f326-e384-41da-967b-bab934ec45e2",
+      "purchased_by": "d2d90f9b-693b-4b90-9dc3-c1319910acb9"
+    },
+    {
+      "_id": "67a5af87-0fb9-4b21-95ce-5320e9c98112",
+      "title": "Admiral, indian red",
+      "price": "$4.03",
+      "description": "strategize transparent relationships",
+      "location": "New York",
+      "category": "Other",
+      "photo": "http://dummyimage.com/154x100.png/dddddd/000000",
+      "item_status": "Purchased",
+      "posted_by": "8f7d02bd-ad7f-4abe-9759-c70993b0058e",
+      "purchased_by": "4429957c-b963-4823-bd47-e1fae4c7a7bf"
+    },
+    {
+      "_id": "5fba7fec-b789-4750-94c4-61d5c1f393af",
+      "title": "Common waterbuck",
+      "price": "$4.10",
+      "description": "facilitate e-business e-services",
+      "location": "Abu Dhabi",
+      "category": "Other",
+      "photo": "http://dummyimage.com/174x100.png/ff4444/ffffff",
+      "item_status": "Reserved",
+      "posted_by": "9ac9d0f5-4339-4181-b350-a9a2dad62870",
+      "purchased_by": "c1197350-b5b6-4264-8ba3-60c6921a5b6f"
+    },
+    {
+      "_id": "858d45e2-495a-4f92-957a-61c78667624e",
+      "title": "Crane, black-crowned",
+      "price": "$1.52",
+      "description": "aggregate real-time vortals",
+      "location": "Shanghai",
+      "category": "Dorm",
+      "photo": "http://dummyimage.com/243x100.png/dddddd/000000",
+      "item_status": "Available",
+      "posted_by": "93f40d9a-51c3-4b92-8073-0c41ec3b37b6",
+      "purchased_by": "f1cbdf9f-25d9-44d3-ad09-b14e29010489"
+    },
+    {
+      "_id": "c9c26526-e019-446e-af61-6a34f6ce7fe6",
+      "title": "Green-winged macaw",
+      "price": "$2.23",
+      "description": "mesh extensible methodologies",
+      "location": "Abu Dhabi",
+      "category": "Clothing",
+      "photo": "http://dummyimage.com/105x100.png/ff4444/ffffff",
+      "item_status": "Purchased",
+      "posted_by": "403fbfb7-9a9e-451d-a55d-c62bcc7184b3",
+      "purchased_by": "14a93103-70a0-4300-960f-ccadc9afd951"
+    }
+  ]
 }
