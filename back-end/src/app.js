@@ -38,9 +38,12 @@ app.get('/favorites', (req, res) => {
 })
 
 app.get('/detail', (req, res) => {
-    res.json(data.Items.filter(element => element._id === req.query['id']));
+    if (JSON.stringify(req.query) !== '{}') {
+        console.log('test');
+        console.log(req.query)
+        res.json(data.Items.filter(element => element._id === req.query['id']));
+    }
 })
-// export the express app we created to make it available to other modules
 
 app.get("/items", (req, res) => {
     res.json(data.Items)
@@ -68,4 +71,5 @@ app.post('/new-listing/save', (req, res) => {
     res.json(req.body)
 })
 
+// export the express app we created to make it available to other modules
 module.exports = app
