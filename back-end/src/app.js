@@ -46,6 +46,11 @@ app.get("/items", (req, res) => {
     res.json(data.Items)
 })
 
+//Route to get all Users
+app.get("/users", (req, res) => {
+    res.json(data.Users)
+})
+
 // Route to get the information of a User based on the _id
 app.get("/users/:id", (req, res) => {
     const {id} = req.params
