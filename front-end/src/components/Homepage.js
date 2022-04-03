@@ -53,7 +53,7 @@ const Homepage = () => {
                 <Link to={`/result?searchText=${search}`}>
                   <Button id='search-button' variant="outline-secondary">Search</Button>
                 </Link>
-                <div id='search-title'>Browse By Category</div>
+                <div id='browse'>Browse By Category</div>
             </Col>
           </Row>
 
