@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { useState, useEffect } from 'react'
 
 const Header = (props) => {
 
@@ -10,19 +11,18 @@ const Header = (props) => {
         alert("Direct to Home page.");
     }
 
-    // const clickAbout = (e) => {
-    //     alert("Direct to About Us page.")
-    // }
+    const [log, setLog] = useState()
 
-    // const clickProfile = (e) => {
-    //     alert("Direct to Profile page.")
-    // }
+    useEffect(() => {
+        fetch('http://localhost:3000/auth')
+        .then(res => res.text())
+        .then((resText) => {
+            setLog(resText);
+        })
+        .catch(err => {console.log(err)})
+    }, [])
 
-    // const clickLog = (e) => {
-    //     alert("Direct to Log in / Register page.")
-    // }
-
-    if (props.logged === 'True') { 
+    if (log == 'True') { 
         return (
             <>
                 <Row>
