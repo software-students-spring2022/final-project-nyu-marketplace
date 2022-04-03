@@ -63,5 +63,9 @@ app.patch("/users/:id", (req, res) => {
     res.json(user)
 })
 
+// Route to POST new listing, just send JSON back for now
+app.post('/new-listing/save', (req, res) => {
+    res.json(req.body)
+})
 
 module.exports = app
