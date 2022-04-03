@@ -18,7 +18,7 @@ const Profile = () => {
 
           <Row className='profile-row'>
             <Col id='icon'>
-                <img id='pfp' src={icon}/>
+                <img id='pfp' src={icon} alt="profile pic"/>
             </Col>
             <Col id='user'>
                 <Row>
