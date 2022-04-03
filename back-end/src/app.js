@@ -37,11 +37,13 @@ app.get('/favorites', (req, res) => {
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
+// Route for sending item details
 app.get('/detail', (req, res) => {
     if (JSON.stringify(req.query) !== '{}') {
-        console.log('test');
-        console.log(req.query)
-        res.json(data.Items.filter(element => element._id === req.query['id']));
+        let detailData = data.Items.filter(element => element._id === req.query['id'])
+        let contactData = data.Users.filter(x => x._id === detailData[0].posted_by)
+        detailData[0].contact = contactData[0].contact
+        res.json(detailData);
     }
 })
 
