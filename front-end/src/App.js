@@ -22,8 +22,6 @@ function App() {
           <Route path='/favorites' element={<FavoritesPage/>}></Route>
         </Routes>
       </Router>
-      {/*<Header logged = "True"/> {/*header for logged users*/}
-      {/*<Header logged = "False"/> {/*header for unlogged users*/}
     </main>
 
   );

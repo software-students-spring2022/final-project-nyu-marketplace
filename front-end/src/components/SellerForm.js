@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
@@ -14,18 +14,20 @@ const SellerForm = () => {
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
+    const [contact, setContact] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
 
         // stuff to send new item to server to be added later
-        axios.post("https://someserversomehwere.com/puppy/save", {
+        axios.post("localhost:3000/new-listing/save", {
             title: title,
             price: price,
             description: description,
             photo: photo,
             location: location,
             category: category,
+            contact: contact,
       })
         console.log('Your item has been posted')
         alert("Your item has been posted")
@@ -61,7 +63,7 @@ const SellerForm = () => {
 
         <div>
             <label for ="description_field"></label>
-            <input className="description"
+            <textarea className="description"
                 id="description field"
                 type = "text"
                 placeholder="Item Description"
@@ -71,6 +73,18 @@ const SellerForm = () => {
         </div>
 
         <div>
+            <label for="contact_info"></label>
+            <textarea className="contact"
+                id="contact info"
+                type="text"
+                placeholder="Enter your contact information"
+                value={contact}
+                onChange={e => setContact(e.target.value)}
+            />
+        </div>
+
+        <div>
+            <br></br>
             <label for ="photo_field">Select Photo: </label>
             <input
                 id="photo field"
