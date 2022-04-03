@@ -2,6 +2,7 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors')
+const session = require('express-session');
 let data = require('../public/FakeData.json')
 
 app.use(cors());
@@ -10,6 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 // we will put some server logic here later...
 
 app.use(express.static('public'));
+
+const sessionOptions = { 
+	secret: 'secret for signing session id', 
+	saveUninitialized: false, 
+	resave: false
+};
+app.use(session(sessionOptions));
 
 // API route for search. As of now, searches based on title, but keys may be added to widen search params
 app.get('/search', (req,res) => {
@@ -68,5 +76,14 @@ app.patch("/users/:id", (req, res) => {
     res.json(user)
 })
 
+app.get('/auth', (req, res) => {
+    if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
+        console.log('here')
+        res.send('True')
+    } else {
+        console.log('Here')
+        res.send('False')
+    }
+})
 
 module.exports = app
