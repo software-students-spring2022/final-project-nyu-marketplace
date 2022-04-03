@@ -2,9 +2,11 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors')
-const data = require('../public/FakeData.json')
+let data = require('../public/FakeData.json')
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // we will put some server logic here later...
 
 app.use(express.static('public'));
@@ -43,4 +45,23 @@ app.get('/detail', (req, res) => {
 app.get("/items", (req, res) => {
     res.json(data.Items)
 })
+
+// Route to get the information of a User based on the _id
+app.get("/users/:id", (req, res) => {
+    const {id} = req.params
+    const user = data.Users.find(user => user._id === id)
+    res.json(user)
+})
+
+// Route to edit the inofrmation of a User based on the _id
+app.patch("/users/:id", (req, res) => {
+    const {id} = req.params
+    const user = data.Users.find(user => user._id === id)
+    const {name, username} = req.body
+    if(name) user.name = name
+    if(username) user.username = username
+    res.json(user)
+})
+
+
 module.exports = app
