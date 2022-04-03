@@ -85,6 +85,7 @@ app.patch("/users/:id", (req, res) => {
 // Route to POST new listing, just send JSON back for now
 app.post('/new-listing/save', (req, res) => {
     res.json(req.body)
+})
 
 app.get('/auth', (req, res) => {
     if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
