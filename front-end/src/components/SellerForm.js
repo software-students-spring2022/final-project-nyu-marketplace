@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
@@ -19,7 +19,7 @@ const SellerForm = () => {
         e.preventDefault()
 
         // stuff to send new item to server to be added later
-        axios.post("https://someserversomehwere.com/puppy/save", {
+        axios.post("http://localhost:3000/new-listing/save", {
             title: title,
             price: price,
             description: description,
@@ -27,8 +27,9 @@ const SellerForm = () => {
             location: location,
             category: category,
       })
-        console.log('Your item has been posted')
-        alert("Your item has been posted")
+      .catch((err) => {
+        console.log(err);
+      })
     }
 
     return (
@@ -61,7 +62,7 @@ const SellerForm = () => {
 
         <div>
             <label for ="description_field"></label>
-            <input className="description"
+            <textarea className="description"
                 id="description field"
                 type = "text"
                 placeholder="Item Description"

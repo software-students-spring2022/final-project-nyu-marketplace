@@ -45,10 +45,15 @@ app.get('/favorites', (req, res) => {
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
 })
 
+// Route for sending item details
 app.get('/detail', (req, res) => {
-    res.json(data.Items.filter(element => element._id === req.query['id']));
+    if (JSON.stringify(req.query) !== '{}') {
+        let detailData = data.Items.filter(element => element._id === req.query['id'])
+        let contactData = data.Users.filter(x => x._id === detailData[0].posted_by)
+        detailData[0].contact = contactData[0].contact
+        res.json(detailData);
+    }
 })
-// export the express app we created to make it available to other modules
 
 app.get("/items", (req, res) => {
     res.json(data.Items)
@@ -76,6 +81,11 @@ app.patch("/users/:id", (req, res) => {
     res.json(user)
 })
 
+
+// Route to POST new listing, just send JSON back for now
+app.post('/new-listing/save', (req, res) => {
+    res.json(req.body)
+
 app.get('/auth', (req, res) => {
     if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
         console.log('here')
@@ -86,4 +96,5 @@ app.get('/auth', (req, res) => {
     }
 })
 
+// export the express app we created to make it available to other modules
 module.exports = app

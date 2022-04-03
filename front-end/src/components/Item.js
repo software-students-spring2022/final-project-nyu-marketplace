@@ -1,16 +1,10 @@
 import "./Item.css"
 
 const Item = props => {
-
-    console.log(`localhost:3000/images/${props.data[0].photo}`)
-
     return (
         <article className="Item">
-
-            {/* random image from picsum, will be user-generated */}
-            {/*<img className="Item-img" src="https://picsum.photos/200" alt="display image"/>*/}
             <div className="Item-Details">
-                <img className="Item-img" src={`http://localhost:3000/images/${props.data[0].photo}`} alt="display image"/>
+                <img className="Item-img" src={`${props.data[0].photo}`} alt="Item"/>
                 <h3>{props.data[0].title}</h3>
                 <p><strong>Price</strong></p>
                 <p>${props.data[0].price}</p>
@@ -20,6 +14,8 @@ const Item = props => {
                 <p>{props.data[0].location}</p>
                 <p><strong>Category</strong></p>
                 <p>{props.data[0].category}</p>
+                <p><strong>Contact Me</strong></p>
+                <p>{props.data[0].contact}</p>
             </div>
         </article>
     )
