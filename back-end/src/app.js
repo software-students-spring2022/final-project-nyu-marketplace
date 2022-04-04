@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // we will put some server logic here later...
 
-app.use(express.static('public'));
+app.use(express.static('./public/images'));
 
 const sessionOptions = { 
 	secret: 'secret for signing session id', 

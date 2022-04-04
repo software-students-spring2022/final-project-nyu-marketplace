@@ -75,3 +75,35 @@ describe("Detail route", () => {
             })
     })
 })
+
+describe('result route', () => {
+    it('should return all items meeting search query', (done) => {
+        chai.request(app)
+            .get('/result?searchText=ab')
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.status).to.equal(200);
+                chai.expect(res.body).to.be.an('array');
+                chai.expect(res.body.length).to.equal(2);
+                chai.expect(res.body[0]._id).to.equal('15585ec6-1703-410a-b43c-599134a95235');
+                chai.expect(res.body[1]._id).to.equal('42f51800-5036-4e8e-9580-5d85e4b0a6ee');
+                done();
+            });
+    });
+});
+
+describe('favorites route', () => {
+    it('should return all items meeting search query', (done) => {
+        chai.request(app)
+            .get('/favorites?searchText=ab')
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.status).to.equal(200);
+                chai.expect(res.body).to.be.an('array');
+                chai.expect(res.body.length).to.equal(2);
+                chai.expect(res.body[0]._id).to.equal('15585ec6-1703-410a-b43c-599134a95235');
+                chai.expect(res.body[1]._id).to.equal('42f51800-5036-4e8e-9580-5d85e4b0a6ee');
+                done();
+            });
+    });
+});
