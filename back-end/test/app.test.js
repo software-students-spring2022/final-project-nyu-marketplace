@@ -25,14 +25,14 @@ describe('User routes', () => {
     describe('GET /users/:id', () => {
         it('should return a user based on the _id', (done) => {
             chai.request(app)
-                .get('/users/8ccccc14-e94a-44d2-9730-d014d9104536')
+                .get('/users/c4df07d4-9574-4316-ba13-a32037a11b6d')
                 .end((err, res) => {
                     if (err) done(err)
                     chai.expect(res.status).to.equal(200);
                     chai.expect(res.body).to.be.an('object');
                     chai.expect(res.body.name).to.equal('Hillier Banasiak');
                     chai.expect(res.body).to.have.property('_id');
-                    chai.expect(res.body).to.have.property('_id').to.equal('8ccccc14-e94a-44d2-9730-d014d9104536');
+                    chai.expect(res.body).to.have.property('_id').to.equal('c4df07d4-9574-4316-ba13-a32037a11b6d');
                     done();
                 });
         });
@@ -42,7 +42,7 @@ describe('User routes', () => {
     describe('PATCH /users/:id', () => {
         it('should edit a user based on the _id', (done) => {
             chai.request(app)
-                .patch('/users/8ccccc14-e94a-44d2-9730-d014d9104536')
+                .patch('/users/c4df07d4-9574-4316-ba13-a32037a11b6d')
                 .send({
                     name: 'Better Hillier Banasiak',
                     username: 'betterhillierbanasiak'
@@ -54,7 +54,7 @@ describe('User routes', () => {
                     chai.expect(res.body.name).to.equal('Better Hillier Banasiak');
                     chai.expect(res.body.username).to.equal('betterhillierbanasiak');
                     chai.expect(res.body).to.have.property('_id');
-                    chai.expect(res.body).to.have.property('_id').to.equal('8ccccc14-e94a-44d2-9730-d014d9104536');
+                    chai.expect(res.body).to.have.property('_id').to.equal('c4df07d4-9574-4316-ba13-a32037a11b6d');
                     done();
                 });
         });
