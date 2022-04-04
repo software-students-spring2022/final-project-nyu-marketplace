@@ -4,6 +4,10 @@ import { useState } from 'react'
 
 import './login.css'
 
+const tempLog = () => {
+    fetch('http://localhost:3000/auth', {method:'post', credentials:'include'}).then().fetch()
+}
+
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -34,7 +38,7 @@ const Login = () => {
                                 <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                             </FloatingLabel>
                     </Form.Group>
-                   <Link to = "/homepage"> <Button id="button">login</Button></Link>
+                   <Link to = "/homepage"> <Button id="button" onClick={tempLog}>login</Button></Link>
                     
                 </Form>
                 <a href='/register'>No account? Register Here</a>
