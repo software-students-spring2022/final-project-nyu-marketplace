@@ -15,7 +15,7 @@ const FavoritesPage = (props) => {
   const query = useQuery()
   
   useEffect (() => { 
-    fetch(`http://localhost:3000/favorites?${query.toString()}`)
+    fetch(`http://localhost:3000/favorites?${query.toString()}`, {credentials: 'include'})
     .then(res => res.json())
     .then((resJson) => {
       setResult(resJson);
