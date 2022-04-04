@@ -5,7 +5,10 @@ const cors = require('cors')
 const session = require('express-session');
 let data = require('../public/FakeData.json')
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:4000','http://localhost:3001'],
+    credentials:true,
+  }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // we will put some server logic here later...
@@ -15,7 +18,10 @@ app.use(express.static('public'));
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
 	saveUninitialized: false, 
-	resave: false
+	resave: false,
+    cookie:{
+        httpOnly: true,
+    }
 };
 app.use(session(sessionOptions));
 
@@ -81,21 +87,24 @@ app.patch("/users/:id", (req, res) => {
     res.json(user)
 })
 
-
 // Route to POST new listing, just send JSON back for now
 app.post('/new-listing/save', (req, res) => {
     res.json(req.body)
 })
 
 app.get('/auth', (req, res) => {
+    if (req.session.log) {res.send('True')} else {res.send('False')}
+    /*w/o db, we will use pretending code instead
     if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
-        console.log('here')
         res.send('True')
     } else {
-        console.log('Here')
         res.send('False')
-    }
+    }*/
 })
 
+app.post('/auth', (req, res) => {
+    req.session.log = true;
+    res.send('data');
+})
 // export the express app we created to make it available to other modules
 module.exports = app

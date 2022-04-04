@@ -14,7 +14,7 @@ const Homepage = () => {
   const [info, setInfo] = useState();
 
   useEffect(() => {
-      axios.get('http://localhost:3000/items')
+      axios.get('http://localhost:3000/items', {withCredentials:true})
         .then(res => {
             setInfo(res.data)
             console.log("wtf is happening")

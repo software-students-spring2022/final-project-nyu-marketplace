@@ -14,7 +14,7 @@ const Header = (props) => {
     const [log, setLog] = useState()
 
     useEffect(() => {
-        fetch('http://localhost:3000/auth')
+        fetch('http://localhost:3000/auth', {credentials: 'include'})
         .then(res => res.text())
         .then((resText) => {
             setLog(resText);
