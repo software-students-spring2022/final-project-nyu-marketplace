@@ -17,7 +17,7 @@ app.use(express.static('./public/images'));
 
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
-	saveUninitialized: false, 
+	saveUninitialized: true, 
 	resave: false,
     cookie:{
         httpOnly: true,
