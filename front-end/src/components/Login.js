@@ -5,7 +5,7 @@ import { useState } from 'react'
 import './login.css'
 
 const tempLog = () => {
-    fetch('http://localhost:3000/auth', {method:'post', credentials:'include'}).then().fetch()
+    fetch('http://localhost:3000/auth', {method:'post', credentials:'include'}).then(() => {}).catch(() => {})
 }
 
 const Login = () => {
