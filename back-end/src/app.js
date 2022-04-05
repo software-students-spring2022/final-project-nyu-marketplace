@@ -77,7 +77,26 @@ app.get("/users/:id", (req, res) => {
     res.json(user)
 })
 
-// Route to edit the inofrmation of a User based on the _id
+// Route to get items purchased by user
+app.get("/users/purchased/:id", (req, res) => {
+    const {id} = req.params
+    const user = data.Users.find(user => user._id === id)
+    let itemsPurchased = data.Items.filter(element => element.purchased_by === user._id)
+    res.json(itemsPurchased)
+})
+
+// Route to assign item to user upon purchase
+app.patch('/purchase', (req, res) => {
+    const {id} = req.query.userid
+    const {itemid} = req.query.itemid
+    const user = data.Users.find(user => user._id === id)
+    const item = data.Items.find(item => item._id === itemid)
+    item.purchased_by = user._id
+    res.json(item)
+
+})
+
+// Route to edit the information of a User based on the _id
 app.patch("/users/:id", (req, res) => {
     const {id} = req.params
     const user = data.Users.find(user => user._id === id)
@@ -90,6 +109,20 @@ app.patch("/users/:id", (req, res) => {
 // Route to POST new listing, just send JSON back for now
 app.post('/new-listing/save', (req, res) => {
     res.json(req.body)
+})
+
+// Route to save listing edits
+app.patch('/edit-listing/:id', (req, res) => {
+    const {id} = req.params
+    const item = data.Items.find(item => item._id === id)
+    const {title, price, description, location, category, photo} = req.body
+    if(title) item.title = title
+    if(price) item.price = price
+    if(description) item.description = description
+    if(location) item.location = location
+    if(category) item.category = category
+    if(photo) item.photo = photo
+    res.json(item)
 })
 
 app.get('/auth', (req, res) => {
