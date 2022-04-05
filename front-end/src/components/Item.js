@@ -2,7 +2,7 @@ import "./Item.css"
 
 const Item = props => {
     return (
-        <article className="Item">
+        <article className="Item" onClick={props.handleClick}>
             <div className="Item-Details">
                 <img className="Item-img" src={`${props.data[0].photo}`} alt="Item"/>
                 <h3>{props.data[0].title}</h3>

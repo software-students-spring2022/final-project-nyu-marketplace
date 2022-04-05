@@ -3,6 +3,7 @@ import Header from './header'
 import "./ManageItems.css"
 import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom'
 
 const ManageItems = () =>
 {
@@ -50,6 +51,11 @@ const ManageItems = () =>
             category: "Dorm",
         }
     ]
+
+    const handleClick = e => {
+        <Link to='/edit-listing'>
+                  </Link>
+      }
     
     return (
         <main className="ManageItems">
@@ -69,6 +75,8 @@ const ManageItems = () =>
                         location={item.location}
                         category={item.category}
                         photo = "https://picsum.photos/200"
+
+                        handleClick={handleClick}
                     />
                 ))}
             </section>

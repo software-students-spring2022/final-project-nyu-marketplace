@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Header from './header'
 import axios from "axios"
-import './SellerForm.css'
-import 'react-dropdown/style.css'
-//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
+import './EditListing.css'
 
-const SellerForm = () => {
+
+const EditListing = () => {
 
     // state variables for new item
     const [title, setTitle] = useState("")
@@ -19,14 +18,13 @@ const SellerForm = () => {
         e.preventDefault()
 
         // stuff to send new item to server to be added later
-        axios.post("http://localhost:3000/new-listing/save", {
+        axios.post("http://localhost:3000/edit-listing/save", {
             title: title,
             price: price,
             description: description,
             photo: photo,
             location: location,
             category: category,
-            item_status: "Available"
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +34,7 @@ const SellerForm = () => {
     return (
       <div>
         <Header></Header>
-        <h3 class= "h3">Listing Details</h3>
+        <h3 class= "h3">Edit Listing</h3>
 
         <form onSubmit={handleSubmit}>
         <div className = "form-box">
@@ -104,7 +102,7 @@ const SellerForm = () => {
         </div>
 
         <div>
-          <input className = "input" type="submit" value="Submit" />
+          <input className = "input" type="submit" value="Save Changes" />
         </div>
 
         </form>
@@ -112,4 +110,4 @@ const SellerForm = () => {
     )
   }
 
-export default SellerForm
+export default EditListing
