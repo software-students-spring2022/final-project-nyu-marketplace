@@ -3,11 +3,30 @@
     font-family: "Lucida Console", monospace;
 }
 
+.pfpImage {
+    max-width: 100%;
+}
+
+#pfp:hover {
+    opacity: .75;
+}
+
 #pfp {
+    display: inline-block;
+    position: relative;
+    border: 2px solid;
     width: 30%;
-    padding-top: 5%;
     margin-left: 55%;
-    padding-top: 7vh;
+    margin-top: 10vh;
+}
+
+#pfpFile {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #user {

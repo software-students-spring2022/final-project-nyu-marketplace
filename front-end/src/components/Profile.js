@@ -9,17 +9,25 @@ import './Profile.css'
 
 const Profile = () => {
     const [editMode, setEditMode] = useState(false);
+    const [pfp, setPfp] = useState('../icon.png');
 
     const editModeFalse = () => {
         setEditMode(false);
     };
+
+    const pfpUpload = (event) => {
+        console.log(event);
+    }
     
   return (
         <Container fluid id='container'>
             <Header/>
             <Row className='profile-row'>
                 <Col id='icon'>
-                    <img id='pfp' src={icon} alt="profile pic"/>
+                    <div id='pfp'>
+                        <img class='pfpImage' type='file' src={require('../icon.png')} alt="profile pic"/>
+                        <input id="pfpFile" type="file" onChange={(event) => pfpUpload(event.target.files[0])}></input>
+                    </div>
                 </Col>
                 <Col id='user'>
                 {editMode ? (
