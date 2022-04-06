@@ -3,6 +3,7 @@ import Header from './header'
 import "./ManageItems.css"
 import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom'
 
 const ManageItems = () =>
 {
