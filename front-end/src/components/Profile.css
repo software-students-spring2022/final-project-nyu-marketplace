@@ -1,12 +1,32 @@
+/* profile section */
 #container {
-    background-color: #ffffff;
     font-family: "Lucida Console", monospace;
 }
 
+.pfpImage {
+    max-width: 100%;
+}
+
+#pfp:hover {
+    opacity: .75;
+}
+
 #pfp {
+    display: inline-block;
+    position: relative;
+    border: 2px solid;
     width: 30%;
-    padding-top: 5%;
     margin-left: 55%;
+    margin-top: 10vh;
+}
+
+#pfpFile {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #user {
@@ -56,4 +76,34 @@
 
 #empty {
     height: 20vh;
+}
+
+/* edit profile section */
+#profile-edit-form {
+    background-color: rgb(255, 236, 251);
+    border: 0px;
+    margin-left: 0%;
+    font-size: 2vh;
+    margin-top: -5vh;
+}
+
+.profile-edit-input {
+    height: 3vh;
+    width: 40vh;
+    font-size: 1vh;
+}
+
+.profile-edit-label {
+    margin-left: 0%;
+    margin-bottom: 0%;
+}
+
+.profile-edit-option {
+    margin-bottom: 2vh;
+}
+
+#profile-save-changes {
+    background: #7151E8;
+    width: 50%;
+    margin-top: 1vh;
 }
