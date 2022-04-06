@@ -107,3 +107,42 @@ describe('favorites route', () => {
             });
     });
 });
+
+//unit test to assign item to buyer and mark as purchased
+describe('PATCH /purchase', () => {
+    it('should edit item to assign to buyer', (done) => {
+        chai.request(app)
+            .patch('/purchase/42f51800-5036-4e8e-9580-5d85e4b0a6ee')
+            .send({
+                purchased_by: 'c4df07d4-9574-4316-ba13-a32037a11b6d',
+            })
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.body.item_status).to.equal("Purchased");
+                chai.expect(res.body.purchased_by).to.equal("c4df07d4-9574-4316-ba13-a32037a11b6d");
+                done();
+            });
+    });
+});
+
+
+//unit test to edit listing
+describe('PATCH /edit-listing', () => {
+    it('should edit listing details', (done) => {
+        chai.request(app)
+            .patch('/edit-listing/15585ec6-1703-410a-b43c-599134a95235')
+            .send({
+                title: 'New Name',
+                price: '$1000',
+                location: 'New York'
+            })
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.body.title).to.equal("New Name");
+                chai.expect(res.body.price).to.equal("$1000");
+                chai.expect(res.body.location).to.equal("New York");
+                chai.expect(res.body.category).to.equal("Clothing");
+                done();
+            });
+    });
+});

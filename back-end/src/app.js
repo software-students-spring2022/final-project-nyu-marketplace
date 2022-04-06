@@ -80,20 +80,18 @@ app.get("/users/:id", (req, res) => {
 // Route to get items purchased by user
 app.get("/users/purchased/:id", (req, res) => {
     const {id} = req.params
-    const user = data.Users.find(user => user._id === id)
-    let itemsPurchased = data.Items.filter(element => element.purchased_by === user._id)
-    res.json(itemsPurchased)
+    const items = data.Items.filter(item => item.purchased_by === id)
+    res.json(items)
 })
 
 // Route to assign item to user upon purchase
-app.patch('/purchase', (req, res) => {
-    const {id} = req.query.userid
-    const {itemid} = req.query.itemid
-    const user = data.Users.find(user => user._id === id)
-    const item = data.Items.find(item => item._id === itemid)
-    item.purchased_by = user._id
-    res.json(item)
-
+app.patch('/purchase/:id', (req, res) => {
+        const {id} = req.params
+        const item = data.Items.find(item => item._id === id)
+        const {purchased_by} = req.body
+        if(purchased_by) item.purchased_by = purchased_by
+        if(purchased_by) item.item_status = "Purchased"
+        res.json(item)
 })
 
 // Route to edit the information of a User based on the _id
@@ -115,6 +113,19 @@ app.post('/new-listing/save', (req, res) => {
 app.patch('/edit-listing/:id', (req, res) => {
     const {id} = req.params
     const item = data.Items.find(item => item._id === id)
+    const {title, price, description, location, category, } = req.body
+    if(title) item.title = title
+    if(price) item.price = price
+    if(description) item.description = description
+    if(location) item.location = location
+    if(category) item.category = category
+    res.json(item)
+})
+
+/*
+app.patch('/edit-listing/:id', (req, res) => {
+    const {id} = req.params
+    const item = data.Items.find(item => item._id === id)
     const {title, price, description, location, category, photo} = req.body
     if(title) item.title = title
     if(price) item.price = price
@@ -124,6 +135,7 @@ app.patch('/edit-listing/:id', (req, res) => {
     if(photo) item.photo = photo
     res.json(item)
 })
+*/
 
 app.get('/auth', (req, res) => {
     if (req.session.log) {res.send('True')} else {res.send('False')}
