@@ -78,9 +78,10 @@ app.get("/users/:id", (req, res) => {
 })
 
 // Route to get items purchased by user
-app.get("/users/purchased/:id", (req, res) => {
+app.get("/purchased/:id", (req, res) => {
     const {id} = req.params
-    const items = data.Items.filter(item => item.purchased_by === id)
+    const user = data.Users.find(user => user._id === id)
+    const items = data.Items.filter(element => element.purchased_by === user._id)
     res.json(items)
 })
 

@@ -138,6 +138,19 @@ describe("GET /items/:id", () => {
     })
 })
 
+//unit test to get items purchased by user
+describe("GET /purchased/:id", () => {
+    it('should return the items purchased by a user of a specific id', (done) => {
+        chai.request(app) 
+            .get('/purchased/c4df07d4-9574-4316-ba13-a32037a11b6d')
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.body[0].purchased_by).to.equal("c4df07d4-9574-4316-ba13-a32037a11b6d")
+                done();
+            })
+    })
+})
+
 
 //unit test to edit listing
 describe('PATCH /edit-listing', () => {
