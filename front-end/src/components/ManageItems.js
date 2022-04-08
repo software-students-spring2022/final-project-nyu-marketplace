@@ -60,7 +60,7 @@ const ManageItems = () =>
    //const [isLoading, setLoading] = useState(true);
 
    useEffect(() => {
-    axios.get('http://localhost:3000/items', {withCredentials:true})
+    axios.get('http://localhost:3000/items/c4df07d4-9574-4316-ba13-a32037a11b6d', {withCredentials:true})
       .then(res => {
           setItemsArray(res.data)
       })
@@ -78,8 +78,6 @@ const ManageItems = () =>
     {
         componentArray.push(<Item data={itemsArray.slice(i)}></Item>)
     }
-
-    
 
     return (
         <main className="ManageItems">

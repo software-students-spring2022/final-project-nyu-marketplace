@@ -125,6 +125,19 @@ describe('PATCH /purchase', () => {
     });
 });
 
+//unit test to get items posted by user
+describe("GET /items/:id", () => {
+    it('should return the items posted by a user of a specific id', (done) => {
+        chai.request(app) 
+            .get('/items/c4df07d4-9574-4316-ba13-a32037a11b6d')
+            .end((err, res) => {
+                if (err) done(err)
+                chai.expect(res.body[0].posted_by).to.equal("c4df07d4-9574-4316-ba13-a32037a11b6d")
+                done();
+            })
+    })
+})
+
 
 //unit test to edit listing
 describe('PATCH /edit-listing', () => {
