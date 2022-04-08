@@ -78,9 +78,18 @@ app.get("/users/:id", (req, res) => {
 })
 
 // Route to get items purchased by user
-app.get("/users/purchased/:id", (req, res) => {
+app.get("/purchased/:id", (req, res) => {
     const {id} = req.params
-    const items = data.Items.filter(item => item.purchased_by === id)
+    const user = data.Users.find(user => user._id === id)
+    const items = data.Items.filter(element => element.purchased_by === user._id)
+    res.json(items)
+})
+
+// Route to get items posted by user
+app.get("/items/:id", (req, res) => {
+    const {id} = req.params
+    const user = data.Users.find(user => user._id === id)
+    const items = data.Items.filter(element => element.posted_by === user._id)
     res.json(items)
 })
 
@@ -122,20 +131,7 @@ app.patch('/edit-listing/:id', (req, res) => {
     res.json(item)
 })
 
-/*
-app.patch('/edit-listing/:id', (req, res) => {
-    const {id} = req.params
-    const item = data.Items.find(item => item._id === id)
-    const {title, price, description, location, category, photo} = req.body
-    if(title) item.title = title
-    if(price) item.price = price
-    if(description) item.description = description
-    if(location) item.location = location
-    if(category) item.category = category
-    if(photo) item.photo = photo
-    res.json(item)
-})
-*/
+
 
 app.get('/auth', (req, res) => {
     if (req.session.log) {res.send('True')} else {res.send('False')}
