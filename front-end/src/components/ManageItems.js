@@ -3,10 +3,13 @@ import Header from './header'
 import "./ManageItems.css"
 import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
+import {useEffect, useState} from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const ManageItems = () =>
 {
+    /*
     const itemsArray = [
         {
             title: "Agouti",
@@ -51,7 +54,33 @@ const ManageItems = () =>
             category: "Dorm",
         }
     ]
+    */
+
+   const [itemsArray, setItemsArray] = useState();
+   //const [isLoading, setLoading] = useState(true);
+
+   useEffect(() => {
+    axios.get('http://localhost:3000/items', {withCredentials:true})
+      .then(res => {
+          setItemsArray(res.data)
+      })
+      .catch(err => console.log(err))
+  }, []);
+
+    if (itemsArray == undefined)
+    {
+        return <div>Loading...</div>
+    }
+
+    var componentArray = [];
+
+    for (let i = 0; i < itemsArray.length; i++)
+    {
+        componentArray.push(<Item data={itemsArray.slice(i)}></Item>)
+    }
+
     
+
     return (
         <main className="ManageItems">
             <Header></Header>
@@ -61,18 +90,7 @@ const ManageItems = () =>
                 <p>Total Sale Value: $0</p>
                 </div>
             <h3>Your Listings:</h3>
-            <section class='ManageItems-Items'>
-                {itemsArray.map((item, i, itemsArray) => (
-                    <Item
-                        title={item.title}
-                        price={item.price}
-                        description={item.description}
-                        location={item.location}
-                        category={item.category}
-                        photo = "https://picsum.photos/200"
-                    />
-                ))}
-            </section>
+            {componentArray}
         </main>
     )
 }
