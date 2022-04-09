@@ -4,7 +4,14 @@ const app = express() // instantiate an Express object
 const cors = require('cors')
 const session = require('express-session');
 let data = require('../public/FakeData.json')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
+//import schemas
+const User = require('../models/user.js')
+const Item = require('../models/item.js')
+
+// Middleware
 app.use(cors({
     origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
@@ -24,6 +31,24 @@ const sessionOptions = {
     }
 };
 app.use(session(sessionOptions));
+
+// set up connection to MongoDB using Mongoose
+dotenv.config();
+const db_uri = process.env.MONGODB_URI;
+//connect to database using mongoose and include callback function to indicate success
+mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
+    if(err){
+        console.log('Could not connect to database');
+        console.log(err);
+    } else {
+        console.log('Connected to database yay!');
+    }
+});
+
+
+
+
+// ROUTES
 
 // API route for search. As of now, searches based on title, but keys may be added to widen search params
 app.get('/search', (req,res) => {
@@ -113,9 +138,17 @@ app.patch("/users/:id", (req, res) => {
     res.json(user)
 })
 
-// Route to POST new listing, just send JSON back for now
+// Route to POST new listing
 app.post('/new-listing/save', (req, res) => {
-    res.json(req.body)
+    const item = new Item(req.body)
+    try{
+        item.save();
+        res.send(item)
+        console.log(item)
+    } catch (err) {
+        res.status(400).send(err)
+
+    }
 })
 
 // Route to save listing edits
@@ -147,5 +180,8 @@ app.post('/auth', (req, res) => {
     req.session.log = true;
     res.send('data');
 })
+
+
+
 // export the express app we created to make it available to other modules
 module.exports = app
