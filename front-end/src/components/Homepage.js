@@ -20,7 +20,7 @@ const Homepage = () => {
             console.log("wtf is happening")
             console.log(info)
         })
-        .catch(err => console.log("bleah",err))
+        .catch(err => console.log("Error retrieving items",err))
     }, []);
 
     const renderActivePurchases = () => {
@@ -79,7 +79,7 @@ const Homepage = () => {
 
           <Row>
               <Col id='active-items'>
-                  <div id='home-item-title'>Active Purchases</div>
+                  <div id='home-item-title'>Recent Listings</div>
                   <div id='all-active-items'>{renderActivePurchases()}</div>
               </Col>
           </Row>

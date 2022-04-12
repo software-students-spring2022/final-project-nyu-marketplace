@@ -45,15 +45,11 @@ mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
     }
 });
 
-
-
-
 // ROUTES
 
 // API route for search. As of now, searches based on title, but keys may be added to widen search params
 app.get('/search', (req,res) => {
     const {q} = req.query
-
     const keys = ["title", "category"]
 
     const search = (data) => {
@@ -62,7 +58,6 @@ app.get('/search', (req,res) => {
         )
     }
     res.send(search(data))
-    
 })
 
 app.get('/result', (req, res) => {
@@ -87,7 +82,11 @@ app.get('/detail', (req, res) => {
 })
 
 app.get("/items", (req, res) => {
-    res.json(data.Items)
+    Item.find({}, (err, docs) => {
+        // todo limit # of docs for homepage display
+        console.log(docs)
+        res.json(docs)
+    } );
 })
 
 //Route to get all Users
@@ -147,7 +146,6 @@ app.post('/new-listing/save', (req, res) => {
         console.log(item)
     } catch (err) {
         res.status(400).send(err)
-
     }
 })
 
@@ -164,8 +162,6 @@ app.patch('/edit-listing/:id', (req, res) => {
     res.json(item)
 })
 
-
-
 app.get('/auth', (req, res) => {
     if (req.session.log) {res.send('True')} else {res.send('False')}
     /*w/o db, we will use pretending code instead
@@ -180,8 +176,6 @@ app.post('/auth', (req, res) => {
     req.session.log = true;
     res.send('data');
 })
-
-
 
 // export the express app we created to make it available to other modules
 module.exports = app
