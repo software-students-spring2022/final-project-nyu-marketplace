@@ -1,0 +1,56 @@
+.Item {
+    text-align: left;
+    margin: 20px;
+    background: white;
+    width: 17%;
+}
+
+.Item-img{
+    margin: 20px;
+    display: block;
+    width: 80%;
+}
+
+h1{
+    text-align: left
+}
+p {
+    text-align: left;
+    margin: 20px;
+}
+
+.Item:hover {
+    /* change the background color when a user hovers */
+    background-color: #505050;
+    color: white;
+}
+
+#modal-header-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
+    color: #451F6F;
+}
+
+#modal-body-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    padding-bottom: 40px;
+}
+
+#modal-body {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#modal-reserve-button {
+    background-color: #451F6F;
+    margin-top: 20px;
+}
+
+#modal-reserve-button:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    
+}

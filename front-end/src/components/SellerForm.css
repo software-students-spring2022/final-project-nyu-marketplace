@@ -1,0 +1,51 @@
+h1 {
+  text-align: center;
+  margin: 2.5%;
+}
+
+.h3 {
+  text-align: center;
+}
+
+p {
+  margin: 3.5%;
+}
+
+form {
+  border: solid;
+  background-color: antiquewhite;
+  width: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+input[type=text]{
+width: 80%;
+margin-bottom: 20px;
+}
+
+label{
+margin-left: 20px;
+margin-bottom: 20px;
+}
+
+.input{
+margin-left: 20px;
+margin-bottom: 20px;
+display: inline-block;
+}
+.description{
+height: 150px;
+width: 80%;
+text-align: left;
+vertical-align: top;
+margin-bottom: 20px;
+}
+
+.contact {
+height: 50px;
+width: 80%;
+}
+

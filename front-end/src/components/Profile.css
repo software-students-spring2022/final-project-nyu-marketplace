@@ -1,0 +1,109 @@
+/* profile section */
+#container {
+    font-family: "Lucida Console", monospace;
+}
+
+.pfpImage {
+    max-width: 100%;
+}
+
+#pfp:hover {
+    opacity: .75;
+}
+
+#pfp {
+    display: inline-block;
+    position: relative;
+    border: 2px solid;
+    width: 30%;
+    margin-left: 55%;
+    margin-top: 10vh;
+}
+
+#pfpFile {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#user {
+    font-size: 300%;
+    padding-top: 5%;
+    padding-right: 10%;
+}
+
+.profile-row {
+    background-color: rgb(255, 236, 251);
+}
+
+#edit-profile {
+    background: #7151E8;
+    width: 20%;
+    margin-left: 7%;
+}
+
+#my-products {
+    font-size: 300%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+#product-btns {
+    display: flex;
+    justify-content: center;
+    padding-left: 3%;
+}
+
+#btn {
+    background: #7151E8;
+    font-size: 150%;
+    width: 250px;
+    height: 80px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+#new-listing {
+    margin-top: 2%;
+    background: #a451e8;
+    width: 46.5%;
+    margin-left: 28%;
+    height: 80px;
+}
+
+#empty {
+    height: 20vh;
+}
+
+/* edit profile section */
+#profile-edit-form {
+    background-color: rgb(255, 236, 251);
+    border: 0px;
+    margin-left: 0%;
+    font-size: 2vh;
+    margin-top: -5vh;
+}
+
+.profile-edit-input {
+    height: 3vh;
+    width: 40vh;
+    font-size: 1vh;
+}
+
+.profile-edit-label {
+    margin-left: 0%;
+    margin-bottom: 0%;
+}
+
+.profile-edit-option {
+    margin-bottom: 2vh;
+}
+
+#profile-save-changes {
+    background: #7151E8;
+    width: 50%;
+    margin-top: 1vh;
+}
