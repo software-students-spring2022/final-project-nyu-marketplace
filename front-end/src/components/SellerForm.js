@@ -28,7 +28,7 @@ const SellerForm = () => {
             location: location,
             category: category,
             item_status: "Available",
-            posted_by: "Joe Mama" // TODO: get user id from auth when posting
+            posted_by: "f33521cd-8f81-455c-a3cd-644c6ccd8b45" // TODO: get user id from auth when posting
       })
       .catch((err) => {
         console.log(err);
