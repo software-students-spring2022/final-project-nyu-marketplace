@@ -4,8 +4,7 @@ const app = express() // instantiate an Express object
 const cors = require('cors')
 const session = require('express-session')
 let data = require('../public/FakeData.json')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+
 
 //import schemas
 const User = require('../models/user.js')
@@ -32,18 +31,7 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions))
 
-// set up connection to MongoDB using Mongoose
-dotenv.config()
-const db_uri = process.env.MONGODB_URI
-//connect to database using mongoose and include callback function to indicate success
-mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
-    if(err){
-        console.log('Could not connect to database')
-        console.log(err)
-    } else {
-        console.log('Connected to database yay!')
-    }
-})
+
 
 // ROUTES
 
