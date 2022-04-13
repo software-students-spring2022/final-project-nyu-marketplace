@@ -2,7 +2,7 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors')
-const session = require('express-session');
+const session = require('express-session')
 let data = require('../public/FakeData.json')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
@@ -15,12 +15,12 @@ const Item = require('../models/item.js')
 app.use(cors({
     origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
-  }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // we will put some server logic here later...
 
-app.use(express.static('./public/images'));
+app.use(express.static('./public/images'))
 
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
@@ -29,21 +29,21 @@ const sessionOptions = {
     cookie:{
         httpOnly: true,
     }
-};
-app.use(session(sessionOptions));
+}
+app.use(session(sessionOptions))
 
 // set up connection to MongoDB using Mongoose
-dotenv.config();
-const db_uri = process.env.MONGODB_URI;
+dotenv.config()
+const db_uri = process.env.MONGODB_URI
 //connect to database using mongoose and include callback function to indicate success
 mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
     if(err){
-        console.log('Could not connect to database');
-        console.log(err);
+        console.log('Could not connect to database')
+        console.log(err)
     } else {
-        console.log('Connected to database yay!');
+        console.log('Connected to database yay!')
     }
-});
+})
 
 // ROUTES
 
@@ -62,13 +62,13 @@ app.get('/search', (req,res) => {
 
 app.get('/result', (req, res) => {
     if (req.query.searchText === 'undefined'){req.query.searchText = ''}
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
-    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())))}
+    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category))}
 })
 
 app.get('/favorites', (req, res) => {
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
-    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())))}
+    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category))}
 })
 
 // Route for sending item details
@@ -77,7 +77,7 @@ app.get('/detail', (req, res) => {
         let detailData = data.Items.filter(element => element._id === req.query['id'])
         let contactData = data.Users.filter(x => x._id === detailData[0].posted_by)
         detailData[0].contact = contactData[0].contact
-        res.json(detailData);
+        res.json(detailData)
     }
 })
 
@@ -86,7 +86,7 @@ app.get("/items", (req, res) => {
         // todo limit # of docs for homepage display
         console.log(docs)
         res.json(docs)
-    } );
+    } )
 })
 
 //Route to get all Users
@@ -141,7 +141,7 @@ app.patch("/users/:id", (req, res) => {
 app.post('/new-listing/save', (req, res) => {
     const item = new Item(req.body)
     try{
-        item.save();
+        item.save()
         res.send(item)
         console.log(item)
     } catch (err) {
@@ -173,8 +173,8 @@ app.get('/auth', (req, res) => {
 })
 
 app.post('/auth', (req, res) => {
-    req.session.log = true;
-    res.send('data');
+    req.session.log = true
+    res.send('data')
 })
 
 // export the express app we created to make it available to other modules

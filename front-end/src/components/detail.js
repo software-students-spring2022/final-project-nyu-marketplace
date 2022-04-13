@@ -47,7 +47,7 @@ const DetailPage = (props) => {
         .catch((err) => {
             console.log(err);
         });
-    }, [])
+    })
 
     return(
         <>

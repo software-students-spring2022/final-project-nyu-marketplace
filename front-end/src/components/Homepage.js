@@ -10,7 +10,7 @@ import './Homepage.css'
 
 const Homepage = () => {
   const [search, setSearch] = useState();
-  const [name, setName ] = useState("")
+  // const [name, setName ] = useState("")
   const [info, setInfo] = useState();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Homepage = () => {
             console.log(info)
         })
         .catch(err => console.log("Error retrieving items",err))
-    }, []);
+    });
 
     const renderActivePurchases = () => {
         if (info === undefined) {

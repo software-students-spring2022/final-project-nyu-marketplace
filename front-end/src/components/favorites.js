@@ -23,7 +23,7 @@ const FavoritesPage = (props) => {
     .catch((err) => {
       console.log(err);
     });  
-  }, [])
+  })
   
   return (
     <>

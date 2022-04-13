@@ -14,7 +14,7 @@ const SellerForm = () => {
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
-    const [posted_by, setPoster] = useState("")
+    // const [posted_by, setPoster] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
