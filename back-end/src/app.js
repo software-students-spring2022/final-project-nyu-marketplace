@@ -7,7 +7,7 @@ let data = require('../public/FakeData.json')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
-//import schemas
+//import models
 const User = require('../models/user.js')
 const Item = require('../models/item.js')
 
@@ -65,10 +65,29 @@ app.get('/search', (req,res) => {
     
 })
 
-app.get('/result', (req, res) => {
+app.get('/result', async (req, res) => {
+    
     if (req.query.searchText === 'undefined'){req.query.searchText = ''}
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
-    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
+
+    if (Object.keys(req.query).length === 1){
+        const query = await Item.find({
+            $or: [
+                {"title": {"$regex": req.query.searchText, "$options": "i"}},
+                {"description": {"$regex": req.query.searchText, "$options": "i"}},
+            ]
+        });
+        res.json(query);
+    }
+    else {
+        const query = await Item.find({
+            $or: [
+                {"title": {"$regex": req.query.searchText, "$options": "i"}},
+                {"description": {"$regex": req.query.searchText, "$options": "i"}},
+            ],
+            "category": req.query.category
+        });
+        res.json(query);
+    }
 })
 
 app.get('/favorites', (req, res) => {
