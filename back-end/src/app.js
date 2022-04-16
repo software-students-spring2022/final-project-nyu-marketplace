@@ -109,16 +109,82 @@ app.get("/items", (req, res) => {
     res.json(data.Items)
 })
 
-//Route to get all Users
-app.get("/users", (req, res) => {
-    res.json(data.Users)
+// ************ USER ROUTES ***********************
+
+
+// route to add a user to the database
+app.post("/add-user", async (req, res) => {
+    try {
+        const user = await User.create(req.body)
+        res.json(user)
+    } catch (err) {
+        res.json({ message: err })
+    }
 })
 
-// Route to get the information of a User based on the _id
-app.get("/users/:id", (req, res) => {
+// route to get all users from database
+app.get("/users", (req, res) => {
+    User.find()
+    .then(users => {
+        res.json(users)
+    }
+    ).catch(err => {
+        res.json({message: err})
+    }
+    )
+})
+
+
+// Route to get the information of a user from the database based on the id 
+app.get("/users/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.json(user)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
+// Route to edit the info of a user on the database based on the _id
+app.patch("/users/:id", async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        })
+        res.json(user)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
+
+
+// ************ END USER ROUTES ************
+
+
+// ************ ITEM ROUTES ****************
+
+// Route to POST new listing/item
+app.post('/new-listing/save', (req, res) => {
+    const item = new Item(req.body)
+    try{
+        item.save();
+        res.send(item)
+        console.log(item)
+    } catch (err) {
+        res.status(400).send(err)
+
+    }
+})
+
+// Route to assign item to user upon purchase (reservation)
+app.patch('/purchase/:id', (req, res) => {
     const {id} = req.params
-    const user = data.Users.find(user => user._id === id)
-    res.json(user)
+    const item = data.Items.find(item => item._id === id)
+    const {purchased_by} = req.body
+    if(purchased_by) item.purchased_by = purchased_by
+    if(purchased_by) item.item_status = "Purchased"
+    res.json(item)
 })
 
 // Route to get items purchased by user
@@ -137,38 +203,7 @@ app.get("/items/:id", (req, res) => {
     res.json(items)
 })
 
-// Route to assign item to user upon purchase
-app.patch('/purchase/:id', (req, res) => {
-        const {id} = req.params
-        const item = data.Items.find(item => item._id === id)
-        const {purchased_by} = req.body
-        if(purchased_by) item.purchased_by = purchased_by
-        if(purchased_by) item.item_status = "Purchased"
-        res.json(item)
-})
 
-// Route to edit the information of a User based on the _id
-app.patch("/users/:id", (req, res) => {
-    const {id} = req.params
-    const user = data.Users.find(user => user._id === id)
-    const {name, username} = req.body
-    if(name) user.name = name
-    if(username) user.username = username
-    res.json(user)
-})
-
-// Route to POST new listing
-app.post('/new-listing/save', (req, res) => {
-    const item = new Item(req.body)
-    try{
-        item.save();
-        res.send(item)
-        console.log(item)
-    } catch (err) {
-        res.status(400).send(err)
-
-    }
-})
 
 // Route to save listing edits
 app.patch('/edit-listing/:id', (req, res) => {
@@ -183,7 +218,7 @@ app.patch('/edit-listing/:id', (req, res) => {
     res.json(item)
 })
 
-
+// **************************** END ITEM ROUTES **************************
 
 app.get('/auth', (req, res) => {
     if (req.session.log) {res.send('True')} else {res.send('False')}
