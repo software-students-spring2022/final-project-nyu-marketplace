@@ -23,7 +23,7 @@ const ResultPage = (props) => {
     .catch((err) => {
       console.log(err);
     });  
-  })
+  }, []);
   
   return (
     <>

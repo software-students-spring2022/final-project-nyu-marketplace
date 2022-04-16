@@ -74,12 +74,18 @@ const Homepage = () => {
                 <Link to='/result?category=Other&searchText='>
                     <Button id='category-button'>Other</Button>
                 </Link>
+                
             </Col>
           </Row>
 
           <Row>
+              <Col id='hp-header-random'>
+                <div id='home-item-title'>Active Purchases</div>
+              </Col>
+          </Row>
+
+          <Row>
               <Col id='active-items'>
-                  <div id='home-item-title'>Recent Listings</div>
                   <div id='all-active-items'>{renderActivePurchases()}</div>
               </Col>
           </Row>
