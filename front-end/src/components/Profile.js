@@ -2,14 +2,14 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Header from './header';
 import { useState } from 'react';
-import icon from '../icon.png';
+// import icon from '../icon.png';
 import EditProfile from './EditProfile';
 
 import './Profile.css'
 
 const Profile = () => {
     const [editMode, setEditMode] = useState(false);
-    const [pfp, setPfp] = useState('../icon.png');
+    // const [pfp, setPfp] = useState('../icon.png');
 
     const editModeFalse = () => {
         setEditMode(false);

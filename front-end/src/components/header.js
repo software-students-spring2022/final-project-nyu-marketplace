@@ -7,9 +7,9 @@ import { useState, useEffect } from 'react'
 
 const Header = (props) => {
 
-    const clickLogo = (e) => {
+    /* const clickLogo = (e) => {
         alert("Direct to Home page.");
-    }
+    } */
 
     const [log, setLog] = useState()
 
@@ -22,7 +22,7 @@ const Header = (props) => {
         .catch(err => {console.log(err)})
     }, [])
 
-    if (log == 'True') { 
+    if (log === 'True') { 
         return (
             <>
                 <Row>

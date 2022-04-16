@@ -14,6 +14,7 @@ const SellerForm = () => {
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
+    // const [posted_by, setPoster] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -26,7 +27,8 @@ const SellerForm = () => {
             photo: photo,
             location: location,
             category: category,
-            item_status: "Available"
+            item_status: "Available",
+            posted_by: "f33521cd-8f81-455c-a3cd-644c6ccd8b45" // TODO: get user id from auth when posting
       })
       .catch((err) => {
         console.log(err);

@@ -5,7 +5,7 @@ import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+// import { Link, useNavigate } from 'react-router-dom'
 
 const ManageItems = () =>
 {
@@ -25,7 +25,7 @@ const ManageItems = () =>
     console.log("You clicked an item")
   }
 
-if (itemsArray == undefined)
+if (itemsArray === undefined)
 {
     return <div>Loading...</div>
 }
