@@ -1,6 +1,7 @@
 const app = require('../src/app')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
+const { default: mongoose } = require('mongoose')
 chai.use(chaiHttp)
 chai.expect()
 
@@ -77,18 +78,33 @@ describe("Detail route", () => {
 })
 
 describe('result route', () => {
+
+    before (function () {
+        const mongoose = require('mongoose');
+        const dotenv = require('dotenv').config(__dirname + '/../.env');
+        mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}, function(err){
+            if(err){
+                console.log(err)
+            } else {
+            }
+        });
+    });
+
     it('should return all items meeting search query', (done) => {
         chai.request(app)
-            .get('/result?searchText=ab')
+            .get('/result?searchText=a')
             .end((err, res) => {
                 if (err) done(err)
-                chai.expect(res.status).to.equal(200)
-                chai.expect(res.body).to.be.an('array')
-                chai.expect(res.body.length).to.equal(2)
-                chai.expect(res.body[0]._id).to.equal('15585ec6-1703-410a-b43c-599134a95235')
-                chai.expect(res.body[1]._id).to.equal('42f51800-5036-4e8e-9580-5d85e4b0a6ee')
-                done()
+                chai.expect(res.status).to.equal(200);
+                chai.expect(res.body).to.be.an('array');
+                chai.expect(res.body.length).to.equal(1);
+                chai.expect(res.body[0]._id).to.equal('6252014344df4a71ce1ee562');
+                done();
             })
+    });
+
+    after(function () {
+        mongoose.disconnect();
     })
 })
 
