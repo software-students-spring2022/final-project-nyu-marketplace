@@ -11,6 +11,7 @@ const Register = () => {
 
     const register = () => {
         console.log("access api endpoint, register user");
+        console.log(`${firstName} ${lastName} ${email} ${password}`)
     }
     
     return (
@@ -24,7 +25,7 @@ const Register = () => {
             <Row>
                 <Col id='form-section' sm={6}>
                     <div id='title'>Register</div>
-                    <Form id='form'>
+                    <Form onSubmit={register} id='form'>
                         <Form.Group id='first-name-form'>
                             <FloatingLabel label='first name'>
                                 <Form.Control id='first-name-input' type='name' placeholder='first name' onChange={ e=> setFirstName(e.target.value)}/>

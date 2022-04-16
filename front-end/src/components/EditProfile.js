@@ -13,6 +13,7 @@ const EditProfile = ({editModeFalse}) => {
       //add check to make sure password confirmation is correct
       console.log(firstName);
       console.log(lastName);
+      console.log(confirm)
       editModeFalse();
   }
 

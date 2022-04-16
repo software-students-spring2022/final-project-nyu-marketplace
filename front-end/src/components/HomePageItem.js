@@ -1,5 +1,4 @@
 import { Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import './HomePageItem.css'
 
 const HomePageItem = (props) => {

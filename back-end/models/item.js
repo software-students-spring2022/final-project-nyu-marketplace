@@ -30,6 +30,7 @@ const ItemSchema = new mongoose.Schema({
   posted_by: {
     type: String,
     required: true,
+    default: "",
   },
   purchased_by: {
     type: String,

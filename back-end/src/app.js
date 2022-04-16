@@ -2,10 +2,9 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors')
-const session = require('express-session');
+const session = require('express-session')
 let data = require('../public/FakeData.json')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+
 
 //import models
 const User = require('../models/user.js')
@@ -15,12 +14,12 @@ const Item = require('../models/item.js')
 app.use(cors({
     origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
-  }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // we will put some server logic here later...
 
-app.use(express.static('./public/images'));
+app.use(express.static('./public/images'))
 
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
@@ -29,22 +28,8 @@ const sessionOptions = {
     cookie:{
         httpOnly: true,
     }
-};
-app.use(session(sessionOptions));
-
-// set up connection to MongoDB using Mongoose
-dotenv.config();
-const db_uri = process.env.MONGODB_URI;
-//connect to database using mongoose and include callback function to indicate success
-mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
-    if(err){
-        console.log('Could not connect to database');
-        console.log(err);
-    } else {
-        console.log('Connected to database yay!');
-    }
-});
-
+}
+app.use(session(sessionOptions))
 
 
 
@@ -53,7 +38,6 @@ mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
 // API route for search. As of now, searches based on title, but keys may be added to widen search params
 app.get('/search', (req,res) => {
     const {q} = req.query
-
     const keys = ["title", "category"]
 
     const search = (data) => {
@@ -62,7 +46,6 @@ app.get('/search', (req,res) => {
         )
     }
     res.send(search(data))
-    
 })
 
 app.get('/result', async (req, res) => {
@@ -91,8 +74,8 @@ app.get('/result', async (req, res) => {
 })
 
 app.get('/favorites', (req, res) => {
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())));}
-    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category));}
+    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())))}
+    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category))}
 })
 
 // Route for sending item details
@@ -101,12 +84,16 @@ app.get('/detail', (req, res) => {
         let detailData = data.Items.filter(element => element._id === req.query['id'])
         let contactData = data.Users.filter(x => x._id === detailData[0].posted_by)
         detailData[0].contact = contactData[0].contact
-        res.json(detailData);
+        res.json(detailData)
     }
 })
 
 app.get("/items", (req, res) => {
-    res.json(data.Items)
+    Item.find({}, (err, docs) => {
+        // todo limit # of docs for homepage display
+        console.log(docs)
+        res.json(docs)
+    } )
 })
 
 //Route to get all Users
@@ -161,12 +148,11 @@ app.patch("/users/:id", (req, res) => {
 app.post('/new-listing/save', (req, res) => {
     const item = new Item(req.body)
     try{
-        item.save();
+        item.save()
         res.send(item)
         console.log(item)
     } catch (err) {
         res.status(400).send(err)
-
     }
 })
 
@@ -183,8 +169,6 @@ app.patch('/edit-listing/:id', (req, res) => {
     res.json(item)
 })
 
-
-
 app.get('/auth', (req, res) => {
     if (req.session.log) {res.send('True')} else {res.send('False')}
     /*w/o db, we will use pretending code instead
@@ -196,11 +180,9 @@ app.get('/auth', (req, res) => {
 })
 
 app.post('/auth', (req, res) => {
-    req.session.log = true;
-    res.send('data');
+    req.session.log = true
+    res.send('data')
 })
-
-
 
 // export the express app we created to make it available to other modules
 module.exports = app
