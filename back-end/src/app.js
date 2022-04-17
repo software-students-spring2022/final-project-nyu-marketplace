@@ -110,8 +110,8 @@ app.post("/add-user", async (req, res) => {
 })
 
 // route to get all users from database
-app.get("/users", (req, res) => {
-    User.find()
+app.get("/users", async (req, res) => {
+    await User.find()
     .then(users => {
         res.json(users)
     }
