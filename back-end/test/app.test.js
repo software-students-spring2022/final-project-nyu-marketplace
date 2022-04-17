@@ -5,58 +5,64 @@ const { default: mongoose } = require('mongoose')
 chai.use(chaiHttp)
 chai.expect()
 
+/*
+
+*/
+
 // unit tests for all user routes
 describe('User routes', () => {
 
     //unit test to get all users
     describe('GET /users', () => {
-        it('should return all users', (done) => {
+
+        // non callback function unit test to test async route to get all users from the database, specify a timeout of 20 seconds
+        it('should return all users', () => {
             chai.request(app)
                 .get('/users')
-                .end((err, res) => {
-                    if (err) done(err)
+                .then(res => {
                     chai.expect(res.status).to.equal(200)
                     chai.expect(res.body).to.be.an('array')
-                    done()
+                    
+                }
+                ).catch(err => {
+                    console.log(err)
                 })
         })
     })
-
-    //unit test to get a user based on the _id
+    //unit test for async route to get a user by id
     describe('GET /users/:id', () => {
-        it('should return a user based on the _id', (done) => {
+
+        it('Should return a user with the given id', () => {
             chai.request(app)
-                .get('/users/c4df07d4-9574-4316-ba13-a32037a11b6d')
-                .end((err, res) => {
-                    if (err) done(err)
-                    chai.expect(res.status).to.equal(200)
-                    chai.expect(res.body).to.be.an('object')
-                    chai.expect(res.body.name).to.equal('Hillier Banasiak')
+                .get('/users/625afb28db5c90c2a26c967a')
+                .then(res => {
+                    chai.expect(res.status).to.equal(200);
+                    chai.expect(res.body).to.be.an('object');
                     chai.expect(res.body).to.have.property('_id')
-                    chai.expect(res.body).to.have.property('_id').to.equal('c4df07d4-9574-4316-ba13-a32037a11b6d')
-                    done()
+                
+                }).catch(err =>{
+                    console.log(err)
                 })
-        })
-    })
+        });
+    });
 
     //unit test to edit a user based on the _id
     describe('PATCH /users/:id', () => {
-        it('should edit a user based on the _id', (done) => {
+
+        it('should edit a user based on the _id', () => {
             chai.request(app)
-                .patch('/users/c4df07d4-9574-4316-ba13-a32037a11b6d')
+                .patch('/users/625afb28db5c90c2a26c967a')
                 .send({
-                    name: 'Better Hillier Banasiak',
-                    username: 'betterhillierbanasiak'
+                    name: 'Better David',
+                    username: 'betterdavid',
                 })
-                .end((err, res) => {
-                    if (err) done(err)
+                .then(res => {
                     chai.expect(res.status).to.equal(200)
                     chai.expect(res.body).to.be.an('object')
-                    chai.expect(res.body.name).to.equal('Better Hillier Banasiak')
-                    chai.expect(res.body.username).to.equal('betterhillierbanasiak')
-                    chai.expect(res.body).to.have.property('_id')
-                    chai.expect(res.body).to.have.property('_id').to.equal('c4df07d4-9574-4316-ba13-a32037a11b6d')
-                    done()
+                    chai.expect(res.body.name).to.equal('Better David')
+                    chai.expect(res.body.username).to.equal('betterdavid')
+                }).catch (err => {
+                    console.log(err)
                 })
         })
     })
