@@ -14,14 +14,14 @@ const Homepage = () => {
   const [info, setInfo] = useState();
 
   useEffect(() => {
-      axios.get('http://localhost:3000/items', {withCredentials:true})
+      axios.get('http://localhost:3000/items', {withCredentials:true, authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
         .then(res => {
             setInfo(res.data)
             console.log("wtf is happening")
             console.log(info)
         })
         .catch(err => console.log("Error retrieving items",err))
-    });
+    }, []);
 
     const renderActivePurchases = () => {
         if (info === undefined) {

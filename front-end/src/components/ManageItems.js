@@ -13,7 +13,7 @@ const ManageItems = () =>
     const [itemsArray, setItemsArray] = useState();
 
    useEffect(() => {
-    axios.get('http://localhost:3000/items/c4df07d4-9574-4316-ba13-a32037a11b6d', {withCredentials:true})
+    axios.get('http://localhost:3000/items/c4df07d4-9574-4316-ba13-a32037a11b6d', {withCredentials:true, authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
       .then(res => {
           setItemsArray(res.data)
       })

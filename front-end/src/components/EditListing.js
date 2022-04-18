@@ -25,6 +25,7 @@ const EditListing = () => {
             photo: photo,
             location: location,
             category: category,
+            authentication: `Bearer ${sessionStorage.getItem("jwt")}`
       })
       .catch((err) => {
         console.log(err);

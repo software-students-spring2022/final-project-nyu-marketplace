@@ -39,7 +39,7 @@ const DetailPage = (props) => {
     const query = useQuery()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include'})
+        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
         .then(res => res.json())
         .then((resJson) => {
             setResult(resJson);
