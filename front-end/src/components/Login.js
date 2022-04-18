@@ -1,12 +1,8 @@
 import { Container, Row, Col, Form, FloatingLabel, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import './login.css'
-
-const tempLog = () => {
-    fetch('http://localhost:3000/auth', {method:'post', credentials:'include'}).then(() => {}).catch(() => {})
-}
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -15,6 +11,11 @@ const Login = () => {
     const login = () => {
         console.log("access api endpoint to log in user")
         console.log(`${email} ${password}`)
+    }
+
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
     }
 
     return (
@@ -40,7 +41,17 @@ const Login = () => {
                                 <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                             </FloatingLabel>
                     </Form.Group>
-                   <Link to = "/homepage"> <Button id="button" onClick={tempLog}>login</Button></Link>
+                    <Button id="button" onClick={e => {
+                       fetch('http://localhost:3000/login', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({email: email, password: password})
+                        })
+                        .then().catch();
+                       navigate('/homepage');
+                   }}>login</Button>
                     
                 </Form>
                 <a href='/register'>No account? Register Here</a>

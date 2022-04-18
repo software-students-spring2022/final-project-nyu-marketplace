@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, FloatingLabel, Button } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import './Register.css'
