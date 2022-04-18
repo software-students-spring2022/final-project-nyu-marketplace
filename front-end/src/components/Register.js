@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, FloatingLabel, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import './Register.css'
@@ -8,6 +8,11 @@ const Register = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
 
     const register = () => {
         console.log("access api endpoint, register user");
@@ -49,7 +54,17 @@ const Register = () => {
                                     <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                                 </FloatingLabel>
                         </Form.Group>
-                        <Link to = "/login"><Button id="button">Register</Button></Link>
+                        <Button id="button" onClick={e => {
+                            fetch('http://localhost:3000/add-user', {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({name: name, username: username, email: email, password: password})
+                            })
+                            .then().catch();
+                            navigate('/login');
+                        }}>Register</Button>
                         
                     </Form>
 
