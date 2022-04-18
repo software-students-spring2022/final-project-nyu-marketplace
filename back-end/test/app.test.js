@@ -98,7 +98,7 @@ describe('result route', () => {
 
     it('should return all items meeting search query', (done) => {
         chai.request(app)
-            .get('/result?searchText=a')
+            .get('/result?searchText=Our Very First Item!')
             .end((err, res) => {
                 if (err) done(err)
                 chai.expect(res.status).to.equal(200);
