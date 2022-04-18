@@ -191,38 +191,6 @@ app.get("/items/:id", (req, res) => {
 })
 
 
-// Route to assign item to user upon purchase
-app.patch('/purchase/:id', (req, res) => {
-        const {id} = req.params
-        const item = data.Items.find(item => item._id === id)
-        const {purchased_by} = req.body
-        if(purchased_by) item.purchased_by = purchased_by
-        if(purchased_by) item.item_status = "Purchased"
-        res.json(item)
-})
-
-// Route to edit the information of a User based on the _id
-app.patch("/users/:id", (req, res) => {
-    const {id} = req.params
-    const user = data.Users.find(user => user._id === id)
-    const {name, username} = req.body
-    if(name) user.name = name
-    if(username) user.username = username
-    res.json(user)
-})
-
-// Route to POST new listing
-app.post('/new-listing/save', (req, res) => {
-    const item = new Item(req.body)
-    try{
-        item.save()
-        res.send(item)
-        console.log(item)
-    } catch (err) {
-        res.status(400).send(err)
-    }
-})
-
 // Route to save listing edits
 app.patch('/edit-listing/:id', (req, res) => {
     const {id} = req.params
