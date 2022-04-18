@@ -4,14 +4,14 @@ import { useState } from 'react'
 
 import './Register.css'
 const Register = () => {
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("") 
+    const [name, setName] = useState("")
+    const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const register = () => {
         console.log("access api endpoint, register user");
-        console.log(`${firstName} ${lastName} ${email} ${password}`)
+        //console.log(`${firstName} ${lastName} ${email} ${password}`)
     }
     
     return (
@@ -27,14 +27,14 @@ const Register = () => {
                     <div id='title'>Register</div>
                     <Form onSubmit={register} id='form'>
                         <Form.Group id='first-name-form'>
-                            <FloatingLabel label='first name'>
-                                <Form.Control id='first-name-input' type='name' placeholder='first name' onChange={ e=> setFirstName(e.target.value)}/>
+                            <FloatingLabel label='full name'>
+                                <Form.Control id='first-name-input' type='name' placeholder='full name' onChange={ e=> setName(e.target.value)}/>
                             </FloatingLabel>
                         </Form.Group>
 
                         <Form.Group id='last-name-form'>
-                            <FloatingLabel label='last name'>
-                                <Form.Control id='last-name-input' type='name' placeholder='last name' onChange={ e=> setLastName(e.target.value)}/>
+                            <FloatingLabel label='username'>
+                                <Form.Control id='last-name-input' type='name' placeholder='username' onChange={ e=> setUsername(e.target.value)}/>
                             </FloatingLabel>
                         </Form.Group>
 

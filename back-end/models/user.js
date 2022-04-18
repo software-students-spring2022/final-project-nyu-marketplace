@@ -13,9 +13,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    contact: {
+    password: {
         type: String,
         required: true,
+    },
+    contact: {
+        type: String,
     },
     reserved_items: [
         {
