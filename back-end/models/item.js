@@ -39,7 +39,7 @@ const ItemSchema = new mongoose.Schema({
   },
   item_status: {
     type: String,
-    required: true,
+    required: false,
     default: "available",
   },
 
