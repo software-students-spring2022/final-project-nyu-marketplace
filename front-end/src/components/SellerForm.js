@@ -3,7 +3,7 @@ import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
 import 'react-dropdown/style.css'
-//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SellerForm = () => {
 
@@ -15,6 +15,11 @@ const SellerForm = () => {
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
     // const [posted_by, setPoster] = useState("")
+
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -28,9 +33,10 @@ const SellerForm = () => {
             location: location,
             category: category,
             item_status: "Available",
-            authentication: `Bearer ${sessionStorage.getItem("jwt")}`,
+            headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`},
             posted_by: "f33521cd-8f81-455c-a3cd-644c6ccd8b45" // TODO: get user id from auth when posting
       })
+      .then(res => {if (res.data.err === 'visitor'){return navigate('/')}})
       .catch((err) => {
         console.log(err);
       })

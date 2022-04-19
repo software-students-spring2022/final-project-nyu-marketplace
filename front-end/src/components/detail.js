@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal'
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
 // const clickOrder = () => {
@@ -35,13 +35,19 @@ const DetailPage = (props) => {
         return new URLSearchParams(useLocation().search);
     }
 
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
     const [result, setResult] = useState()
     const query = useQuery()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
+        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => res.json())
         .then((resJson) => {
+            if (resJson.err === 'visitor'){return navigate('/')}
             setResult(resJson);
         })
         .catch((err) => {

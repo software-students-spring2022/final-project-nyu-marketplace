@@ -41,16 +41,16 @@ const Login = () => {
                                 <Form.Control id="password-input" type="password" placeholder="password"onChange={ e=> setPassword(e.target.value)}/>
                             </FloatingLabel>
                     </Form.Group>
-                    <Button id="button" onClick={e => {
-                       fetch('http://localhost:3000/login', {
+                    <Button id="button" onClick={async e => {
+                       const res = await fetch('http://localhost:3000/auth/login', {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({email: email, password: password})
+                            body: JSON.stringify({username: email, password: password})
                         })
-                        .then().catch();
-                       navigate('/homepage');
+                        if (res.status === 200) {const resJson = await res.json(); sessionStorage.setItem("jwt", JSON.parse(resJson).jwt);navigate('/homepage')}
+                        else {alert("Failed to log in.")}
                    }}>login</Button>
                     
                 </Form>
