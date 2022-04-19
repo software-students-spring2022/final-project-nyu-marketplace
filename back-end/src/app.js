@@ -276,8 +276,9 @@ app.patch('/edit-listing', async (req, res) => {
 
 // **************************** END ITEM ROUTES **************************
 
-app.get('/auth', (req, res) => {
-    if (req.session.log) {res.send('True')} else {res.send('False')}
+app.get('/auth', passport.authenticate('jwt'), (req, res) => {
+    console.log('here');
+    res.status(200).send('True')
     /*w/o db, we will use pretending code instead
     if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
         res.send('True')
