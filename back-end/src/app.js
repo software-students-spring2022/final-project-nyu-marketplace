@@ -4,6 +4,9 @@ const app = express() // instantiate an Express object
 const cors = require('cors')
 const argon2 = require('argon2')
 const session = require('express-session')
+const passport = require('passport')
+const JWT = require('jsonwebtoken')
+require('./passport')
 // let data = require('../public/FakeData.json')
 
 
@@ -111,6 +114,22 @@ app.post("/add-user", async (req, res) => {
         res.status(200).json({"msg": "Successfully registered.","status": "200"})
     } catch (err) {
         res.status(403).json({ "msg": err })
+    }
+})
+
+
+app.post("/auth/login", passport.authenticate('local'), async (req, res) => {
+    const username = req.body.username;
+    const found = await User.findOne({email: username});
+    const id = found._id;
+    try {
+        const token = await JWT.sign({
+            id: id,
+            username: username,
+        }, process.env.secret);
+        res.status(200).json(JSON.stringify({"jwt": token}));
+    } catch (error) {
+        res.status(403).json({"msg": error.message});
     }
 })
 
