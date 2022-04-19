@@ -23,7 +23,7 @@ const ResultPage = (props) => {
     fetch(`http://localhost:3000/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
     .then(res => res.json())
     .then((resJson) => {
-      if (resJson.err = 'visitor'){return navigate('/')}
+      if (resJson.err === 'visitor'){return navigate('/')}
       setResult(resJson);
     })            
     .catch((err) => {
