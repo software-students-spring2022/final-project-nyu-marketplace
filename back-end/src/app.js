@@ -2,6 +2,7 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors')
+const argon2 = require('argon2')
 const session = require('express-session')
 let data = require('../public/FakeData.json')
 
@@ -102,10 +103,14 @@ app.get("/items", (req, res) => {
 // route to add a user to the database
 app.post("/add-user", async (req, res) => {
     try {
-        const user = await User.create(req.body)
-        res.json(user)
+        const found = await User.findOne({username: req.body.username})
+        if (found) {return res.status(403).json({"msg": 'User already exists.'})}
+        const to_add = req.body;
+        to_add['password'] = await argon2.hash(to_add['password'])
+        const user = await User.create(to_add)
+        res.status(200).json({"msg": "Successfully registered.","status": "200"})
     } catch (err) {
-        res.json({ message: err })
+        res.status(403).json({ "msg": err })
     }
 })
 
