@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from './header'
 import axios from "axios"
 import './EditListing.css'
+import { useNavigate } from "react-router-dom";
 
 
 const EditListing = () => {
@@ -14,6 +15,11 @@ const EditListing = () => {
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
 
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
 
@@ -25,8 +31,9 @@ const EditListing = () => {
             photo: photo,
             location: location,
             category: category,
-            authentication: `Bearer ${sessionStorage.getItem("jwt")}`
+            headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
       })
+      .then(res => {if (res.data.err === 'visitor'){return navigate('/')} })
       .catch((err) => {
         console.log(err);
       })

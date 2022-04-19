@@ -5,16 +5,22 @@ import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-// import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ManageItems = () =>
 {
     
     const [itemsArray, setItemsArray] = useState();
 
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
    useEffect(() => {
-    axios.get('http://localhost:3000/items/c4df07d4-9574-4316-ba13-a32037a11b6d', {withCredentials:true, authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
+    axios.get('http://localhost:3000/items/c4df07d4-9574-4316-ba13-a32037a11b6d', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
       .then(res => {
+          if (res.data.err === 'visitor'){return navigate('/')}
           setItemsArray(res.data)
       })
       .catch(err => console.log(err))

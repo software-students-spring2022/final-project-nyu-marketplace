@@ -37,7 +37,7 @@ const LandingPage = () => {
     </Row>
 
     <Row>
-      <Col classname='image' sm={6}>
+      <Col className='image' sm={6}>
         <img src = './1.png' alt = 'NYU Marketplace' height = {500}/>
       </Col>
 
@@ -52,13 +52,13 @@ const LandingPage = () => {
         <div className='header-text'>Sell</div>
         <div className='body-text'>List your unwanted items easily and quickly</div>
       </Col>
-      <Col sm={6} classname='image'>
+      <Col sm={6} className='image'>
         <img src = './2.png' alt = 'NYU Marketplace' height = {500}/>
       </Col>
     </Row>
 
     <Row>
-      <Col sm={6} classname='image'>
+      <Col sm={6} className='image'>
         <img src = './3.png' alt = 'NYU Marketplace' height = {500}/>
 
       </Col>

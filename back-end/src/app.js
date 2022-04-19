@@ -39,20 +39,8 @@ app.use(session(sessionOptions))
 
 // ROUTES
 
-// API route for search. As of now, searches based on title, but keys may be added to widen search params
-app.get('/search', (req,res) => {
-    const {q} = req.query
-    const keys = ["title", "category"]
-
-    const search = (data) => {
-        return data.Items.filter((item) =>
-            keys.some((key) => item[key].toLowerCase().includes(q))
-        )
-    }
-    res.send(search(data))
-})
-
-app.get('/result', async (req, res) => {
+// API route for search
+app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     
     if (req.query.searchText === 'undefined'){req.query.searchText = ''}
 
@@ -77,13 +65,13 @@ app.get('/result', async (req, res) => {
     }
 })
 
-app.get('/favorites', (req, res) => {
+app.get('/favorites', passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
     if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())))}
     else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category))}
 })
 
 // Route for sending item details
-app.get('/detail',  async (req, res) => {
+app.get('/detail',  passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     console.log(req.query)
     if (JSON.stringify(req.query) !== '{}') {
         const query = await Item.findById(req.query.id)
@@ -92,10 +80,10 @@ app.get('/detail',  async (req, res) => {
     }
 })
 
-app.get("/items", (req, res) => {
+app.get("/items", passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
     Item.find({}, (err, docs) => {
         // todo limit # of docs for homepage display
-        console.log(docs)
+        //console.log(docs)
         res.json(docs)
     } )
 })
@@ -134,7 +122,7 @@ app.post("/auth/login", passport.authenticate('local'), async (req, res) => {
 })
 
 // route to get all users from database
-app.get("/users", async (req, res) => {
+app.get("/users", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     await User.find()
     .then(users => {
         res.json(users)
@@ -147,7 +135,7 @@ app.get("/users", async (req, res) => {
 
 
 // Route to get the information of a user from the database based on the id 
-app.get("/users/:id", async (req, res) => {
+app.get("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
         res.json(user)
@@ -157,7 +145,7 @@ app.get("/users/:id", async (req, res) => {
 })
 
 // Route to edit the info of a user on the database based on the _id
-app.patch("/users/:id", async (req, res) => {
+app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, {
             new: true
@@ -176,7 +164,7 @@ app.patch("/users/:id", async (req, res) => {
 // Item status FLOW: 1. Item is available 2. Item is reserved 3. Item is confirmed purchase following item exchange
 
 // Route to POST new listing/item
-app.post('/new-listing/save', (req, res) => {
+app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
     const item = new Item(req.body)
     try{
         item.save()
@@ -189,7 +177,7 @@ app.post('/new-listing/save', (req, res) => {
 })
 
 // route that saves an Item into a User's reserved_item array and updates the item's status to reserved. Only works if the item does not already have a status of reserved
-app.post('/reserve-item', async (req, res) => {
+app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const {user_id, item_id} = req.body
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
@@ -205,7 +193,7 @@ app.post('/reserve-item', async (req, res) => {
 })
 
 // route that saves an Item into a User's item_history array, updates the item's status to purchased, and removes the item from the user's reserved_items array
-app.post('/purchase-item', async (req, res) => {
+app.post('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const {user_id, item_id} = req.body
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
@@ -222,7 +210,7 @@ app.post('/purchase-item', async (req, res) => {
 })
 
 // route that changes the item_status of an Item object to 'available'
-app.post('/status/available', async (req, res) => {
+app.post('/status/available', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item = await Item.findById(req.body.item_id)
     item.item_status = 'available'
     await item.save()
@@ -231,28 +219,28 @@ app.post('/status/available', async (req, res) => {
 })
 
 //route that gets all the items in a user's item_history (these are purchased items)
-app.get('/purchased', async (req, res) => {
+app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.body.user_id)
     const items = await Item.find({_id: {$in: user.item_history}})
     res.send(items)
 })
 
 // route that gets all the items in a user's reserved_items
-app.get('/reserved', async (req, res) => {
+app.get('/reserved', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.body.user_id)
     const items = await Item.find({_id: {$in: user.reserved_items}})
     res.send(items)
 })
 
 // Route to get all items posted by the user
-app.get('/posted-items', async (req, res) => {
+app.get('/posted-items', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.body.user_id)
     const items = await Item.find({posted_by: user._id})
     res.send(items)
 })
 
 //route to edit an item/listing
-app.patch('/edit-listing', async (req, res) => {
+app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item = await Item.findByIdAndUpdate(req.body.item_id, req.body, {
         new: true
     }
@@ -287,9 +275,8 @@ app.get('/auth', passport.authenticate('jwt'), (req, res) => {
     }*/
 })
 
-app.post('/auth', (req, res) => {
-    req.session.log = true
-    res.send('data')
+app.get('/', (req, res) => {
+    res.json({'err': 'visitor'})
 })
 
 // export the express app we created to make it available to other modules

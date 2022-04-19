@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Header from './header'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
@@ -13,12 +13,16 @@ const Homepage = () => {
   // const [name, setName ] = useState("")
   const [info, setInfo] = useState();
 
+  const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
   useEffect(() => {
-      axios.get('http://localhost:3000/items', {withCredentials:true, authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
+      axios.get('http://localhost:3000/items', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => {
-            setInfo(res.data)
-            console.log("wtf is happening")
-            console.log(info)
+            if (res.data.err === 'visitor'){return navigate('/')}
+            else {setInfo(res.data)}
         })
         .catch(err => console.log("Error retrieving items",err))
     }, []);

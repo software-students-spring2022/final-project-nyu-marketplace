@@ -1,13 +1,27 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Header from './header';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import icon from '../icon.png';
 import EditProfile from './EditProfile';
+import { useNavigate } from 'react-router-dom';
 
 import './Profile.css'
 
 const Profile = () => {
+
+    const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
+    useEffect (() => { 
+        fetch(`http://localhost:3000/auth`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        .then(res => {if(res.status === 401){return navigate('/')}})         
+        .catch((err) => {
+          console.log(err);
+        });  
+      })
     const [editMode, setEditMode] = useState(false);
     // const [pfp, setPfp] = useState('../icon.png');
 
@@ -25,7 +39,7 @@ const Profile = () => {
             <Row className='profile-row'>
                 <Col id='icon'>
                     <div id='pfp'>
-                        <img class='pfpImage' type='file' src={require('../icon.png')} alt="profile pic"/>
+                        <img className='pfpImage' type='file' src={require('../icon.png')} alt="profile pic"/>
                         <input id="pfpFile" type="file" onChange={(event) => pfpUpload(event.target.files[0])}></input>
                     </div>
                 </Col>
