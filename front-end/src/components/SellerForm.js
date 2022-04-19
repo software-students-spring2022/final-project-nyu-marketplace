@@ -37,7 +37,7 @@ const SellerForm = () => {
     }
 
     return (
-      <div>
+      <div className= "background">
         <Header></Header>
         <h3 class= "h3">Listing Details</h3>
 
