@@ -65,14 +65,48 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
     }
 })
 
-app.get('/favorites', passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
-    if (Object.keys(req.query).length === 1){res.json(data.Items.filter(element => element.title.toLowerCase().includes(req.query['searchText'].toLocaleLowerCase()) || element.description.toLowerCase().includes(req.query['searchText'].toLowerCase())))}
-    else {res.json(data.Items.filter(element => (element.title.toLowerCase().includes(req.query['searchText']) || element.description.toLowerCase().includes(req.query['searchText'])) && element.category === req.query.category))}
+app.get('/favorites', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    const id = req.user.id;
+    const found = await User.findById(id);
+    const favorites = found.favorites;
+    if (req.query.searchText === 'undefined'){req.query.searchText = ''}
+    if (Object.keys(req.query).length === 1){
+        const items = await Item.find({
+            $or: [
+                {"title": {"$regex": req.query.searchText, "$options": "i"}},
+                {"description": {"$regex": req.query.searchText, "$options": "i"}},
+            ], 
+            '_id': {$in: favorites}
+        })
+        res.json(items)
+    }
+    else {
+        const items = await Item.find({
+            $or: [
+                {"title": {"$regex": req.query.searchText, "$options": "i"}},
+                {"description": {"$regex": req.query.searchText, "$options": "i"}},
+            ],
+            "category": req.query.category,
+            '_id': {$in: favorites}
+        })
+        res.json(items)
+    }
+})
+
+app.get('/add-favorites', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    const id = req.query.id;
+    const userid = req.user.id;
+    const found = await User.findById(userid);
+    if (found.favorites.includes({_id: new ObjectID(id)})){res.status(403).send()}
+    else {
+        found.favorites.push(id);
+        await found.save();
+        res.status(200).send();
+    }
 })
 
 // Route for sending item details
 app.get('/detail',  passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    console.log(req.query)
     if (JSON.stringify(req.query) !== '{}') {
         const query = await Item.findById(req.query.id)
         res.json(query)
@@ -265,14 +299,7 @@ app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}),
 // **************************** END ITEM ROUTES **************************
 
 app.get('/auth', passport.authenticate('jwt'), (req, res) => {
-    console.log('here');
     res.status(200).send('True')
-    /*w/o db, we will use pretending code instead
-    if (data.Users.find((user) => {user.session_id === req.sessionID}) !== undefined){
-        res.send('True')
-    } else {
-        res.send('False')
-    }*/
 })
 
 app.get('/', (req, res) => {
