@@ -58,8 +58,8 @@ app.get('/result', async (req, res) => {
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ]
-        });
-        res.json(query);
+        })
+        res.json(query)
     }
     else {
         const query = await Item.find({
@@ -68,8 +68,8 @@ app.get('/result', async (req, res) => {
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ],
             "category": req.query.category
-        });
-        res.json(query);
+        })
+        res.json(query)
     }
 })
 
@@ -79,12 +79,12 @@ app.get('/favorites', (req, res) => {
 })
 
 // Route for sending item details
-app.get('/detail', (req, res) => {
+app.get('/detail',  async (req, res) => {
+    console.log(req.query)
     if (JSON.stringify(req.query) !== '{}') {
-        let detailData = data.Items.filter(element => element._id === req.query['id'])
-        let contactData = data.Users.filter(x => x._id === detailData[0].posted_by)
-        detailData[0].contact = contactData[0].contact
-        res.json(detailData)
+        const query = await Item.findById(req.query.id)
+        res.json(query)
+
     }
 })
 
@@ -155,7 +155,7 @@ app.patch("/users/:id", async (req, res) => {
 app.post('/new-listing/save', (req, res) => {
     const item = new Item(req.body)
     try{
-        item.save();
+        item.save()
         res.send(item)
         console.log(item)
     } catch (err) {
