@@ -29,10 +29,12 @@ const DetailPage = (props) => {
 
     const orderItem = () => {
         //TODO: get user id from auth
+        /*
         fetch('http://localhost:3000/reserve-item', {
                     method: "POST",
                     body: JSON.stringify({user_id: "", item_id: query.toString()})
                 })
+                */
         console.log("Tasks:\nAdd item to user info in database\nRemove item from public view")
     }
     const useQuery = () => {
