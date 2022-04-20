@@ -203,7 +203,7 @@ app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'
     try{
         item.save()
         res.send(item)
-        console.log(item)
+        //console.log(item)
     } catch (err) {
         res.status(400).send(err)
 
