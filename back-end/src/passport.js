@@ -22,7 +22,7 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
 
 passport.use(new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.secret,
+    secretOrKey: process.env.secret || 'secret',
 }, async function (payload, done) {
     User.findById(payload.id, function(err, user) {
         if (err) {
