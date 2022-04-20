@@ -6,6 +6,8 @@ const argon2 = require('argon2')
 const session = require('express-session')
 const passport = require('passport')
 const JWT = require('jsonwebtoken')
+
+const ObjectId = require('mongodb').ObjectId
 require('./passport')
 // let data = require('../public/FakeData.json')
 
@@ -128,7 +130,7 @@ app.post("/add-user", async (req, res) => {
     try {
         const found = await User.findOne({username: req.body.username})
         if (found) {return res.status(403).json({"msg": 'User already exists.'})}
-        const to_add = req.body;
+        const to_add = req.body
         to_add['password'] = await argon2.hash(to_add['password'])
         const user = await User.create(to_add)
         res.status(200).json({"msg": "Successfully registered.","status": "200"})
@@ -139,17 +141,17 @@ app.post("/add-user", async (req, res) => {
 
 
 app.post("/auth/login", passport.authenticate('local'), async (req, res) => {
-    const username = req.body.username;
-    const found = await User.findOne({email: username});
-    const id = found._id;
+    const username = req.body.username
+    const found = await User.findOne({email: username})
+    const id = found._id
     try {
         const token = await JWT.sign({
             id: id,
             username: username,
-        }, process.env.secret || 'secret');
-        res.status(200).json(JSON.stringify({"jwt": token}));
+        }, process.env.secret || 'secret')
+        res.status(200).json(JSON.stringify({"jwt": token}))
     } catch (error) {
-        res.status(403).json({"msg": error.message});
+        res.status(403).json({"msg": error.message})
     }
 })
 
@@ -164,6 +166,14 @@ app.get("/users", passport.authenticate('jwt', {failureRedirect: '/'}), async (r
     }
     )
 })
+
+//route to get a user's information from database
+app.get("/user", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    const id = req.user.id
+    const found = await User.findById(id)
+    res.json(found)
+})
+
 
 
 // Route to get the information of a user from the database based on the id 
@@ -210,7 +220,8 @@ app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'
 
 // route that saves an Item into a User's reserved_item array and updates the item's status to reserved. Only works if the item does not already have a status of reserved
 app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const {user_id, item_id} = req.body
+    const item_id = req.body.item_id
+    const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
     if (item.item_status === 'reserved'){
@@ -226,7 +237,8 @@ app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), 
 
 // route that saves an Item into a User's item_history array, updates the item's status to purchased, and removes the item from the user's reserved_items array
 app.post('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const {user_id, item_id} = req.body
+    const item_id = req.body.item_id
+    const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
     if (item.item_status === 'purchased'){
@@ -252,21 +264,21 @@ app.post('/status/available', passport.authenticate('jwt', {failureRedirect: '/'
 
 //route that gets all the items in a user's item_history (these are purchased items)
 app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const user = await User.findById(req.body.user_id)
+    const user = await User.findById(req.user.id)
     const items = await Item.find({_id: {$in: user.item_history}})
     res.send(items)
 })
 
 // route that gets all the items in a user's reserved_items
 app.get('/reserved', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const user = await User.findById(req.body.user_id)
+    const user = await User.findById(req.user.id)
     const items = await Item.find({_id: {$in: user.reserved_items}})
     res.send(items)
 })
 
 // Route to get all items posted by the user
 app.get('/posted-items', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const user = await User.findById(req.body.user_id)
+    const user = await User.findById(req.user.id)
     const items = await Item.find({posted_by: user._id})
     res.send(items)
 })
