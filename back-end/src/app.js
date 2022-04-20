@@ -97,12 +97,10 @@ app.get('/add-favorites', passport.authenticate('jwt', {failureRedirect: '/'}), 
     const id = req.query.id;
     const userid = req.user.id;
     const found = await User.findById(userid);
-    if (found.favorites.includes({_id: new ObjectID(id)})){res.status(403).send()}
-    else {
-        found.favorites.push(id);
-        await found.save();
-        res.status(200).send();
-    }
+    found.favorites.push(id);
+    await found.save();
+    res.status(200).send();
+    
 })
 
 // Route for sending item details
