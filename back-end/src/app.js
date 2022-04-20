@@ -148,7 +148,7 @@ app.post("/auth/login", passport.authenticate('local'), async (req, res) => {
         const token = await JWT.sign({
             id: id,
             username: username,
-        }, process.env.secret);
+        }, process.env.secret || 'secret');
         res.status(200).json(JSON.stringify({"jwt": token}));
     } catch (error) {
         res.status(403).json({"msg": error.message});
