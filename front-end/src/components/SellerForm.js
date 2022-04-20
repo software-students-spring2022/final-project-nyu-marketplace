@@ -3,9 +3,18 @@ import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
 import 'react-dropdown/style.css'
+import Modal from 'react-bootstrap/Modal'
+import Container from 'react-bootstrap/Container'
+import Row from "react-bootstrap/Row"
+import { Link } from "react-router-dom";
+import Col from "react-bootstrap/Col"
+import { Button } from 'react-bootstrap';
+//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const SellerForm = () => {
+
+    const [show, setShow] = useState(false);
 
     // state variables for new item
     const [title, setTitle] = useState("")
@@ -23,6 +32,8 @@ const SellerForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
+
+        setShow(true);
 
         // stuff to send new item to server to be added later
         axios.post("http://localhost:3000/new-listing/save", {
@@ -43,7 +54,7 @@ const SellerForm = () => {
     }
 
     return (
-      <div>
+      <div className= "background">
         <Header></Header>
         <h3 class= "h3">Listing Details</h3>
 
@@ -117,6 +128,27 @@ const SellerForm = () => {
         </div>
 
         </form>
+
+        <Modal
+            backdrop="static"
+            keyboard={false}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            show={show} 
+            onHide={() => setShow(false)}>
+            
+            <Modal.Body id='modal-body-text'>
+                    <div id='modal-body'>
+                        <div>Your item has been listed.<br/>
+                            <br/>Once a buyer is interested, they may reserve the item and contact you to organize the purchase. 
+                            <br/>Press okay to return to the homepage.
+                            <br/>
+                        </div>
+                        <Col><Link to = "/homepage"><Button>Okay</Button></Link></Col>
+                    </div>
+                </Modal.Body>
+        </Modal>
       </div>
     )
   }
