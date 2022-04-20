@@ -56,6 +56,11 @@ const Profile = () => {
                         <Row>
                             <Button id='edit-profile' onClick={() => setEditMode(true)}>Edit Profile</Button>
                         </Row>
+                        <Link to='/'>
+                            <Button id='edit-profile' onClick={e => {
+                                sessionStorage.removeItem('jwt');
+                            }}>Logout</Button>
+                        </Link>
                     </div>
                 )}
                 </Col>
