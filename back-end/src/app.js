@@ -309,7 +309,7 @@ app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}),
 // **************************** END ITEM ROUTES **************************
 
 app.get('/auth', passport.authenticate('jwt'), (req, res) => {
-    res.status(200).send('True')
+    res.status(200).json({log: 'True', username: req.user.username})
 })
 
 app.get('/', (req, res) => {

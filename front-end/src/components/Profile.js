@@ -15,14 +15,18 @@ const Profile = () => {
         navigate(path);
     }
 
+    const [editMode, setEditMode] = useState(false);
+    const [name, setName] = useState();
+
     useEffect (() => { 
         fetch(`http://localhost:3000/auth`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
-        .then(res => {if(res.status === 401){return navigate('/')}})         
+        .then(res => {if(res.status === 401){return navigate('/')}else{return res.json()}})
+        .then(resJson => {setName(resJson.username)})         
         .catch((err) => {
           console.log(err);
         });  
-      })
-    const [editMode, setEditMode] = useState(false);
+      }, [])
+    
     // const [pfp, setPfp] = useState('../icon.png');
 
     const editModeFalse = () => {
@@ -51,7 +55,7 @@ const Profile = () => {
                 ) : (
                     <div>
                         <Row>
-                            <p>Username</p>
+                            <p>{name}</p>
                         </Row>
                         <Row>
                             <Button id='edit-profile' onClick={() => setEditMode(true)}>Edit Profile</Button>
