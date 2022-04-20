@@ -1,5 +1,5 @@
 import "./result.css"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {Header, SearchBar, ItemLine} from "./index"
 import 'bootstrap/dist/css/bootstrap.css';
 import { Spinner } from "react-bootstrap";
@@ -13,11 +13,17 @@ const ResultPage = (props) => {
 
   const [result, setResult] = useState()
   const query = useQuery()
+
+  const navigate = useNavigate(); 
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
   
   useEffect (() => { 
-    fetch(`http://localhost:3000/result?${query.toString()}`, {credentials: 'include', authentication: `Bearer ${sessionStorage.getItem("jwt")}`})
+    fetch(`http://localhost:3000/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
     .then(res => res.json())
     .then((resJson) => {
+      if (resJson.err === 'visitor'){return navigate('/')}
       setResult(resJson);
     })            
     .catch((err) => {
@@ -27,7 +33,7 @@ const ResultPage = (props) => {
   
   return (
     <>
-      <Header logged = "True"/>
+      <Header/>
       <SearchBar/>
       {result === undefined ? <Spinner/>:<ItemLine data={result}/>}
     </>

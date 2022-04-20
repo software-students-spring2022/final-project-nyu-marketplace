@@ -62,8 +62,10 @@ const Register = () => {
                                 },
                                 body: JSON.stringify({name: name, username: username, email: email, password: password})
                             })
-                            .then().catch();
-                            navigate('/login');
+                            .then(res => res.json()).then(e => {
+                                    alert(e.msg);
+                                    if (e.status === '200'){ navigate('/login')}
+                                }).catch(e => {alert(e.msg)});
                         }}>Register</Button>
                         
                     </Form>

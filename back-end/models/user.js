@@ -36,7 +36,14 @@ const UserSchema = new mongoose.Schema({
             },
         },
     ],
-
+    favorites: [
+        {
+            item: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Item',
+            }
+        }
+    ]
 })
 
 //export schema 
