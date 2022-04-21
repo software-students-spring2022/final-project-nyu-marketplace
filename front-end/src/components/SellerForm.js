@@ -23,17 +23,22 @@ const SellerForm = () => {
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
-    // const [posted_by, setPoster] = useState("")
 
     const navigate = useNavigate(); 
     const routeChange = (path) =>{  
         navigate(path);
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
 
+        let poster;
+
         setShow(true);
+
+        const idResult = await fetch('http://localhost:3000/auth', {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        const jsoned = await idResult.json()
+        poster = jsoned.id
 
         // stuff to send new item to server to be added later
         axios.post("http://localhost:3000/new-listing/save", {
@@ -44,19 +49,18 @@ const SellerForm = () => {
             location: location,
             category: category,
             item_status: "Available",
-            headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`},
-            posted_by: "f33521cd-8f81-455c-a3cd-644c6ccd8b45" // TODO: get user id from auth when posting
-      })
-      .then(res => {if (res.data.err === 'visitor'){return navigate('/')}})
+            posted_by: poster
+      }, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+      .then(res => {if (res.data.err === 'visitor'){return navigate('/')}else{navigate('/homepage')}})
       .catch((err) => {
-        console.log(err);
+        alert(err);
       })
     }
 
     return (
       <div className= "background">
         <Header></Header>
-        <h3 class= "h3">Listing Details</h3>
+        <h3 className= "h3">Listing Details</h3>
 
         <form onSubmit={handleSubmit}>
         <div className = "form-box">
@@ -97,8 +101,12 @@ const SellerForm = () => {
             <input
                 id="photo field"
                 type = "file"
-                value={photo}
-                onChange={e => setPhoto(e.target.files)}
+                onChange={e => {
+                    const image = new FormData();
+                    image.append('file', e.target.files[0]);
+                    axios.post('http://localhost:3000/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
+                    .then(res => {setPhoto(`http://localhost:3000/${res.data.name}`)}).catch();
+                }}
             />
         </div>
 
@@ -107,7 +115,7 @@ const SellerForm = () => {
                 <select value = {location} onChange={e => setLocation(e.target.value)}>
                 <option value="" disabled>Choose a Location</option>
                 <option value = "New York">New York</option>
-                <option value = "SHanghai">Shanghai</option>
+                <option value = "Shanghai">Shanghai</option>
                 <option value = "Abu Dhabi">Abu Dhabi</option>
             </select>
         </div>
