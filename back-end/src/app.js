@@ -55,7 +55,8 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
             $or: [
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
-            ]
+            ],
+            item_status: "Available"
         })
         res.json(query)
     }
@@ -65,7 +66,8 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ],
-            "category": req.query.category
+            "category": req.query.category,
+            item_status: "Available"
         })
         res.json(query)
     }
