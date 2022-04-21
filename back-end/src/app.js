@@ -224,7 +224,7 @@ app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'
 
 // route that saves an Item into a User's reserved_item array and updates the item's status to reserved. Only works if the item does not already have a status of reserved
 app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const item_id = req.body.item_id
+    const item_id = req.query.id
     const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
