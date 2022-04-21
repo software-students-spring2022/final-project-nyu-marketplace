@@ -60,7 +60,7 @@ const SellerForm = () => {
     return (
       <div className= "background">
         <Header></Header>
-        <h3 class= "h3">Listing Details</h3>
+        <h3 className= "h3">Listing Details</h3>
 
         <form onSubmit={handleSubmit}>
         <div className = "form-box">

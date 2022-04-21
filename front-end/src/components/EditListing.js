@@ -42,7 +42,7 @@ const EditListing = () => {
     return (
       <div>
         <Header></Header>
-        <h3 class= "h3">Edit Listing</h3>
+        <h3 className= "h3">Edit Listing</h3>
 
         <form onSubmit={handleSubmit}>
         <div className = "form-box">
