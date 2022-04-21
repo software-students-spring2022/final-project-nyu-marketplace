@@ -6,24 +6,21 @@ const argon2 = require('argon2')
 const session = require('express-session')
 const passport = require('passport')
 const JWT = require('jsonwebtoken')
+const multer = require('multer')
 
-const ObjectId = require('mongodb').ObjectId
 require('./passport')
-// let data = require('../public/FakeData.json')
-
 
 //import models
 const User = require('../models/user.js')
 const Item = require('../models/item.js')
 
-// Middleware
 app.use(cors({
     origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
   }))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-// we will put some server logic here later...
 
 app.use(express.static('./public/images'))
 
@@ -37,7 +34,14 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions))
 
-
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
 
 // ROUTES
 
@@ -206,11 +210,11 @@ app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), as
 // Item status FLOW: 1. Item is available 2. Item is reserved 3. Item is confirmed purchase following item exchange
 
 // Route to POST new listing/item
-app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
+app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item = new Item(req.body)
     try{
-        item.save()
-        res.send(item)
+        await item.save()
+        res.sendStatus(200)
         //console.log(item)
     } catch (err) {
         res.status(400).send(err)
@@ -308,8 +312,18 @@ app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}),
 
 // **************************** END ITEM ROUTES **************************
 
+app.post('/upload', passport.authenticate('jwt'), (req, res) => {
+    const upload = multer({storage: storage}).single('file')
+    upload(req, res, (err) => {
+        if (err){
+            res.sendStatus(500);
+        }
+        res.json({name: req.file.filename})
+    })
+})
+
 app.get('/auth', passport.authenticate('jwt'), (req, res) => {
-    res.status(200).json({log: 'True', username: req.user.username})
+    res.status(200).json({log: 'True', username: req.user.username, id: req.user.id})
 })
 
 app.get('/', (req, res) => {

@@ -124,3 +124,16 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+
+##images
+.jpg
+.png
+.jpeg
+.gif
+.svg
+.webp
+.jfif
+.pjpeg
+.pjp
+.avif
+.apng
