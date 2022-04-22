@@ -14,7 +14,7 @@ const HomePageItem = (props) => {
       headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
     })
     .then(res => res.json())
-    .then(resText => {alert(resText.msg)})
+    .then(resText => {alert(resText.msg); document.location.reload(false)})
     .catch(err => {console.log(err)})
 }
 
