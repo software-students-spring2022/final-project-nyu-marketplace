@@ -10,8 +10,8 @@ import './Homepage.css'
 
 const Homepage = () => {
   const [search, setSearch] = useState();
-  // const [name, setName ] = useState("")
   const [info, setInfo] = useState();
+
 
   const navigate = useNavigate(); 
     const routeChange = (path) =>{  
@@ -32,11 +32,39 @@ const Homepage = () => {
             return <div>Loading...</div>
         }
         else {
+
             return info.map(item => {
                 return (
-                    <Link to={`/detail?id=${item['_id']}`}>
-                        <HomePageItem title={item.title}/>
-                    </Link>
+
+                    <div>
+                        {/* <Modal
+                            keyboard={false}
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                            show={show} 
+                            onHide={() => setShow(false)}
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                    <div id='modal-header-text'>Complete Your Order</div> 
+                                </Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body id='modal-body-text'>
+                                <div id='modal-body'>
+                                    <div>Hello, please carefully review the following:<br/>
+                                        <br/>Here, you may mark an transaction as complete, or cancel the transaction.
+                                        <br/>Mark the transaction as complete: Only if you have paid the seller for the item and the item has been exchanged to you.
+                                        <br/>Mark the transaction as cancelled: If you or the seller no longer wish to complete the exchange. 
+                                    </div>
+                                    <Button onClick={completeOrder(item._id)} id='modal-reserve-button'>Mark Transaction as Complete</Button>
+                                    <Button id='modal-reserve-button'>Cancel Transaction</Button>
+                                </div>
+                            </Modal.Body>
+                        </Modal> */}
+                        <HomePageItem title={item.title} id={item._id}/>
+                    </div>
                 )
             })
         }
@@ -46,7 +74,9 @@ const Homepage = () => {
     
 
   return (
+      
       <Container fluid id='homepage-container'>
+
           <Header/>
           <Row>
             <Col id='search'>
