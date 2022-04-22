@@ -48,7 +48,7 @@ const SellerForm = () => {
             photo: photo,
             location: location,
             category: category,
-            item_status: "Available",
+            item_status: "available",
             posted_by: poster
       }, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
       .then(res => {if (res.data.err === 'visitor'){return navigate('/')}else{navigate('/homepage')}})
