@@ -1,7 +1,7 @@
 .Item {
     text-align: left;
     margin: 20px;
-    background: white;
+    background: lightgray;
     width: 25%;
 }
 
@@ -9,6 +9,11 @@
     margin: 20px;
     display: block;
     width: 80%;
+}
+
+.edit-item{
+    margin: 10px;
+    position: relative;
 }
 
 h1{

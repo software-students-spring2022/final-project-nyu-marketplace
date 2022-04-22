@@ -47,7 +47,7 @@ if (itemsArray === undefined)
             <h3>Your Listings:</h3>
             <div>
                 {itemsArray.map((item, i, itemsArray) => (
-                    <Item data = {itemsArray[i]}>
+                    <Item data = {itemsArray[i]} edit = {true} id = {itemsArray[i].id}>
                     </Item>
                 ))}
             </div>

@@ -1,6 +1,18 @@
 import "./Item.css"
+import { Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom'
 
 const Item = props => {
+    
+    const renderEditButton = () => {
+        if (props.edit === true) {
+            return <Link to={`/edit-listing?id=${props.data['_id']}`}>
+                        <Button className='edit-item' onClick={e => {
+            }}>Edit Item</Button>
+        </Link>
+        }
+    }
+
     return (
         <article className="Item">
             <div className="Item-Details">
@@ -16,6 +28,7 @@ const Item = props => {
                 <p>{props.data.category}</p>
                 <p><strong>Contact Me</strong></p>
                 <p>{props.data.contact}</p>
+                <div>{renderEditButton()}</div>
             </div>
         </article>
     )
