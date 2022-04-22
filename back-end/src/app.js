@@ -55,7 +55,8 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
             $or: [
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
-            ]
+            ],
+            item_status: "Available"
         })
         res.json(query)
     }
@@ -65,7 +66,8 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ],
-            "category": req.query.category
+            "category": req.query.category,
+            item_status: "Available"
         })
         res.json(query)
     }
@@ -199,6 +201,17 @@ app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), as
         res.json(user)
     } catch (err) {
         res.json({ message: err })
+    }
+})
+
+app.post('/update', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    try {
+        const found = await User.findById(req.user.id);
+        found['password'] = await argon2.hash(req.body.password)
+        await found.save();
+        res.status(200).json({"msg": "Password updated.","status": "200"})
+    } catch (err) {
+        res.status(403).json({ "msg": err })
     }
 })
 
