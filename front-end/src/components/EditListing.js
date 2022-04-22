@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from './header'
 import axios from "axios"
 import './EditListing.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const EditListing = () => {
@@ -14,16 +14,24 @@ const EditListing = () => {
     const [photo, setPhoto] = useState(null)
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
+    const [result, setResult] = useState()
 
     const navigate = useNavigate(); 
     const routeChange = (path) =>{  
         navigate(path);
     }
 
+    const useQuery = () => {
+        return new URLSearchParams(useLocation().search);
+    }
+
+    const query = useQuery()
+
     const handleSubmit = e => {
         e.preventDefault()
 
         // stuff to send new item to server to be added later
+        
         axios.post("http://localhost:3000/edit-listing/save", {
             title: title,
             price: price,
@@ -39,18 +47,35 @@ const EditListing = () => {
       })
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        .then(res => res.json())
+        .then((resJson) => {
+            if (resJson.err === 'visitor'){return navigate('/')}
+            setResult(resJson);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [])
+
+    if (result === undefined)
+    {
+        return <div>Loading...</div>
+    }
+
     return (
       <div>
         <Header></Header>
         <h3 className= "h3">Edit Listing</h3>
-
+        
         <form onSubmit={handleSubmit}>
         <div className = "form-box">
             <label for="title_field"></label>
             <input
                 id="title field"
                 type ="text"
-                placeholder="Item Title"
+                placeholder={result.title}
                 value={title}
                 onChange={e => setTitle(e.target.value)}
             />
@@ -61,7 +86,7 @@ const EditListing = () => {
             <input
                 id="price field"
                 type = "text"
-                placeholder="Set Price ($)"
+                placeholder={result.price}
                 value={price}
                 onChange={e => setPrice(e.target.value)}
             />
@@ -72,7 +97,7 @@ const EditListing = () => {
             <textarea className="description"
                 id="description field"
                 type = "text"
-                placeholder="Item Description"
+                placeholder={result.description}
                 value={description}
                 onChange={e => setDescription(e.target.value)}
             />
@@ -91,7 +116,7 @@ const EditListing = () => {
         <div>
             <label for ="location_field">Select Location</label>
                 <select value = {location} onChange={e => setLocation(e.target.value)}>
-                <option value="" disabled>Choose a Location</option>
+                <option value={result.location} disabled>Choose a Location</option>
                 <option value = "New York">New York</option>
                 <option value = "SHanghai">Shanghai</option>
                 <option value = "Abu Dhabi">Abu Dhabi</option>
@@ -101,7 +126,7 @@ const EditListing = () => {
         <div>
         <label for="category_field">Select Category</label>
         <select value = {category} onChange={e => setCategory(e.target.value)}>
-                <option value="" disabled>Choose a Category</option>
+                <option value={result.category} disabled>Choose a Category</option>
                 <option value = "Academic">Academic</option>
                 <option value = "Clothing">Clothing</option>
                 <option value = "Dorm">Dorm</option>

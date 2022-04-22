@@ -58,7 +58,7 @@ const Profile = () => {
                             <p>{name}</p>
                         </Row>
                         <Row>
-                            <Button id='edit-profile' onClick={() => setEditMode(true)}>Edit Profile</Button>
+                            <Button id='edit-profile' onClick={() => setEditMode(true)}>Change Password</Button>
                         </Row>
                         <Link to='/'>
                             <Button id='edit-profile' onClick={e => {
