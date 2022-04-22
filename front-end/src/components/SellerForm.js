@@ -20,7 +20,7 @@ const SellerForm = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
-    const [photo, setPhoto] = useState(null)
+    const [photo, setPhoto] = useState("http://dummyimage.com/118x100.png/ff4444/ffffff")
     const [location, setLocation] = useState("")
     const [category, setCategory] = useState("")
 

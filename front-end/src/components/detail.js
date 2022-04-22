@@ -40,6 +40,8 @@ const DetailPage = (props) => {
                 
         console.log(query.toString())
         console.log("Tasks:\nAdd item to user info in database\nRemove item from public view")
+        setShow(false)
+        alert("Item reserved! Please navigate to your homepage to view your reserved items.")
     }
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
