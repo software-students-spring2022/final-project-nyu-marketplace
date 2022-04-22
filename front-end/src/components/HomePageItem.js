@@ -13,8 +13,8 @@ const HomePageItem = (props) => {
       withcredentials: true,
       headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
     })
-    .then(res => {res.text()})
-    .then(resText => {alert(resText)})
+    .then(res => res.json())
+    .then(resText => {alert(resText.msg)})
     .catch(err => {console.log(err)})
 }
 

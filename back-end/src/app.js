@@ -259,14 +259,14 @@ app.get('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), 
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
     if (item.item_status === 'purchased'){
-        res.send('Item already purchased')
+        res.json({msg: 'Item already purchased'})
     } else {
         user.item_history.push(item_id)
         item.item_status = 'purchased'
         user.reserved_items.pull(item_id)
         await user.save()
         await item.save()
-        res.send('Item purchased')
+        res.json({"msg": 'Item purchased'})
     }
 })
 
