@@ -56,7 +56,7 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
                 {"title": {"$regex": req.query.searchText, "$options": "i"}},
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ],
-            item_status: "Available"
+            item_status: "available"
         })
         res.json(query)
     }
@@ -67,7 +67,7 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
                 {"description": {"$regex": req.query.searchText, "$options": "i"}},
             ],
             "category": req.query.category,
-            item_status: "Available"
+            item_status: "available"
         })
         res.json(query)
     }
@@ -271,21 +271,20 @@ app.get('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), 
 })
 
 // route that removes an item from a User's reserved_items array and updates the item's status to available
-app.post('/cancel-order', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+app.get('/cancel-order', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
 
     const item_id = req.query.id
     const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
     if (item.item_status === 'available'){
-        res.send('Item already available')
+        res.json({msg: 'Item already available'})
     } else {
         user.reserved_items.pull(item_id)
         item.item_status = 'available'
         await user.save()
         await item.save()
-        res.send('Item reservation canceled, status set to available')
-    }
+        res.json({"msg": 'Reservation canceled, status set back to available'})    }
 })
 
 // route that changes the item_status of an Item object to 'available'
