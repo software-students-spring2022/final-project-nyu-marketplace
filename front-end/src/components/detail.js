@@ -103,7 +103,7 @@ const DetailPage = (props) => {
                 {result === undefined ? <Spinner/>:<Item data={result}/>}
                 <Container>
                     <Row>
-                        <Col><Button onClick={()=>setShow(true)}>Order</Button></Col>
+                        <Col><Button onClick={()=>setShow(true)}>Reserve</Button></Col>
                         <Col><Link to = "/homepage"><Button onClick={e => {
                             fetch(`http://localhost:3000/add-favorites?id=${result._id}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
                             .then(res => {if (res.status === 200){alert('success')}else{alert('failed')}}).catch(err => {alert(err)})
