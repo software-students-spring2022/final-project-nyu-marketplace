@@ -204,6 +204,17 @@ app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), as
     }
 })
 
+app.post('/update', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    try {
+        const found = await User.findById(req.user.id);
+        found['password'] = await argon2.hash(req.body.password)
+        await found.save();
+        res.status(200).json({"msg": "Password updated.","status": "200"})
+    } catch (err) {
+        res.status(403).json({ "msg": err })
+    }
+})
+
 // ************ END USER ROUTES ************
 
 
