@@ -255,6 +255,7 @@ app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), 
 // route that saves an Item into a User's item_history array, updates the item's status to purchased, and removes the item from the user's reserved_items array
 app.post('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item_id = req.body.item_id
+    console.log(item_id)
     const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)
@@ -267,6 +268,24 @@ app.post('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}),
         await user.save()
         await item.save()
         res.send('Item purchased')
+    }
+})
+
+// route that removes an item from a User's reserved_items array and updates the item's status to available
+app.post('/cancel-order', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+
+    const item_id = req.query.id
+    const user_id = req.user.id
+    const user = await User.findById(user_id)
+    const item = await Item.findById(item_id)
+    if (item.item_status === 'available'){
+        res.send('Item already available')
+    } else {
+        user.reserved_items.pull(item_id)
+        item.item_status = 'available'
+        await user.save()
+        await item.save()
+        res.send('Item reservation canceled, status set to available')
     }
 })
 
