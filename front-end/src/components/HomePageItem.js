@@ -20,7 +20,13 @@ const HomePageItem = (props) => {
 
   //call cancel-order endpoint
   const cancelOrder = () => {
-    console.log("cancel order")
+    fetch(`http://localhost:3000/cancel-order?id=${id}`, {
+      withcredentials: true,
+      headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
+    })
+    .then(res => res.json())
+    .then(resText => {alert(resText.msg); document.location.reload(false)})
+    .catch(err => {console.log(err)})
   }
 
   return (
