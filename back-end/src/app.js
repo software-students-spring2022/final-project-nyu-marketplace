@@ -253,9 +253,8 @@ app.post('/reserve-item', passport.authenticate('jwt', {failureRedirect: '/'}), 
 })
 
 // route that saves an Item into a User's item_history array, updates the item's status to purchased, and removes the item from the user's reserved_items array
-app.post('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
-    const item_id = req.body.item_id
-    console.log(item_id)
+app.get('/purchase-item', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
+    const item_id = req.query.id
     const user_id = req.user.id
     const user = await User.findById(user_id)
     const item = await Item.findById(item_id)

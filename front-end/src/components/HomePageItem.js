@@ -11,11 +11,11 @@ const HomePageItem = (props) => {
   const completeOrder = () => {
     fetch(`http://localhost:3000/purchase-item?id=${id}`, {
       withcredentials: true,
-      headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`},
-      method: "POST",
-      body: JSON.stringify({item_id: id})
-      //body: {item_id: query.toString()}
-  })
+      headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
+    })
+    .then(res => {res.text()})
+    .then(resText => {alert(resText)})
+    .catch(err => {console.log(err)})
 }
 
   //call cancel-order endpoint
