@@ -36,13 +36,6 @@ if (itemsArray === undefined)
     return <div>Loading...</div>
 }
 
-var componentArray = [];
-
-for (let i = 0; i < itemsArray.length; i++)
-{
-   componentArray.push(<Item data={itemsArray.slice(i)} handleClick={handleClick}></Item>)
-}
-
     return (
         <main className="ManageItems">
             <Header></Header>
@@ -52,7 +45,12 @@ for (let i = 0; i < itemsArray.length; i++)
                 <p>Total Sale Value: $0</p>
                 </div>
             <h3>Your Listings:</h3>
-            {componentArray}
+            <div>
+                {itemsArray.map((item, i, itemsArray) => (
+                    <Item data = {itemsArray[i]}>
+                    </Item>
+                ))}
+            </div>
         </main>
     )
 }
