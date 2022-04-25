@@ -14,8 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 const SellerForm = () => {
 
-    const [show, setShow] = useState(false);
-
     // state variables for new item
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
@@ -34,8 +32,6 @@ const SellerForm = () => {
 
         let poster;
 
-        setShow(true);
-
         const idResult = await fetch('http://localhost:3000/auth', {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         const jsoned = await idResult.json()
         poster = jsoned.id
@@ -48,10 +44,10 @@ const SellerForm = () => {
             photo: photo,
             location: location,
             category: category,
-            item_status: "Available",
+            item_status: "available",
             posted_by: poster
       }, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
-      .then(res => {if (res.data.err === 'visitor'){return navigate('/')}else{navigate('/homepage')}})
+      .then(res => {if (res.data.err === 'visitor'){return navigate('/')}else{alert('success');navigate('/homepage')}})
       .catch((err) => {
         alert(err);
       })
@@ -105,7 +101,7 @@ const SellerForm = () => {
                     const image = new FormData();
                     image.append('file', e.target.files[0]);
                     axios.post('http://localhost:3000/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
-                    .then(res => {setPhoto(`http://localhost:3000/${res.data.name}`)}).catch();
+                    .then(res => {setPhoto(`http://localhost:3000/${res.data.name}`)}).catch(err => {alert(err)});
                 }}
             />
         </div>
@@ -136,27 +132,6 @@ const SellerForm = () => {
         </div>
 
         </form>
-
-        <Modal
-            backdrop="static"
-            keyboard={false}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            show={show} 
-            onHide={() => setShow(false)}>
-            
-            <Modal.Body id='modal-body-text'>
-                    <div id='modal-body'>
-                        <div>Your item has been listed.<br/>
-                            <br/>Once a buyer is interested, they may reserve the item and contact you to organize the purchase. 
-                            <br/>Press okay to return to the homepage.
-                            <br/>
-                        </div>
-                        <Col><Link to = "/homepage"><Button>Okay</Button></Link></Col>
-                    </div>
-                </Modal.Body>
-        </Modal>
       </div>
     )
   }
