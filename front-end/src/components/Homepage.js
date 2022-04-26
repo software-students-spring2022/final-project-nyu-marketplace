@@ -64,7 +64,7 @@ const Homepage = () => {
                                 </div>
                             </Modal.Body>
                         </Modal> */}
-                        <HomePageItem title={item.title} id={item.poster}/>
+                        <HomePageItem title={item.title} id={item._id} poster={item.poster}/>
                     </div>
                 )
             })
