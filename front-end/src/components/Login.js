@@ -8,11 +8,6 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const login = () => {
-        console.log("access api endpoint to log in user")
-        console.log(`${email} ${password}`)
-    }
-
     const navigate = useNavigate(); 
     const routeChange = (path) =>{  
         navigate(path);
@@ -29,7 +24,7 @@ const Login = () => {
         <Row>
             <Col id='form-section' sm={6}>
                 <div id='title'>Log in</div>
-                <Form onSubmit={login} id='form'>
+                <Form id='form'>
                     <Form.Group id='email-form'>
                         <FloatingLabel label='email'>
                             <Form.Control id='email-input' type='email' placeholder='email' onChange={ e=> setEmail(e.target.value)}/>

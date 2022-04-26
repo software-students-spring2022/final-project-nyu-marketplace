@@ -123,7 +123,6 @@ app.get('/detail',  passport.authenticate('jwt', {failureRedirect: '/'}), async 
     if (JSON.stringify(req.query) !== '{}') {
         const query = await Item.findById(req.query.id)
         res.json(query)
-
     }
 })
 
@@ -226,7 +225,6 @@ app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'
     try{
         await item.save()
         res.sendStatus(200)
-        //console.log(item)
     } catch (err) {
         res.status(400).send(err)
 
@@ -290,9 +288,7 @@ app.post('/status/available', passport.authenticate('jwt', {failureRedirect: '/'
     const item = await Item.findById(req.body.item_id)
     item.item_status = 'available'
     await item.save()
-    res.send(item)
-    console.log("item status changed to available")
-})
+    res.send(item)})
 
 // route that gets all the items in a user's item_history (these are purchased items)
 app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
@@ -304,7 +300,11 @@ app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), asyn
 // route that gets all the items in a user's reserved_items
 app.get('/reserved', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.user.id)
-    const items = await Item.find({_id: {$in: user.reserved_items}})
+    const items = await Item.find({_id: {$in: user.reserved_items}}).lean()
+    for (const ele of items) {
+        const poster = await User.findById(ele.posted_by);
+        ele.poster = poster.email;
+    }  
     res.send(items)
 })
 
