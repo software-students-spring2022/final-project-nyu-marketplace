@@ -25,6 +25,7 @@
 #browse {
     font-size: 40px;
     color: #451F6F;
+    margin-top: 8vh;
 }
 
 #searchbar {
@@ -85,3 +86,9 @@
     
 }
 
+#homepage-content {
+    padding-top: 12vh;
+    padding-bottom: 8vh;
+    background-color: #EEE6F3;
+    margin: 0;
+}

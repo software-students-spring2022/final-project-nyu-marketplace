@@ -40,18 +40,54 @@ li.profile {
 
 #header {
     display: flex;
+    justify-content: center;
     align-items: center;
-    height: 65px;
-   
-    font-family: 'Raleway', sans-serif;
-    font-size: 30px;
-    background-color: #451F6F;
-    color: #F2F2F2;
+    padding: 0;
+    margin-left: 8vh;
 }
 
-#header-2 {
+#header img {
+    width: auto;
+    max-height: 100%;
+    margin-right: 5vh;
+    cursor: pointer;
+}
+
+#header-row {
+    padding-top: 3vh;
+    background-color: #451F6F;
+    padding-bottom: 3vh;
     display: flex;
     justify-content: center;
-    background-color: #451F6F;
     align-items: center;
+}
+
+#header-navbutton {
+  background-color: #7320d1;
+  border-radius: 10px;
+  color: white;
+  border: 1px black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  font-size: 23px;
+  padding: 6px 35px;
+  text-align: center;
+}
+
+#header-navbutton:disabled {
+  pointer-events: none;
+}
+
+#header-navbutton:hover {
+  color: #451F6F;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+#header-navbutton:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
