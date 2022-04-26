@@ -8,10 +8,32 @@
 #landingpage-container {
     max-height: auto;
     overflow: scroll;
-    background: rgb(51,6,98);
-    background: linear-gradient(180deg, rgba(51,6,98,1) 10%, rgba(137,81,174,1) 30%, rgba(242,242,242,1) 60%);
+    background-color: #EEE6F3;
+    color: white;
     background-attachment: scroll;
+    width: 100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
 
+#landingpage-two {
+    padding-top: 5vh;
+    padding-bottom: 3vh;
+    padding-right: 5vh;
+    text-align: center;
+}
+
+#landingpage-three {
+    padding-top: 3vh;
+    padding-bottom: 5vh;
+    background-color: white;
+}
+
+#landingpage-four {
+    padding-top: 3vh;
+    padding-bottom: 5vh;
+    padding-right: 5vh;
+    text-align: center;
 }
 
 /* #row {
@@ -22,16 +44,19 @@
     display: flex;
     align-items: center;
     height: 65px;
-   
     font-family: 'Raleway', sans-serif;
     font-size: 30px;
     background-color: #451F6F;
     color: #F2F2F2;
+    margin: 0;
+    padding: 0;
 }
 
 #header-2 {
     display: flex;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     background-color: #451F6F;
     align-items: center;
 }
@@ -42,8 +67,6 @@
     color: #F2F2F2;
     width: 200px;
     height: 50px;
-
-
     background: #7151E8;
     border-radius: 13px;
 }
@@ -65,7 +88,12 @@
     justify-content: center;
     align-items: center;
     color:#F2F2F2;
-    height: 600px;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../../public/nyu.jpg);
+    min-height: 600px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .header-text{
@@ -89,22 +117,67 @@
     padding-bottom: 40px;
 }
 
-#start-button{
-    background: #7151E8;
-    height: 50px;
-    width: 500px;
+#start-button {
+    color: #451F6F;
+    background-color: white;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
     font-family: 'Raleway', sans-serif;
-    font-size: 25px;
-    border-radius: 13px;
+    margin: 0;
+    font-size: 23px;
+    padding: 6px 35px;
+    text-align: center;
 }
-
-#start-button:focus,#start-button:active {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
+  
+#start-buttonn:disabled {
+    pointer-events: none;
+}
+  
+#start-button:hover {
+    color: white;
+    background-color: #451F6F;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-.5px);
+}
+  
+#start-button:active {
+    box-shadow: none;
+    transform: translateY(0);
 }
 
 .image {
     display: flex;
     justify-content: center;
+}
+
+#header-navbutton {
+  background-color: #7151E8;
+  border-radius: 5px;
+  color: white;
+  border: 1px black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  font-size: 23px;
+  padding: 6px 35px;
+  text-align: center;
+}
+
+#header-navbutton:disabled {
+  pointer-events: none;
+}
+
+#header-navbutton:hover {
+  color: #451F6F;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+#header-navbutton:active {
+  box-shadow: none;
+  transform: translateY(0);
 }

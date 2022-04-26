@@ -6,3 +6,8 @@ h1 {
 p {
   margin: 3.5%;
 }
+
+#about-content {
+  padding-top: 5vh;
+  padding-bottom: 20vh;
+}
