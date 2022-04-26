@@ -22,8 +22,13 @@ const Footer = (props) => {
         return (
             <>
                 <Row id="footer">
+                    <Link to='/profile'>
+                    <Button id='footer-login'>My Profile</Button>
+                    </Link>
+                </Row>
+                <Row id="footer-logout">
                     <Link to='/login'>
-                    <Button id='footer-login'>Login</Button>
+                    <Button id='footer-login' onClick={e => {sessionStorage.removeItem('jwt')}}>Logout</Button>
                     </Link>
                 </Row>
             </>

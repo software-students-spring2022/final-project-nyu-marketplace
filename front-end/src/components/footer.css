@@ -60,3 +60,13 @@
     color: white;
     align-items: center;
 }
+
+#footer-logout {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #451F6F;
+    padding-bottom: 3vh;
+    padding-top: 1vh;
+}

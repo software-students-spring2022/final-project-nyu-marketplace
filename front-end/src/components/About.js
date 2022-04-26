@@ -1,11 +1,13 @@
 import React from 'react'
 import Header from './header'
 import './About.css'
+import {Footer} from './index'
 
 const About = () => {
   return (
     <div className='about'>
       <Header></Header>
+      <div id='about-content'>
       <h1>About NYU Marketplace</h1>
       <p>
         Our team is looking to provide a secure place for NYU students to buy and sell items exclusively to and from one another.
@@ -30,6 +32,8 @@ const About = () => {
       <p>
         Ruochen Miao - https://github.com/Ruochen1105
       </p>
+      </div>
+      <Footer/>
     </div>
   )
 }

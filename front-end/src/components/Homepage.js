@@ -1,6 +1,7 @@
 import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from './header'
+import Footer from './footer'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 
@@ -78,6 +79,7 @@ const Homepage = () => {
       <Container fluid id='homepage-container'>
 
           <Header/>
+          <Container fluid id='homepage-content'>
           <Row>
             <Col id='search'>
                 <div id='search-title'>Find your next item</div>
@@ -123,6 +125,8 @@ const Homepage = () => {
                   <div id='all-active-items'>{renderActivePurchases()}</div>
               </Col>
           </Row>
+          </Container>
+          <Footer/>
       </Container>
   
   )

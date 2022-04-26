@@ -27,21 +27,21 @@ const Header = (props) => {
     if (log === 'True') { 
         return (
             <>
-                <Row>
-                    <Col sm={3} id='header'>
+                <Row id="header-row">
+                    <Col sm={1} id='header'>
                         <img onClick={clickLogo}  src='./NYU_Marketplace_Logo.png' alt = 'NYU Marketplace'/>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/homepage'>
-                        <Button id='header-navbutton'>Home Page</Button>
+                        <Button id='header-navbutton'>Home</Button>
                         </Link>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/about'>
                         <Button id='header-navbutton'>About</Button>
                         </Link>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/profile'>
                         <Button id='header-navbutton'>Profile</Button>
                         </Link>
