@@ -1,15 +1,17 @@
 import './header.css';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
 
-    /* const clickLogo = (e) => {
-        alert("Direct to Home page.");
-    } */
+    const navigate = useNavigate();
+    const clickLogo = (e) => {
+        navigate('../');
+    } 
 
     const [log, setLog] = useState()
 
@@ -27,21 +29,21 @@ const Header = (props) => {
             <>
                 <Row>
                     <Col sm={3} id='header'>
-                        <div>NYU Marketplace</div>
+                        <img onClick={clickLogo}  src='./NYU_Marketplace_Logo.png' alt = 'NYU Marketplace'/>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/homepage'>
-                        <Button id='login-button'>Home Page</Button>
+                        <Button id='header-navbutton'>Home Page</Button>
                         </Link>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/about'>
-                        <Button id='login-button'>About</Button>
+                        <Button id='header-navbutton'>About</Button>
                         </Link>
                     </Col>
                     <Col sm={3} id='header-2'>
                         <Link to='/profile'>
-                        <Button id='login-button'>Profile</Button>
+                        <Button id='header-navbutton'>Profile</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -50,23 +52,23 @@ const Header = (props) => {
     } else {
         return (
             <>
-                <Row>
-                    <Col sm={3} id='header'>
-                        <div>NYU Marketplace</div>
+                <Row id="header-row">
+                    <Col sm={1} id='header'>
+                        <img onClick={clickLogo} src = './NYU_Marketplace_Logo.png' alt = 'NYU Marketplace'/>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/homepage'>
-                        <Button id='login-button'>Home Page</Button>
+                        <Button id='header-navbutton'>Home</Button>
                         </Link>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/about'>
-                        <Button id='login-button'>About</Button>
+                        <Button id='header-navbutton'>About</Button>
                         </Link>
                     </Col>
-                    <Col sm={3} id='header-2'>
+                    <Col sm={1} id='header'>
                         <Link to='/login'>
-                        <Button id='login-button'>Log In</Button>
+                        <Button id='header-navbutton'>Log In</Button>
                         </Link>
                     </Col>
                 </Row>

@@ -1,0 +1,62 @@
+#footer {
+    background-color: #451F6F;
+    align-items: center;
+    text-align: center;
+    padding-top: 4vh;
+    padding-bottom: 2vh;
+}
+
+#footer-login {
+    background-color: #7151E8;
+    border-radius: 5px;
+    color: white;
+    border: 1px black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 23px;
+    padding: 6px 35px;
+    text-align: center;
+    margin: 0 auto;
+}
+  
+#footer-login:disabled {
+    pointer-events: none;
+}
+  
+#footer-login:hover {
+    color: #451F6F;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+  
+#footer-login:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+#footer-lower {
+    color: black;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #451F6F;
+    padding-bottom: 3vh;
+}
+
+#footer-lower-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: white;
+    align-items: center;
+}
+
+#footer-lower-register {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: white;
+    align-items: center;
+}
