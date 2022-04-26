@@ -2,6 +2,7 @@ const app = require('../src/app')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const mongoose = require('mongoose')
+const item = require('../models/item')
 chai.use(chaiHttp)
 chai.expect()
 
@@ -229,13 +230,10 @@ describe('Item Routes', () => {
 describe("Detail route", () => {
 
     before (function (){
-        mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}, function(err){
+        mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}, async function(err){
             if(err){
-                console.log('Could not connect to database')
                 console.log(err)
-            } else {
-                console.log('Connected to database yay!')
-            }
+            } 
         })
     })
 
@@ -276,6 +274,7 @@ describe('result route', () => {
 })
 
 describe('favorites route', () => {
+
     it('should return all items meeting search query', (done) => {
         chai.request(app)
             .get('/favorites?searchText=Our Very First Item!')
@@ -307,6 +306,10 @@ describe('add-user route', () => {
             })
     })
 
+    after(async function() {
+        const item = require('../models/item')
+        await item.deleteMany({title: 'unit test item'})
+    })
 })
 
 
