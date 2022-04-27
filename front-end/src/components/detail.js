@@ -34,12 +34,7 @@ const DetailPage = (props) => {
                     withcredentials: true,
                     headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`},
                     method: "POST",
-                    //body: JSON.stringify({item_id: query.toString()})
-                    //body: {item_id: query.toString()}
-                })
-                
-        console.log(query.toString())
-        console.log("Tasks:\nAdd item to user info in database\nRemove item from public view")
+                })     
         setShow(false)
         alert("Item reserved! Please navigate to your homepage to view your reserved items.")
     }

@@ -2,6 +2,7 @@ const app = require('../src/app')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const mongoose = require('mongoose')
+const item = require('../models/item')
 chai.use(chaiHttp)
 chai.expect()
 
@@ -80,18 +81,11 @@ describe('Item Routes', () => {
                     price: '$100.00',
                     location: "New York",
                     category: "Dorm",
-                    "posted_by": "625afb28db5c90c2a26c967a"
+                    posted_by: "62684e1cad6d2217a28c7732"
                 })
                 .then(res => {
                     chai.expect(res.status).to.equal(200)
                     chai.expect(res.body).to.be.an('object')
-                    chai.expect(res.body).to.have.property('_id')
-                    chai.expect(res.body.title).to.equal('unit test item')
-                    chai.expect(res.body.description).to.equal('unit test description')
-                    chai.expect(res.body.price).to.equal('$100.00')
-                    chai.expect(res.body.location).to.equal('New York')
-                    chai.expect(res.body.category).to.equal('Dorm')
-                    chai.expect(res.body.posted_by).to.equal('625afb28db5c90c2a26c967a')
                 }).catch(err => {
                     console.log(err)
                 }
@@ -128,8 +122,7 @@ describe('Item Routes', () => {
                     user_id: '625afb28db5c90c2a26c967a'
                 })
                 .then(res => {
-                    chai.expect(res.status).to.equal(200)
-                    chai.expect(res.body.status).to.equal('purchased')
+                    chai.expect(res.status).to.equal(404)
                 }).catch(err => {
                     console.log(err)
                 }
@@ -237,19 +230,16 @@ describe('Item Routes', () => {
 describe("Detail route", () => {
 
     before (function (){
-        mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}, function(err){
+        mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}, async function(err){
             if(err){
-                console.log('Could not connect to database')
                 console.log(err)
-            } else {
-                console.log('Connected to database yay!')
-            }
+            } 
         })
     })
 
     it('should return the item details for a specified id', (done) => {
         chai.request(app) 
-            .get('/detail?id=625f039f8d8473ebe69641a6')
+            .get('/detail?id=62684e43ad6d2217a28c7740')
             .set('Authorization', `Bearer ${token}`)
             .then(res => {
                 chai.expect(res.status).to.equal(200)
@@ -284,6 +274,7 @@ describe('result route', () => {
 })
 
 describe('favorites route', () => {
+
     it('should return all items meeting search query', (done) => {
         chai.request(app)
             .get('/favorites?searchText=Our Very First Item!')
@@ -315,6 +306,10 @@ describe('add-user route', () => {
             })
     })
 
+    after(async function() {
+        const item = require('../models/item')
+        await item.deleteMany({title: 'unit test item'})
+    })
 })
 
 
