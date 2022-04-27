@@ -1,6 +1,5 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { Container, Button } from 'react-bootstrap'
+import { useState } from 'react'
 import './HomePageItem.css'
 
 const HomePageItem = (props) => {

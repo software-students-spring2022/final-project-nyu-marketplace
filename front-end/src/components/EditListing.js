@@ -16,10 +16,7 @@ const EditListing = () => {
     const [category, setCategory] = useState("")
     const [result, setResult] = useState()
 
-    const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
+    const navigate = useNavigate();
 
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);

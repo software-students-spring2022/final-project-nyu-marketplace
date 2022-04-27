@@ -1,7 +1,6 @@
 import "./History.css";
 import { Header } from "./index";
 import { Footer } from "./index";
-import HomePageItem from './HomePageItem'
 import HistoryPageItem from "./HistoryPageItem";
 
 import { Container, Row, Col } from "react-bootstrap";
@@ -13,10 +12,6 @@ const History = () => {
     const [info, setInfo] = useState();
 
     const navigate = useNavigate(); 
-
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
     useEffect(() => {
         axios.get('http://localhost:3000/purchased', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})

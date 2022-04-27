@@ -13,11 +13,7 @@ const Homepage = () => {
   const [search, setSearch] = useState();
   const [info, setInfo] = useState();
 
-
   const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
   useEffect(() => {
       axios.get('http://localhost:3000/reserved', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
