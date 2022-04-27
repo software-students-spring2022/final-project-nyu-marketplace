@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // Import components from 'components folder'
 //import { LandingPage } from './components'
-import { LandingPage, About, Login, Register, ResultPage, Homepage, ManageItems, SellerForm, DetailPage, Profile, FavoritesPage, EditListing } from './components/index'
+import { LandingPage, About, Login, Register, ResultPage, Homepage, ManageItems, SellerForm, DetailPage, Profile, FavoritesPage, EditListing, History } from './components/index'
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path='/detail' element={<DetailPage/>}></Route>
           <Route path='/favorites' element={<FavoritesPage/>}></Route>
           <Route path='/edit-listing' element={<EditListing/>}></Route>
+          <Route path='/history' element={<History/>}></Route>
         </Routes>
       </Router>
     </main>

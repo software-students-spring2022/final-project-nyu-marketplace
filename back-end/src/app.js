@@ -136,7 +136,6 @@ app.post("/add-user", async (req, res) => {
         if (found) {return res.status(403).json({"msg": 'User already exists.'})}
         const to_add = req.body
         to_add['password'] = await argon2.hash(to_add['password'])
-        const user = await User.create(to_add)
         res.status(200).json({"msg": "Successfully registered.","status": "200"})
     } catch (err) {
         res.status(403).json({ "msg": err })

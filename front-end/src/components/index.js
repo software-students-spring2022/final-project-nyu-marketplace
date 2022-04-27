@@ -17,9 +17,10 @@ import FavoritesPage from './favorites'
 import SearchBarF from './searchBarF'
 import EditListing from './EditListing'
 import Footer from './footer'
+import History from './History'
 
 
 
 
 // export them
-export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage, Profile, FavoritesPage, SearchBarF, EditListing, Footer}
+export { LandingPage, Header, Result, About, Login, Register, ResultPage, SearchBar, ItemLine, Homepage, SellerForm, ManageItems, DetailPage, Profile, FavoritesPage, SearchBarF, EditListing, Footer, History}
