@@ -7,6 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 const JWT = require('jsonwebtoken')
 const multer = require('multer')
+const path = require('path')
 
 require('./passport')
 
@@ -25,7 +26,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // serve images
-app.use(express.static('./public/images'))
+app.use(express.static(path.join(__dirname, '..', 'public', 'images')))
+app.use(express.static(path.join(__dirname, '..', '..', 'front-end', 'build')))
 
 // [legacy] setting sessions
 const sessionOptions = { 
@@ -344,6 +346,10 @@ app.get('/auth', passport.authenticate('jwt'), (req, res) => {
 // route redirected to when an unauthenticated user tries to visit protected contents
 app.get('/error', (req, res) => {
     res.json({'err': 'visitor'})
+})
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'front-end', 'build', 'index.html'))
 })
 
 // export the express app we created to make it available to other modules
