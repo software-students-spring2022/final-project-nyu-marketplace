@@ -14,16 +14,20 @@ require('./passport')
 const User = require('../models/user.js')
 const Item = require('../models/item.js')
 
+// solve CORS error
 app.use(cors({
     origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
   }))
 
+// allow access to req.query and req.body
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// serve images
 app.use(express.static('./public/images'))
 
+// [legacy] setting sessions
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
 	saveUninitialized: true, 
@@ -34,6 +38,7 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions))
 
+// set multer for image storing
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/images')
@@ -45,7 +50,7 @@ const storage = multer.diskStorage({
 
 // ROUTES
 
-// API route for search
+// route for search
 app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     
     if (req.query.searchText === 'undefined'){req.query.searchText = ''}
@@ -73,6 +78,7 @@ app.get('/result', passport.authenticate('jwt', {failureRedirect: '/'}), async (
     }
 })
 
+// route to return items in a user's favorite array
 app.get('/favorites', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const id = req.user.id;
     const found = await User.findById(id);
@@ -101,6 +107,7 @@ app.get('/favorites', passport.authenticate('jwt', {failureRedirect: '/'}), asyn
     }
 })
 
+// route to add an item to a user's favorite array
 app.get('/add-favorites', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const id = req.query.id;
     const userid = req.user.id;
@@ -111,21 +118,12 @@ app.get('/add-favorites', passport.authenticate('jwt', {failureRedirect: '/'}), 
     
 })
 
-// Route for sending item details
+// route for sending item details
 app.get('/detail',  passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     if (JSON.stringify(req.query) !== '{}') {
         const query = await Item.findById(req.query.id)
         res.json(query)
-
     }
-})
-
-app.get("/items", passport.authenticate('jwt', {failureRedirect: '/'}), (req, res) => {
-    Item.find({}, (err, docs) => {
-        // todo limit # of docs for homepage display
-        //console.log(docs)
-        res.json(docs)
-    } )
 })
 
 // ************ USER ROUTES ***********************
@@ -145,7 +143,7 @@ app.post("/add-user", async (req, res) => {
     }
 })
 
-
+// route to generate JsonWebToken for logged users
 app.post("/auth/login", passport.authenticate('local'), async (req, res) => {
     const username = req.body.username
     const found = await User.findOne({email: username})
@@ -173,16 +171,14 @@ app.get("/users", passport.authenticate('jwt', {failureRedirect: '/'}), async (r
     )
 })
 
-//route to get a user's information from database
+// route to get a user's information from database
 app.get("/user", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const id = req.user.id
     const found = await User.findById(id)
     res.json(found)
 })
 
-
-
-// Route to get the information of a user from the database based on the id 
+// route to get the information of a user from the database based on the id 
 app.get("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
@@ -192,7 +188,7 @@ app.get("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), asyn
     }
 })
 
-// Route to edit the info of a user on the database based on the _id
+// route to edit the info of a user on the database based on the _id
 app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -204,6 +200,7 @@ app.patch("/users/:id", passport.authenticate('jwt', {failureRedirect: '/'}), as
     }
 })
 
+// route to update a user's password
 app.post('/update', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     try {
         const found = await User.findById(req.user.id);
@@ -222,13 +219,12 @@ app.post('/update', passport.authenticate('jwt', {failureRedirect: '/'}), async 
 
 // Item status FLOW: 1. Item is available 2. Item is reserved 3. Item is confirmed purchase following item exchange
 
-// Route to POST new listing/item
+// route to POST new listing/item
 app.post('/new-listing/save', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item = new Item(req.body)
     try{
         await item.save()
         res.sendStatus(200)
-        //console.log(item)
     } catch (err) {
         res.status(400).send(err)
 
@@ -292,11 +288,9 @@ app.post('/status/available', passport.authenticate('jwt', {failureRedirect: '/'
     const item = await Item.findById(req.body.item_id)
     item.item_status = 'available'
     await item.save()
-    res.send(item)
-    console.log("item status changed to available")
-})
+    res.send(item)})
 
-//route that gets all the items in a user's item_history (these are purchased items)
+// route that gets all the items in a user's item_history (these are purchased items)
 app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.user.id)
     const items = await Item.find({_id: {$in: user.item_history}})
@@ -306,18 +300,22 @@ app.get('/purchased', passport.authenticate('jwt', {failureRedirect: '/'}), asyn
 // route that gets all the items in a user's reserved_items
 app.get('/reserved', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.user.id)
-    const items = await Item.find({_id: {$in: user.reserved_items}})
+    const items = await Item.find({_id: {$in: user.reserved_items}}).lean()
+    for (const ele of items) {
+        const poster = await User.findById(ele.posted_by);
+        ele.poster = poster.email;
+    }  
     res.send(items)
 })
 
-// Route to get all items posted by the user
+// route to get all items posted by the user
 app.get('/posted-items', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const user = await User.findById(req.user.id)
     const items = await Item.find({posted_by: user._id})
     res.send(items)
 })
 
-//route to edit an item/listing
+// route to edit an item/listing
 app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}), async (req, res) => {
     const item = await Item.findByIdAndUpdate(req.body.item_id, req.body, {
         new: true
@@ -326,22 +324,9 @@ app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/'}),
     res.send(item)
 })
 
-
-// Route to save listing edits
-// app.patch('/edit-listing/:id', (req, res) => {
-//     const {id} = req.params
-//     const item = data.Items.find(item => item._id === id)
-//     const {title, price, description, location, category, } = req.body
-//     if(title) item.title = title
-//     if(price) item.price = price
-//     if(description) item.description = description
-//     if(location) item.location = location
-//     if(category) item.category = category
-//     res.json(item)
-// })
-
 // **************************** END ITEM ROUTES **************************
 
+// route to handle image upload
 app.post('/upload', passport.authenticate('jwt'), (req, res) => {
     const upload = multer({storage: storage}).single('file')
     upload(req, res, (err) => {
@@ -352,10 +337,12 @@ app.post('/upload', passport.authenticate('jwt'), (req, res) => {
     })
 })
 
+// route to return the auth status of a user as well as its username and id
 app.get('/auth', passport.authenticate('jwt'), (req, res) => {
     res.status(200).json({log: 'True', username: req.user.username, id: req.user.id})
 })
 
+// route redirected to when an unauthenticated user tries to visit protected contents
 app.get('/', (req, res) => {
     res.json({'err': 'visitor'})
 })

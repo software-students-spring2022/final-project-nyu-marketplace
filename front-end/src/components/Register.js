@@ -13,11 +13,6 @@ const Register = () => {
     const routeChange = (path) =>{  
         navigate(path);
     }
-
-    const register = () => {
-        console.log("access api endpoint, register user");
-        //console.log(`${firstName} ${lastName} ${email} ${password}`)
-    }
     
     return (
         <Container fluid id='register-container'>
@@ -30,7 +25,7 @@ const Register = () => {
             <Row>
                 <Col id='form-section' sm={6}>
                     <div id='title'>Register</div>
-                    <Form onSubmit={register} id='form'>
+                    <Form id='form'>
                         <Form.Group id='first-name-form'>
                             <FloatingLabel label='full name'>
                                 <Form.Control id='first-name-input' type='name' placeholder='full name' onChange={ e=> setName(e.target.value)}/>

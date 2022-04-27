@@ -33,7 +33,7 @@ const HomePageItem = (props) => {
 
     <Container id='hp-item-container'>
         <div id='hp-item-title'>{props.title}</div>
-        <div>{id}</div>
+        <div>{props.poster}</div>
         <Button className='hpItem-button' onClick={completeOrder}>complete order</Button>
         <Button className='hpItem-button' onClick={cancelOrder}>cancel order</Button>
 
