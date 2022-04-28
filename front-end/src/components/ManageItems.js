@@ -5,7 +5,7 @@ import Item from './Item'
 import 'bootstrap/dist/css/bootstrap.css';
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const ManageItems = () =>
 {
@@ -13,9 +13,6 @@ const ManageItems = () =>
     const [itemsArray, setItemsArray] = useState();
 
     const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
    useEffect(() => {
     axios.get('http://localhost:3000/posted-items', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
@@ -25,11 +22,6 @@ const ManageItems = () =>
       })
       .catch(err => console.log(err))
   }, []);
-
-  const handleClick = e => {
-    alert("You clicked an item")
-    console.log("You clicked an item")
-  }
 
 if (itemsArray === undefined)
 {

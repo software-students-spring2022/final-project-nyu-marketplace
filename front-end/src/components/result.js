@@ -15,9 +15,6 @@ const ResultPage = (props) => {
   const query = useQuery()
 
   const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
   
   useEffect (() => { 
     fetch(`http://localhost:3000/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})

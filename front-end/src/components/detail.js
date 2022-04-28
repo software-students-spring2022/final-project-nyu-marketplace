@@ -11,24 +11,11 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
-// const clickOrder = () => {
-//     alert("Success!")
-// }
-
-// const OrderConfirmModal = (props) => {
-
-    
-//     return (
-
-//     )
-// }
-
-
 const DetailPage = (props) => {
+    
     const [show, setShow] = useState(false);
 
     const orderItem = () => {
-        //TODO: get user id from auth
         
         fetch(`http://localhost:3000/reserve-item?id=${result._id}`, {
                     withcredentials: true,
@@ -43,9 +30,6 @@ const DetailPage = (props) => {
     }
 
     const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
     const [result, setResult] = useState()
     const query = useQuery()
