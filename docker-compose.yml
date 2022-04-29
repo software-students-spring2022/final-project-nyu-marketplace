@@ -1,0 +1,23 @@
+version: "3"
+services:
+  react-app:
+    build: ./front-end/
+    image: react-app
+    ports:
+      - "3001:3001"
+    stdin_open: true
+    networks:
+      - nyum-app
+
+
+  express-app:
+    build: ./back-end/
+    image: express-app
+    ports:
+      - "3000:3000"
+    networks:
+      - nyum-app
+
+networks:
+  nyum-app:
+    driver: bridge
