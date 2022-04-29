@@ -11,9 +11,6 @@ import './Profile.css'
 const Profile = () => {
 
     const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState();
@@ -26,8 +23,6 @@ const Profile = () => {
           console.log(err);
         });  
       }, [])
-    
-    // const [pfp, setPfp] = useState('../icon.png');
 
     const editModeFalse = () => {
         setEditMode(false);

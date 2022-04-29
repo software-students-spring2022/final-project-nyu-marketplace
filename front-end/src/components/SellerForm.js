@@ -3,13 +3,6 @@ import Header from './header'
 import axios from "axios"
 import './SellerForm.css'
 import 'react-dropdown/style.css'
-import Modal from 'react-bootstrap/Modal'
-import Container from 'react-bootstrap/Container'
-import Row from "react-bootstrap/Row"
-import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col"
-import { Button } from 'react-bootstrap';
-//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const SellerForm = () => {
@@ -23,9 +16,6 @@ const SellerForm = () => {
     const [category, setCategory] = useState("")
 
     const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
 
     const handleSubmit = async e => {
         e.preventDefault()

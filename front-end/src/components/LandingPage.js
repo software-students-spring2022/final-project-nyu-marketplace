@@ -15,16 +15,7 @@ const LandingPage = () => {
   return (
 
   <Container fluid id='landingpage-container'>
-    {/*<Row>
-      <Col sm={9} id='header'>
-        <div>NYU Marketplace</div>
-      </Col>
-      <Col sm={3} id='header-2'>
-        <Link to='/login'>
-          <Button id='login-button'>Log In</Button>
-        </Link>
-      </Col>
-  </Row>*/}
+    
     <Header/>
 
     <Row id='landingpage-one'>

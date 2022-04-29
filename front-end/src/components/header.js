@@ -1,5 +1,5 @@
 import './header.css';
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -10,7 +10,7 @@ const Header = (props) => {
 
     const navigate = useNavigate();
     const clickLogo = (e) => {
-        navigate('../');
+        navigate('../homepage');
     } 
 
     const [log, setLog] = useState()

@@ -15,9 +15,6 @@ const FavoritesPage = (props) => {
   const query = useQuery()
 
   const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
   
   useEffect (() => { 
     fetch(`http://localhost:3000/favorites?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})

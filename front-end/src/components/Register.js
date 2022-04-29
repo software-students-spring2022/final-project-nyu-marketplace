@@ -10,9 +10,6 @@ const Register = () => {
     const [password, setPassword] = useState("")
 
     const navigate = useNavigate(); 
-    const routeChange = (path) =>{  
-        navigate(path);
-    }
     
     return (
         <Container fluid id='register-container'>
