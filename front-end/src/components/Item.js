@@ -1,6 +1,6 @@
 import "./Item.css"
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Item = props => {
     
@@ -26,8 +26,6 @@ const Item = props => {
                 <p>{props.data.location}</p>
                 <p><strong>Category</strong></p>
                 <p>{props.data.category}</p>
-                <p><strong>Contact Me</strong></p>
-                <p>{props.data.contact}</p>
                 <div>{renderEditButton()}</div>
             </div>
         </article>

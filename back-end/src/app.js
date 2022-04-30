@@ -138,6 +138,7 @@ app.post("/add-user", async (req, res) => {
         if (found) {return res.status(403).json({"msg": 'User already exists.'})}
         const to_add = req.body
         to_add['password'] = await argon2.hash(to_add['password'])
+        await User.create(to_add);
         res.status(200).json({"msg": "Successfully registered.","status": "200"})
     } catch (err) {
         res.status(403).json({ "msg": err })
@@ -328,7 +329,7 @@ app.patch('/edit-listing', passport.authenticate('jwt', {failureRedirect: '/erro
 // **************************** END ITEM ROUTES **************************
 
 // route to handle image upload
-app.post('/upload', passport.authenticate('jwt'), (req, res) => {
+app.post('/upload', passport.authenticate('jwt', {failureRedirect: '/error'}), (req, res) => {
     const upload = multer({storage: storage}).single('file')
     upload(req, res, (err) => {
         if (err){
@@ -341,6 +342,19 @@ app.post('/upload', passport.authenticate('jwt'), (req, res) => {
 // route to return the auth status of a user as well as its username and id
 app.get('/auth', passport.authenticate('jwt'), (req, res) => {
     res.status(200).json({log: 'True', username: req.user.username, id: req.user.id})
+})
+
+app.get('/avatar', passport.authenticate('jwt', {failureRedirect: '/error'}), async (req, res) => {
+    const user = await User.findById(req.user.id);
+    res.json({avatar: user.avatar});
+})
+
+app.post('/avatar', passport.authenticate('jwt', {failureRedirect: '/error'}), async (req, res) => {
+    const avatar = req.body.avatar;
+    const user = await User.findById(req.user.id);
+    user.avatar = avatar;
+    await user.save();
+    res.status(200).json({name: avatar});
 })
 
 // route redirected to when an unauthenticated user tries to visit protected contents
