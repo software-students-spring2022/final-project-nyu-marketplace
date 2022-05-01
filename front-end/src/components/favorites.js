@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {Header, SearchBarF, ItemLine} from "./index"
 import 'bootstrap/dist/css/bootstrap.css';
 import { Spinner } from "react-bootstrap";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -13,6 +13,7 @@ const FavoritesPage = (props) => {
 
   const [result, setResult] = useState()
   const query = useQuery()
+  const location = useLocation()
 
   const navigate = useNavigate(); 
   
@@ -26,7 +27,7 @@ const FavoritesPage = (props) => {
     .catch((err) => {
       console.log(err);
     });  
-  }, [])
+  }, [location])
   
   return (
     <>
