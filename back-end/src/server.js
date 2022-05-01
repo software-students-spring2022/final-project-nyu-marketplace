@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const server = require("./app") // load up the web server
 const mongoose = require('mongoose')
-require('dotenv')
+const dotenv = require('dotenv')
 const port = 8080 // the port to listen to for incoming requests
 // set up connection to MongoDB using Mongoose
 dotenv.config()
