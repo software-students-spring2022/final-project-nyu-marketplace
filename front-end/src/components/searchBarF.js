@@ -14,7 +14,7 @@ const SearchBar = (props) => {
 
     return (
         <>
-            <Container fluid><form method = "get" action = "/favorites">
+            <Container fluid><form method = "get" action = "/favoritespage">
                 <center><Row>
                     <Col><input type = "radio" checked={category === 'Academic'} onClick={() => {setCategory('Academic')}}/> Academic Supplies</Col>
                     <Col><input type = "radio" checked={category === 'Dorm'} onClick={() => {setCategory('Dorm')}}/> Dorm Appliances</Col>
@@ -29,11 +29,11 @@ const SearchBar = (props) => {
                         if (category === ''){
                             setCategory('')
                             setKeyword('')
-                            navigate(`/favorites?searchText=${keyword}`);
+                            navigate(`/favoritespage?searchText=${keyword}`);
                         } else {
                             setCategory('')
                             setKeyword('')
-                            navigate(`/favorites?category=${category}&searchText=${keyword}`)
+                            navigate(`/favoritespage?category=${category}&searchText=${keyword}`)
                         }
                     }}/></Col>
                     <Col xs = {1}></Col>

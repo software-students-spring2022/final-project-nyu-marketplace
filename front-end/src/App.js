@@ -15,11 +15,11 @@ function App() {
           <Route path='/listings' element={<ManageItems/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
-          <Route path='/result' element={<ResultPage/>}></Route>
+          <Route path='/resultpage' element={<ResultPage/>}></Route>
           <Route path='/homepage' element={<Homepage/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/detail' element={<DetailPage/>}></Route>
-          <Route path='/favorites' element={<FavoritesPage/>}></Route>
+          <Route path='/favoritespage' element={<FavoritesPage/>}></Route>
           <Route path='/edit-listing' element={<EditListing/>}></Route>
           <Route path='/history' element={<History/>}></Route>
         </Routes>
