@@ -2,6 +2,7 @@
 
 ## Link to Deployed App
 [https://nyu-marketplace-j4pxs.ondigitalocean.app/](https://nyu-marketplace-j4pxs.ondigitalocean.app/)
+We containerized our app.
 
 ## Product Vision Statement
 - Our team is looking to provide a secure place for NYU students to buy and sell items exclusively to and from one another.
