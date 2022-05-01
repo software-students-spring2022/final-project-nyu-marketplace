@@ -20,6 +20,7 @@ const ResultPage = (props) => {
     fetch(`/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
     .then(res => res.json())
     .then((resJson) => {
+      console.log(resJson)
       if (resJson.err === 'visitor'){return navigate('/')}
       setResult(resJson);
     })            
