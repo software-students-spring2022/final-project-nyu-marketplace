@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const server = require("./app") // load up the web server
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const port = 3000 // the port to listen to for incoming requests
+require('dotenv')
+const port = 8080 // the port to listen to for incoming requests
 // set up connection to MongoDB using Mongoose
 dotenv.config()
 const db_uri = process.env.MONGODB_URI
@@ -16,7 +16,7 @@ mongoose.connect(db_uri, {useNewUrlParser: true}, function(err){
     }
 })
 // call express's listen function to start listening to the port
-const listener = server.listen(port, function () {
+const listener = server.listen(process.env.PORT || port, function () {
   console.log(`Server running on port: ${port}`)
 })
 // a function to stop listening to the port

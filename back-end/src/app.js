@@ -17,7 +17,6 @@ const Item = require('../models/item.js')
 
 // solve CORS error
 app.use(cors({
-    origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
   }))
 
