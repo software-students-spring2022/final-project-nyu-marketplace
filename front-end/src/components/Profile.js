@@ -2,9 +2,9 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Header from './header';
 import { useState, useEffect } from 'react';
-// import icon from '../icon.png';
 import EditProfile from './EditProfile';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import './Profile.css'
 
@@ -14,6 +14,7 @@ const Profile = () => {
 
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState();
+    const [avatar, setAvatar] = useState('http://localhost:3000/default.jpg')
 
     useEffect (() => { 
         fetch(`http://localhost:3000/auth`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
@@ -23,6 +24,30 @@ const Profile = () => {
           console.log(err);
         });  
       }, [])
+
+      useEffect(() => {
+          fetch('http://localhost:3000/avatar', {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+          .then(res => res.json())
+          .then(resJson => {
+              if (resJson.err === 'visitor'){
+                  return navigate('/');
+              } else {
+                  setAvatar(resJson.avatar);
+              }
+          })
+          .catch(err => console.log(err));
+      }, [])
+
+      useEffect(() => {
+        fetch('http://localhost:3000/avatar', {
+            credentials: 'include',
+            headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': 'application/json'},
+            method: 'POST',
+            body: JSON.stringify({avatar: avatar})
+        })
+        .then()
+        .catch()
+      }, [avatar])
 
     const editModeFalse = () => {
         setEditMode(false);
@@ -38,8 +63,16 @@ const Profile = () => {
             <Row className='profile-row'>
                 <Col id='icon'>
                     <div id='pfp'>
-                        <img className='pfpImage' type='file' src={require('../icon.png')} alt="profile pic"/>
-                        <input id="pfpFile" type="file" onChange={(event) => pfpUpload(event.target.files[0])}></input>
+                        <img className='pfpImage' type='file' src={avatar} alt="failed to load avatar"/>
+                        <input id="pfpFile" type="file" onChange={e => {
+                            const image = new FormData();
+                            image.append('file', e.target.files[0]);
+                            axios.post('http://localhost:3000/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
+                            .then(res => {
+                                setAvatar(`http://localhost:3000/${res.data.name}`);
+                            })
+                            .catch(err => {alert(err)});
+                        }}></input>
                     </div>
                 </Col>
                 <Col id='user'>

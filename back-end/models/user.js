@@ -17,6 +17,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        required: false,
+        default: "http://localhost:3000/default.jpg",
+    },
     contact: {
         type: String,
     },
