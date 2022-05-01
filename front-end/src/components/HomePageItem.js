@@ -8,7 +8,7 @@ const HomePageItem = (props) => {
 
   //call purchase-item endpoint
   const completeOrder = () => {
-    fetch(`http://localhost:3000/purchase-item?id=${id}`, {
+    fetch(`/purchase-item?id=${id}`, {
       withcredentials: true,
       headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
     })
@@ -19,7 +19,7 @@ const HomePageItem = (props) => {
 
   //call cancel-order endpoint
   const cancelOrder = () => {
-    fetch(`http://localhost:3000/cancel-order?id=${id}`, {
+    fetch(`/cancel-order?id=${id}`, {
       withcredentials: true,
       headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}
     })

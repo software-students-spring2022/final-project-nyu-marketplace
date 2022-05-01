@@ -14,7 +14,7 @@ const History = () => {
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/purchased', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        axios.get('/purchased', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
           .then(res => {
               if (res.data.err === 'visitor'){return navigate('/')}
               else {setInfo(res.data)}

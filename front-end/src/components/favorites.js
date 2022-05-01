@@ -17,7 +17,7 @@ const FavoritesPage = (props) => {
   const navigate = useNavigate(); 
   
   useEffect (() => { 
-    fetch(`http://localhost:3000/favorites?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+    fetch(`/favorites?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
     .then(res => res.json())
     .then((resJson) => {
       if (resJson.err === 'visitor'){return navigate('/')}

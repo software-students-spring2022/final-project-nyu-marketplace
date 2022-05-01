@@ -17,7 +17,7 @@ const DetailPage = (props) => {
 
     const orderItem = () => {
         
-        fetch(`http://localhost:3000/reserve-item?id=${result._id}`, {
+        fetch(`/reserve-item?id=${result._id}`, {
                     withcredentials: true,
                     headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`},
                     method: "POST",
@@ -35,7 +35,7 @@ const DetailPage = (props) => {
     const query = useQuery()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        fetch(`/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => res.json())
         .then((resJson) => {
             if (resJson.err === 'visitor'){return navigate('/')}
@@ -84,7 +84,7 @@ const DetailPage = (props) => {
                     <Row>
                         <Col><Button onClick={()=>setShow(true)}>Reserve</Button></Col>
                         <Col><Link to = "/homepage"><Button onClick={e => {
-                            fetch(`http://localhost:3000/add-favorites?id=${result._id}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+                            fetch(`/add-favorites?id=${result._id}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
                             .then(res => {if (res.status === 200){alert('success')}else{alert('failed')}}).catch(err => {alert(err)})
                         }}>Favorite</Button></Link></Col>
                     </Row>

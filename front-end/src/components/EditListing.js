@@ -29,7 +29,7 @@ const EditListing = () => {
 
         // stuff to send new item to server to be added later
         
-        axios.post("http://localhost:3000/edit-listing/save", {
+        axios.post("/edit-listing/save", {
             title: title,
             price: price,
             description: description,
@@ -45,7 +45,7 @@ const EditListing = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        fetch(`/detail?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => res.json())
         .then((resJson) => {
             if (resJson.err === 'visitor'){return navigate('/')}
