@@ -47,7 +47,7 @@ const Register = () => {
                                 </FloatingLabel>
                         </Form.Group>
                         <Button id="button" onClick={e => {
-                            fetch('http://localhost:3000/add-user', {
+                            fetch('/add-user', {
                                 method: "POST",
                                 headers: {
                                     'Content-Type': 'application/json'

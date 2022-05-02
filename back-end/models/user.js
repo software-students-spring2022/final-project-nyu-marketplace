@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: String,
         required: false,
-        default: "http://localhost:3000/default.jpg",
+        default: "/default.jpg",
     },
     contact: {
         type: String,

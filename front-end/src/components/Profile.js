@@ -14,10 +14,10 @@ const Profile = () => {
 
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState();
-    const [avatar, setAvatar] = useState('http://localhost:3000/default.jpg')
+    const [avatar, setAvatar] = useState('/default.jpg')
 
     useEffect (() => { 
-        fetch(`http://localhost:3000/auth`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        fetch(`/auth`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => {if(res.status === 401){return navigate('/')}else{return res.json()}})
         .then(resJson => {setName(resJson.username)})         
         .catch((err) => {
@@ -26,7 +26,7 @@ const Profile = () => {
       }, [])
 
       useEffect(() => {
-          fetch('http://localhost:3000/avatar', {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+          fetch('/avatar', {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
           .then(res => res.json())
           .then(resJson => {
               if (resJson.err === 'visitor'){
@@ -39,7 +39,7 @@ const Profile = () => {
       }, [])
 
       useEffect(() => {
-        fetch('http://localhost:3000/avatar', {
+        fetch('/avatar', {
             credentials: 'include',
             headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': 'application/json'},
             method: 'POST',
@@ -67,9 +67,9 @@ const Profile = () => {
                         <input id="pfpFile" type="file" onChange={e => {
                             const image = new FormData();
                             image.append('file', e.target.files[0]);
-                            axios.post('http://localhost:3000/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
+                            axios.post('/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
                             .then(res => {
-                                setAvatar(`http://localhost:3000/${res.data.name}`);
+                                setAvatar(`/${res.data.name}`);
                             })
                             .catch(err => {alert(err)});
                         }}></input>
@@ -108,7 +108,7 @@ const Profile = () => {
                         <Button id='btn'>Listings</Button>
                     </Link>
                   
-                    <Link to='/favorites?searchText='>
+                    <Link to='/favoritespage?searchText='>
                         <Button id='btn'>Favorites</Button>
                     </Link>
                   

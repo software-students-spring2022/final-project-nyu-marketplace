@@ -22,12 +22,12 @@ const SellerForm = () => {
 
         let poster;
 
-        const idResult = await fetch('http://localhost:3000/auth', {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        const idResult = await fetch('/auth', {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         const jsoned = await idResult.json()
         poster = jsoned.id
 
         // stuff to send new item to server to be added later
-        axios.post("http://localhost:3000/new-listing/save", {
+        axios.post("/new-listing/save", {
             title: title,
             price: price,
             description: description,
@@ -90,8 +90,8 @@ const SellerForm = () => {
                 onChange={e => {
                     const image = new FormData();
                     image.append('file', e.target.files[0]);
-                    axios.post('http://localhost:3000/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
-                    .then(res => {setPhoto(`http://localhost:3000/${res.data.name}`)}).catch(err => {alert(err)});
+                    axios.post('/upload', image, {headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`, 'Content-Type': `multipart/form-data`}})
+                    .then(res => {setPhoto(`/${res.data.name}`)}).catch(err => {alert(err)});
                 }}
             />
         </div>

@@ -16,7 +16,7 @@ const Header = (props) => {
     const [log, setLog] = useState()
 
     useEffect(() => {
-        fetch('http://localhost:3000/auth', {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+        fetch('/auth', {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
         .then(res => res.json())
         .then((resText) => {
             setLog(resText.log);

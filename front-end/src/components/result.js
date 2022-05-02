@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {Header, SearchBar, ItemLine} from "./index"
 import 'bootstrap/dist/css/bootstrap.css';
 import { Spinner } from "react-bootstrap";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -13,11 +13,12 @@ const ResultPage = (props) => {
 
   const [result, setResult] = useState()
   const query = useQuery()
+  const location = useLocation()
 
   const navigate = useNavigate(); 
   
   useEffect (() => { 
-    fetch(`http://localhost:3000/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+    fetch(`/result?${query.toString()}`, {credentials: 'include', headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
     .then(res => res.json())
     .then((resJson) => {
       if (resJson.err === 'visitor'){return navigate('/')}
@@ -26,7 +27,7 @@ const ResultPage = (props) => {
     .catch((err) => {
       console.log(err);
     });  
-  }, []);
+  }, [location]);
   
   return (
     <>

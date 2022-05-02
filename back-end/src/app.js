@@ -17,7 +17,6 @@ const Item = require('../models/item.js')
 
 // solve CORS error
 app.use(cors({
-    origin: ['http://localhost:4000','http://localhost:3001'],
     credentials:true,
   }))
 
@@ -54,7 +53,7 @@ const storage = multer.diskStorage({
 
 // route for search
 app.get('/result', passport.authenticate('jwt', {failureRedirect: '/error'}), async (req, res) => {
-    
+
     if (req.query.searchText === 'undefined'){req.query.searchText = ''}
 
     if (Object.keys(req.query).length === 1){

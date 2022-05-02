@@ -12,7 +12,7 @@ const EditProfile = ({editModeFalse}) => {
     //add check to make sure password confirmation is correct
 
     if (pwd === confirm){
-        fetch('http://localhost:3000/update', {
+        fetch('/update', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

@@ -29,11 +29,11 @@ const SearchBar = (props) => {
                         if (category === ''){
                             setCategory('')
                             setKeyword('')
-                            navigate(`/result?searchText=${keyword}`);
+                            navigate(`/resultpage?searchText=${keyword}`);
                         } else {
                             setCategory('')
                             setKeyword('')
-                            navigate(`/result?category=${category}&searchText=${keyword}`)
+                            navigate(`/resultpage?category=${category}&searchText=${keyword}`)
                         }
                     }}/></Col>
                     <Col xs = {1}></Col>

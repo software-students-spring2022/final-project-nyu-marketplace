@@ -34,7 +34,7 @@ const Login = () => {
                             </FloatingLabel>
                     </Form.Group>
                     <Button id="button" onClick={async e => {
-                       const res = await fetch('http://localhost:3000/auth/login', {
+                       const res = await fetch('/auth/login', {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ const ManageItems = () =>
     const navigate = useNavigate(); 
 
    useEffect(() => {
-    axios.get('http://localhost:3000/posted-items', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
+    axios.get('/posted-items', {withCredentials:true, headers: {'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`}})
       .then(res => {
           if (res.data.err === 'visitor'){return navigate('/')}
           setItemsArray(res.data)
