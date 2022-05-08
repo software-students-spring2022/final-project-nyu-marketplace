@@ -39,14 +39,25 @@
 ## Git Workflow
 - Each team member is to complete their portion of the work in their own local clone of the main repository.
 - Coding standards regarding merging with the main branch as per the Coding Standards section of this document should be strictly adhered to.
-
-<br>
-
-## Local Environment Setup Instructions
 - Potential contributers should clone the main repository to their own machine, preferably using Visual Studio Code's integrated source control for consistency with team members.
 - Pull requests should be made with small changes, and be accompanied by descriptive messages detailing the changes made.
 
 <br>
 
+## Local Environment Setup Instructions
+- Environment variables are shared among group members (and stakeholders) elsewhere.
+
+<br>
+
 ## Build and Test Project Instructions
-- To Be Updated
+
+To run the server on local machines, from the root directory:
+
+1. cd front-end
+2. npm install
+3. npm run build (alternatively, npm run build-win on Windows)
+4. cd ..
+5. cd back-end
+6. npm install
+7. npm start
+8. visit http://localhost:8080 (the default port)
