@@ -1,7 +1,7 @@
 # Project Description
 
 ## Link to Deployed App
-[https://nyu-marketplace-j4pxs.ondigitalocean.app/](https://nyu-marketplace-j4pxs.ondigitalocean.app/)
+[https://nyu-marketplace-j4pxs.ondigitalocean.app/](https://nyu-marketplace-j4pxs.ondigitalocean.app/) -- No Longer Available
 
 We containerized our app.
 
